@@ -4,11 +4,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 
-namespace AttendanceProClient.Settings
+namespace AttendanceProClient.Preference
 {
     public class AccountEncryptionSerializer
     {
-        const string PersistentFileName = "account.dat";
+        const string PersistentFileName = "masterdata";
 
         string GetPersistentFilePath()
         {

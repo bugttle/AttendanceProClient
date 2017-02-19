@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using AttendanceProClient.Client;
-using AttendanceProClient.Settings;
+using AttendanceProClient.Preference;
 
 namespace AttendanceProClient
 {
