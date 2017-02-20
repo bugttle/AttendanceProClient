@@ -69,9 +69,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttendanceTypes.cs" />
-    <Compile Include="Client\AttendanceProAttendException.cs" />
-    <Compile Include="Client\AttendanceProPasswordExpiredException.cs" />
-    <Compile Include="Client\AttendanceProLoginException.cs" />
+    <Compile Include="Client\Exceptions\AttendanceProAttendException.cs" />
+    <Compile Include="Client\Exceptions\AttendanceProPasswordExpiredException.cs" />
+    <Compile Include="Client\Exceptions\AttendanceProLoginException.cs" />
+    <Compile Include="Client\AttendanceProUrls.cs" />
     <Compile Include="Client\QueryCreator.cs" />
     <Compile Include="Client\ResponseValidator.cs" />
     <Compile Include="Preference\Account.cs" />

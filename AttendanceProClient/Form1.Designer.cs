@@ -42,6 +42,8 @@
             this.userIdTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.companyCodeTextBox = new System.Windows.Forms.TextBox();
+            this.toolStripMenuItemOpenBrowser = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             userIdLabel = new System.Windows.Forms.Label();
             passwordLabel = new System.Windows.Forms.Label();
@@ -52,7 +54,7 @@
             // toolStripSeparator
             // 
             toolStripSeparator.Name = "toolStripSeparator";
-            toolStripSeparator.Size = new System.Drawing.Size(95, 6);
+            toolStripSeparator.Size = new System.Drawing.Size(149, 6);
             // 
             // userIdLabel
             // 
@@ -117,29 +119,31 @@
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemIn,
             this.toolStripMenuItemOut,
+            this.toolStripSeparator1,
+            this.toolStripMenuItemOpenBrowser,
             toolStripSeparator,
             this.toolStripMenuItemExit});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(99, 76);
+            this.contextMenuStrip.Size = new System.Drawing.Size(153, 126);
             // 
             // toolStripMenuItemIn
             // 
             this.toolStripMenuItemIn.Name = "toolStripMenuItemIn";
-            this.toolStripMenuItemIn.Size = new System.Drawing.Size(98, 22);
+            this.toolStripMenuItemIn.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItemIn.Text = "出社";
             this.toolStripMenuItemIn.Click += new System.EventHandler(this.toolStripMenuItemIn_Click);
             // 
             // toolStripMenuItemOut
             // 
             this.toolStripMenuItemOut.Name = "toolStripMenuItemOut";
-            this.toolStripMenuItemOut.Size = new System.Drawing.Size(98, 22);
+            this.toolStripMenuItemOut.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItemOut.Text = "退社";
             this.toolStripMenuItemOut.Click += new System.EventHandler(this.toolStripMenuItemOut_Click);
             // 
             // toolStripMenuItemExit
             // 
             this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
-            this.toolStripMenuItemExit.Size = new System.Drawing.Size(98, 22);
+            this.toolStripMenuItemExit.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItemExit.Text = "終了";
             this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
             // 
@@ -168,6 +172,18 @@
             this.companyCodeTextBox.Size = new System.Drawing.Size(140, 19);
             this.companyCodeTextBox.TabIndex = 2;
             this.companyCodeTextBox.TabStop = false;
+            // 
+            // toolStripMenuItemOpenBrowser
+            // 
+            this.toolStripMenuItemOpenBrowser.Name = "toolStripMenuItemOpenBrowser";
+            this.toolStripMenuItemOpenBrowser.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemOpenBrowser.Text = "ブラウザで開く";
+            this.toolStripMenuItemOpenBrowser.Click += new System.EventHandler(this.toolStripMenuItemOpenBrowser_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // Form1
             // 
@@ -207,6 +223,8 @@
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemExit;
         private System.Windows.Forms.TextBox companyCodeTextBox;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenBrowser;
     }
 }
 

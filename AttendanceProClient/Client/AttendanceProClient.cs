@@ -7,10 +7,6 @@ namespace AttendanceProClient.Client
     // Warning CA1001  Implement IDisposable on 'AttendanceProClient' because it creates members of the following IDisposable types: 'CookieAwareWebClient'.
     class AttendanceProClient : IDisposable
     {
-        const string BaseURL = "https://attendance.cvi.co.jp";
-        const string LogOnURL = BaseURL + "/LogOn.aspx";
-        const string AttendanceTableDailyURL = BaseURL + "/AttendanceTableDaily.aspx";
-
         CookieAwareWebClient wc = new CookieAwareWebClient();
 
         public AttendanceProClient()
@@ -27,11 +23,11 @@ namespace AttendanceProClient.Client
         string LogOn(string userId, string password, string companyCode)
         {
             // トップページの取得
-            var html = wc.Get(LogOnURL);
+            var html = wc.Get(AttendanceProUrls.LogOnURL);
 
             // ログイン実行
             var query = QueryCreator.QueryForLogOnPage(html, userId, password, companyCode);
-            html = wc.Post(LogOnURL, query);
+            html = wc.Post(AttendanceProUrls.LogOnURL, query);
 
             // ログインが正常に完了しているかのチェック
             ResponseValidator.ValidateLoggedIn(html);
@@ -51,7 +47,7 @@ namespace AttendanceProClient.Client
 
             // 出退勤実行
             var query = QueryCreator.QueryForAttendanceTableDailyPage(html, type);
-            html = wc.Post(AttendanceTableDailyURL, query);
+            html = wc.Post(AttendanceProUrls.AttendanceTableDailyURL, query);
 
             // 出退勤が正常に完了しているかのチェック
             ResponseValidator.ValidateAttended(html, type);

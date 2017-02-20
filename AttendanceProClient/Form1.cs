@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using AttendanceProClient.Client;
 using AttendanceProClient.Preference;
@@ -164,10 +165,17 @@ namespace AttendanceProClient
             Attend(AttendanceTypes.Out);
         }
 
+        // ブラウザで開く
+        void toolStripMenuItemOpenBrowser_Click(object sender, EventArgs e)
+        {
+            Process.Start(AttendanceProUrls.TopURL);
+        }
+
         // アプリケーションの終了
         void toolStripMenuItemExit_Click(object sender, EventArgs e)
         {
             notifyIcon.Visible = false;
+            Dispose(true);
             Application.Exit();
         }
 
