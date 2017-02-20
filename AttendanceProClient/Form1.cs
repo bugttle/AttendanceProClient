@@ -14,13 +14,23 @@ namespace AttendanceProClient
         {
             InitializeComponent();
 
-            mAccountManager.Load();
+            try
+            {
+                mAccountManager.Load();
+            }
+            catch (Exception e)
+            {
+                ShowNotify("アカウント情報の読み込みに失敗しました。: " + e.ToString(), ToolTipIcon.Error);
+            }
+
+            // アカウント情報に基づいてUIの更新
             UpdateUI();
 
             if (!mAccountManager.IsValidAccount())
             {
                 // アカウント情報が正しくなければフォームを表示する
                 Show();
+                Activate();
             }
         }
 
@@ -57,11 +67,11 @@ namespace AttendanceProClient
         // 勤怠処理の実行
         //
 
-        void DoAttendance(AttendanceTypes type)
+        void Attend(AttendanceTypes type)
         {
             try
             {
-                mClient.DoAttendance(mAccountManager.Account, type);
+                mClient.Attend(mAccountManager.Account, type);
                 ShowNotify("「" + type.ToName() + "」が完了しました。", ToolTipIcon.Info);
             }
             catch (AttendanceProLoginException e)
@@ -69,9 +79,13 @@ namespace AttendanceProClient
                 var message = e.Message ?? "ログインに失敗しました。";
                 ShowNotify(message, ToolTipIcon.Error);
             }
-            catch (AttendanceProPasswordExpiredException e)
+            catch (AttendanceProPasswordExpiredException)
             {
                 ShowNotify("パスワードの期限が切れています。更新してください。", ToolTipIcon.Error);
+            }
+            catch (AttendanceProAttendException)
+            {
+                ShowNotify("「" + type.ToName() + "」 に失敗しました。", ToolTipIcon.Error);
             }
             catch (Exception e)
             {
@@ -89,7 +103,15 @@ namespace AttendanceProClient
             {
                 e.Cancel = true;
                 Hide(); // 閉じるのではなく、隠す
-                mAccountManager.Save(); // アカウント情報の保存
+
+                try
+                {
+                    mAccountManager.Save(); // アカウント情報の保存
+                }
+                catch (Exception err)
+                {
+                    ShowNotify("アカウント情報の保存に失敗しました。: " + err.ToString(), ToolTipIcon.Error);
+                }
             }
         }
 
@@ -110,13 +132,13 @@ namespace AttendanceProClient
         // 出社
         void attendanceInButton_Click(object sender, EventArgs e)
         {
-            DoAttendance(AttendanceTypes.In);
+            Attend(AttendanceTypes.In);
         }
 
         // 退社
         void attendanceOutButton_Click(object sender, EventArgs e)
         {
-            DoAttendance(AttendanceTypes.Out);
+            Attend(AttendanceTypes.Out);
         }
 
         //
@@ -127,18 +149,19 @@ namespace AttendanceProClient
         void notifyIcon_DoubleClick(object sender, EventArgs e)
         {
             Show();
+            Activate();
         }
 
         // 出社
         void toolStripMenuItemIn_Click(object sender, EventArgs e)
         {
-            DoAttendance(AttendanceTypes.In);
+            Attend(AttendanceTypes.In);
         }
 
         // 退社
         void toolStripMenuItemOut_Click(object sender, EventArgs e)
         {
-            DoAttendance(AttendanceTypes.Out);
+            Attend(AttendanceTypes.Out);
         }
 
         // アプリケーションの終了
