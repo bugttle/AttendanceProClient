@@ -129,9 +129,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>: RENAME $(TargetFileName) $(TargetName)WithoutDLL.exe
-: "C:\Program Files (x86)\Microsoft\ILMerge\ILMerge.exe" /v4 /ndebug /out:$(TargetFileName) $(TargetName)WithoutDLL.exe HtmlAgilityPack.dll
-: DEL $(TargetName)WithoutDLL.exe HtmlAgilityPack.*</PostBuildEvent>
+    <PostBuildEvent>"C:\Program Files (x86)\Microsoft\ILMerge\ILMerge.exe" /v4 /ndebug /out:AttendanceProClient.exe $(TargetFileName) HtmlAgilityPack.dll</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
