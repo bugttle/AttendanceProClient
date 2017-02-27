@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\AttendanceTypes.cs" />
+    <Compile Include="Client\Exceptions\AttendanceProAlreadyAttendException.cs" />
     <Compile Include="Client\Exceptions\AttendanceProAttendException.cs" />
     <Compile Include="Client\Exceptions\AttendanceProPasswordExpiredException.cs" />
     <Compile Include="Client\Exceptions\AttendanceProLoginException.cs" />

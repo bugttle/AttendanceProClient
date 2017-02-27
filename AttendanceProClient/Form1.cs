@@ -89,9 +89,13 @@ namespace AttendanceProClient
             {
                 ShowNotify("パスワードの期限が切れています。更新してください。", ToolTipIcon.Error);
             }
-            catch (AttendanceProAttendException)
+            catch (AttendanceProAlreadyAttendException e)
             {
-                ShowNotify("「" + type.ToName() + "」 に失敗しました。", ToolTipIcon.Error);
+                ShowNotify("既に「" + e.AttendanceType.ToName() + "」済みです。", ToolTipIcon.Warning);
+            }
+            catch (AttendanceProAttendException e)
+            {
+                ShowNotify("「" + e.AttendanceType.ToName() + "」 に失敗しました。", ToolTipIcon.Error);
             }
             catch (Exception e)
             {
@@ -207,6 +211,9 @@ namespace AttendanceProClient
                     break;
 
                 case ToolTipIcon.Warning:
+                    tipTitle = "お知らせ";
+                    break;
+
                 case ToolTipIcon.Error:
                     timeout = 5000; // エラーのときは長めに
                     tipTitle = "エラー";

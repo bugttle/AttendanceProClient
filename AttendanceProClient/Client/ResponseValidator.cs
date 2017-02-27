@@ -33,6 +33,29 @@
             throw new AttendanceProLoginException();
         }
 
+        public static void ValidateAlreadyAttended(string html, AttendanceTypes type)
+        {
+            var doc = new HtmlAgilityPack.HtmlDocument();
+            doc.LoadHtml(html);
+
+            // 出勤に成功していれば、 id="ctl00_ContentMain_txtStartTime" がある
+            // 退勤に成功していれば、 id="ctl00_ContentMain_txtEndTime" がある
+            var id = (type == AttendanceTypes.In) ? "ctl00_ContentMain_txtStartTime" : "ctl00_ContentMain_txtEndTime";
+            var node = doc.DocumentNode.SelectSingleNode("//input[@id='" + id + "']");
+            if (node == null)
+            {
+                return; // まだ打刻していない
+            }
+            // 時刻が入力されているかをチェック
+            var valueAttribute = node.GetAttributeValue("value", null);
+            if (valueAttribute == null)
+            {
+                return; // まだ打刻していない
+            }
+
+            throw new AttendanceProAlreadyAttendException(type);
+        }
+
         public static void ValidateAttended(string html, AttendanceTypes type)
         {
             var doc = new HtmlAgilityPack.HtmlDocument();
@@ -52,7 +75,7 @@
                 }
             }
 
-            throw new AttendanceProAttendException();
+            throw new AttendanceProAttendException(type);
         }
     }
 }

@@ -38,11 +38,11 @@
             this.toolStripMenuItemOut = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemOpenBrowser = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemPreference = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.userIdTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.companyCodeTextBox = new System.Windows.Forms.TextBox();
-            this.toolStripMenuItemPreference = new System.Windows.Forms.ToolStripMenuItem();
             this.startupCheckBox = new System.Windows.Forms.CheckBox();
             toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             userIdLabel = new System.Windows.Forms.Label();
@@ -133,6 +133,13 @@
             this.toolStripMenuItemOpenBrowser.Text = "ブラウザで開く";
             this.toolStripMenuItemOpenBrowser.Click += new System.EventHandler(this.toolStripMenuItemOpenBrowser_Click);
             // 
+            // toolStripMenuItemPreference
+            // 
+            this.toolStripMenuItemPreference.Name = "toolStripMenuItemPreference";
+            this.toolStripMenuItemPreference.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItemPreference.Text = "設定";
+            this.toolStripMenuItemPreference.Click += new System.EventHandler(this.toolStripMenuItemPreference_Click);
+            // 
             // toolStripMenuItemExit
             // 
             this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
@@ -166,18 +173,11 @@
             this.companyCodeTextBox.TabIndex = 2;
             this.companyCodeTextBox.TabStop = false;
             // 
-            // toolStripMenuItemPreference
-            // 
-            this.toolStripMenuItemPreference.Name = "toolStripMenuItemPreference";
-            this.toolStripMenuItemPreference.Size = new System.Drawing.Size(158, 22);
-            this.toolStripMenuItemPreference.Text = "設定";
-            this.toolStripMenuItemPreference.Click += new System.EventHandler(this.toolStripMenuItemPreference_Click);
-            // 
-            // checkBox
+            // startupCheckBox
             // 
             this.startupCheckBox.AutoSize = true;
             this.startupCheckBox.Location = new System.Drawing.Point(12, 122);
-            this.startupCheckBox.Name = "checkBox";
+            this.startupCheckBox.Name = "startupCheckBox";
             this.startupCheckBox.Size = new System.Drawing.Size(205, 16);
             this.startupCheckBox.TabIndex = 7;
             this.startupCheckBox.Text = "スタートアップへ登録 (自動起動させる)";

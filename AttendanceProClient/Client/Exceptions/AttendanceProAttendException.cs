@@ -9,6 +9,8 @@ namespace AttendanceProClient.Client
     [SerializableAttribute]
     class AttendanceProAttendException : SystemException
     {
+        public AttendanceTypes AttendanceType { get; private set; }
+
         public AttendanceProAttendException() : base()
         {
         }
@@ -23,6 +25,11 @@ namespace AttendanceProClient.Client
 
         protected AttendanceProAttendException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
+        }
+
+        public AttendanceProAttendException(AttendanceTypes type)
+        {
+            AttendanceType = type;
         }
     }
 }

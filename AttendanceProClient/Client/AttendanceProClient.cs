@@ -45,6 +45,9 @@ namespace AttendanceProClient.Client
             // ログイン後のページ
             var html = LogOn(account.UserId, account.Password, account.CompanyCode);
 
+            // 既に出退勤済かどうか
+            ResponseValidator.ValidateAlreadyAttended(html, type);
+
             // 出退勤実行
             var query = QueryCreator.QueryForAttendanceTableDailyPage(html, type);
             html = wc.Post(AttendanceProUrls.AttendanceTableDailyURL, query);
