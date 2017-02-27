@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using AttendanceProClient.Client;
 using AttendanceProClient.Preference;
+using AttendanceProClient.Utilities;
 
 namespace AttendanceProClient
 {
@@ -43,6 +44,7 @@ namespace AttendanceProClient
         {
             UpdateAccountTextBoxies();
             UpdateAttendnceButtons();
+            UpdateStartupCheckbox();
         }
 
         // アカウント情報の反映
@@ -60,6 +62,11 @@ namespace AttendanceProClient
             var enabled = mAccountManager.IsValidAccount();
             toolStripMenuItemIn.Enabled = enabled;
             toolStripMenuItemOut.Enabled = enabled;
+        }
+
+        void UpdateStartupCheckbox()
+        {
+            startupCheckBox.Checked = StartupLinkUtility.Exists();
         }
 
         //
@@ -126,6 +133,22 @@ namespace AttendanceProClient
         {
             mAccountManager.Account.Password = ((TextBox)sender).Text;
             UpdateAttendnceButtons();
+        }
+
+        // スタートアップチェックの変更
+        void startupCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Visible)
+            {
+                if (startupCheckBox.Checked)
+                {
+                    StartupLinkUtility.AddStartup();
+                }
+                else
+                {
+                    StartupLinkUtility.RemoveStartup();
+                }
+            }
         }
 
         //

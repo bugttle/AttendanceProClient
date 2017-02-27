@@ -43,6 +43,7 @@
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.companyCodeTextBox = new System.Windows.Forms.TextBox();
             this.toolStripMenuItemPreference = new System.Windows.Forms.ToolStripMenuItem();
+            this.startupCheckBox = new System.Windows.Forms.CheckBox();
             toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             userIdLabel = new System.Windows.Forms.Label();
             passwordLabel = new System.Windows.Forms.Label();
@@ -104,7 +105,7 @@
             this.toolStripMenuItemPreference,
             this.toolStripMenuItemExit});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(159, 148);
+            this.contextMenuStrip.Size = new System.Drawing.Size(159, 126);
             // 
             // toolStripMenuItemIn
             // 
@@ -172,11 +173,23 @@
             this.toolStripMenuItemPreference.Text = "設定";
             this.toolStripMenuItemPreference.Click += new System.EventHandler(this.toolStripMenuItemPreference_Click);
             // 
+            // checkBox
+            // 
+            this.startupCheckBox.AutoSize = true;
+            this.startupCheckBox.Location = new System.Drawing.Point(12, 122);
+            this.startupCheckBox.Name = "checkBox";
+            this.startupCheckBox.Size = new System.Drawing.Size(205, 16);
+            this.startupCheckBox.TabIndex = 7;
+            this.startupCheckBox.Text = "スタートアップへ登録 (自動起動させる)";
+            this.startupCheckBox.UseVisualStyleBackColor = true;
+            this.startupCheckBox.CheckedChanged += new System.EventHandler(this.startupCheckBox_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(224, 126);
+            this.ClientSize = new System.Drawing.Size(224, 150);
+            this.Controls.Add(this.startupCheckBox);
             this.Controls.Add(this.companyCodeTextBox);
             this.Controls.Add(companyCodeLabel);
             this.Controls.Add(this.passwordTextBox);
@@ -208,6 +221,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenBrowser;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPreference;
+        private System.Windows.Forms.CheckBox startupCheckBox;
     }
 }
 
