@@ -60,8 +60,6 @@ namespace AttendanceProClient
             var enabled = mAccountManager.IsValidAccount();
             toolStripMenuItemIn.Enabled = enabled;
             toolStripMenuItemOut.Enabled = enabled;
-            attendanceInButton.Enabled = enabled;
-            attendanceOutButton.Enabled = enabled;
         }
 
         //
@@ -130,18 +128,6 @@ namespace AttendanceProClient
             UpdateAttendnceButtons();
         }
 
-        // 出社
-        void attendanceInButton_Click(object sender, EventArgs e)
-        {
-            Attend(AttendanceTypes.In);
-        }
-
-        // 退社
-        void attendanceOutButton_Click(object sender, EventArgs e)
-        {
-            Attend(AttendanceTypes.Out);
-        }
-
         //
         // NotifyIcon関連
         //
@@ -169,6 +155,13 @@ namespace AttendanceProClient
         void toolStripMenuItemOpenBrowser_Click(object sender, EventArgs e)
         {
             Process.Start(AttendanceProUrls.TopURL);
+        }
+
+        // 設定
+        void toolStripMenuItemPreference_Click(object sender, EventArgs e)
+        {
+            Show();
+            Activate();
         }
 
         // アプリケーションの終了

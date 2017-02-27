@@ -32,18 +32,17 @@
             System.Windows.Forms.Label passwordLabel;
             System.Windows.Forms.Label companyCodeLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.attendanceInButton = new System.Windows.Forms.Button();
-            this.attendanceOutButton = new System.Windows.Forms.Button();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemIn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemOut = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemOpenBrowser = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.userIdTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.companyCodeTextBox = new System.Windows.Forms.TextBox();
-            this.toolStripMenuItemOpenBrowser = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemPreference = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             userIdLabel = new System.Windows.Forms.Label();
             passwordLabel = new System.Windows.Forms.Label();
@@ -54,7 +53,7 @@
             // toolStripSeparator
             // 
             toolStripSeparator.Name = "toolStripSeparator";
-            toolStripSeparator.Size = new System.Drawing.Size(149, 6);
+            toolStripSeparator.Size = new System.Drawing.Size(155, 6);
             // 
             // userIdLabel
             // 
@@ -86,26 +85,6 @@
             companyCodeLabel.Text = "企業コード";
             companyCodeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // attendanceInButton
-            // 
-            this.attendanceInButton.Location = new System.Drawing.Point(24, 128);
-            this.attendanceInButton.Name = "attendanceInButton";
-            this.attendanceInButton.Size = new System.Drawing.Size(75, 23);
-            this.attendanceInButton.TabIndex = 10;
-            this.attendanceInButton.Text = "出社";
-            this.attendanceInButton.UseVisualStyleBackColor = true;
-            this.attendanceInButton.Click += new System.EventHandler(this.attendanceInButton_Click);
-            // 
-            // attendanceOutButton
-            // 
-            this.attendanceOutButton.Location = new System.Drawing.Point(123, 128);
-            this.attendanceOutButton.Name = "attendanceOutButton";
-            this.attendanceOutButton.Size = new System.Drawing.Size(75, 23);
-            this.attendanceOutButton.TabIndex = 11;
-            this.attendanceOutButton.Text = "退社";
-            this.attendanceOutButton.UseVisualStyleBackColor = true;
-            this.attendanceOutButton.Click += new System.EventHandler(this.attendanceOutButton_Click);
-            // 
             // notifyIcon
             // 
             this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
@@ -122,28 +101,41 @@
             this.toolStripSeparator1,
             this.toolStripMenuItemOpenBrowser,
             toolStripSeparator,
+            this.toolStripMenuItemPreference,
             this.toolStripMenuItemExit});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(153, 126);
+            this.contextMenuStrip.Size = new System.Drawing.Size(159, 148);
             // 
             // toolStripMenuItemIn
             // 
             this.toolStripMenuItemIn.Name = "toolStripMenuItemIn";
-            this.toolStripMenuItemIn.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemIn.Size = new System.Drawing.Size(158, 22);
             this.toolStripMenuItemIn.Text = "出社";
             this.toolStripMenuItemIn.Click += new System.EventHandler(this.toolStripMenuItemIn_Click);
             // 
             // toolStripMenuItemOut
             // 
             this.toolStripMenuItemOut.Name = "toolStripMenuItemOut";
-            this.toolStripMenuItemOut.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemOut.Size = new System.Drawing.Size(158, 22);
             this.toolStripMenuItemOut.Text = "退社";
             this.toolStripMenuItemOut.Click += new System.EventHandler(this.toolStripMenuItemOut_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(155, 6);
+            // 
+            // toolStripMenuItemOpenBrowser
+            // 
+            this.toolStripMenuItemOpenBrowser.Name = "toolStripMenuItemOpenBrowser";
+            this.toolStripMenuItemOpenBrowser.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItemOpenBrowser.Text = "ブラウザで開く";
+            this.toolStripMenuItemOpenBrowser.Click += new System.EventHandler(this.toolStripMenuItemOpenBrowser_Click);
             // 
             // toolStripMenuItemExit
             // 
             this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
-            this.toolStripMenuItemExit.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemExit.Size = new System.Drawing.Size(158, 22);
             this.toolStripMenuItemExit.Text = "終了";
             this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
             // 
@@ -173,31 +165,24 @@
             this.companyCodeTextBox.TabIndex = 2;
             this.companyCodeTextBox.TabStop = false;
             // 
-            // toolStripMenuItemOpenBrowser
+            // toolStripMenuItemPreference
             // 
-            this.toolStripMenuItemOpenBrowser.Name = "toolStripMenuItemOpenBrowser";
-            this.toolStripMenuItemOpenBrowser.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemOpenBrowser.Text = "ブラウザで開く";
-            this.toolStripMenuItemOpenBrowser.Click += new System.EventHandler(this.toolStripMenuItemOpenBrowser_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItemPreference.Name = "toolStripMenuItemPreference";
+            this.toolStripMenuItemPreference.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItemPreference.Text = "設定";
+            this.toolStripMenuItemPreference.Click += new System.EventHandler(this.toolStripMenuItemPreference_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(224, 171);
+            this.ClientSize = new System.Drawing.Size(224, 126);
             this.Controls.Add(this.companyCodeTextBox);
             this.Controls.Add(companyCodeLabel);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.userIdTextBox);
             this.Controls.Add(passwordLabel);
             this.Controls.Add(userIdLabel);
-            this.Controls.Add(this.attendanceOutButton);
-            this.Controls.Add(this.attendanceInButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -212,9 +197,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button attendanceInButton;
-        private System.Windows.Forms.Button attendanceOutButton;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemIn;
@@ -225,6 +207,7 @@
         private System.Windows.Forms.TextBox companyCodeTextBox;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenBrowser;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPreference;
     }
 }
 

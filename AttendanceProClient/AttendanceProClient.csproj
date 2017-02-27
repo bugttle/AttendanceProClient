@@ -68,7 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttendanceTypes.cs" />
+    <Compile Include="Client\AttendanceTypes.cs" />
     <Compile Include="Client\Exceptions\AttendanceProAttendException.cs" />
     <Compile Include="Client\Exceptions\AttendanceProPasswordExpiredException.cs" />
     <Compile Include="Client\Exceptions\AttendanceProLoginException.cs" />
@@ -132,7 +132,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\Program Files (x86)\Microsoft\ILMerge\ILMerge.exe" /v4 /ndebug /out:AttendanceProClient.exe $(TargetFileName) HtmlAgilityPack.dll</PostBuildEvent>
+    <PostBuildEvent>: "C:\Program Files (x86)\Microsoft\ILMerge\ILMerge.exe" /v4 /ndebug /out:AttendanceProClient.exe $(TargetFileName) HtmlAgilityPack.dll</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
