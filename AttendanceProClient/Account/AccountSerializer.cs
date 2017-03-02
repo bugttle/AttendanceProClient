@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 
-namespace AttendanceProClient.Preference
+namespace AttendanceProClient.Account
 {
     public class AccountEncryptionSerializer
     {
@@ -67,16 +67,23 @@ namespace AttendanceProClient.Preference
         /// <returns></returns>
         public Account DeserializeFromFile()
         {
-            var filePath = GetPersistentFilePath();
-            if (File.Exists(filePath))
+            try
             {
-                var buffer = LoadFile(filePath);
-                if (buffer != null)
+                var filePath = GetPersistentFilePath();
+                if (File.Exists(filePath))
                 {
-                    return Unprotect(buffer);
+                    var buffer = LoadFile(filePath);
+                    if (buffer != null)
+                    {
+                        return Unprotect(buffer);
+                    }
                 }
+                return null;
             }
-            return null;
+            catch (System.Runtime.Serialization.SerializationException)
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -85,12 +92,18 @@ namespace AttendanceProClient.Preference
         /// <param name="account"></param>
         public void SerializeToFile(Account account)
         {
-            var filePath = GetPersistentFilePath();
-            var directory = Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-            if (directory != null)
+            try
             {
-                var encryptedData = Protect(account);
-                SaveFile(filePath, encryptedData);
+                var filePath = GetPersistentFilePath();
+                var directory = Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+                if (directory != null)
+                {
+                    var encryptedData = Protect(account);
+                    SaveFile(filePath, encryptedData);
+                }
+            }
+            catch (System.Runtime.Serialization.SerializationException)
+            {
             }
         }
     }

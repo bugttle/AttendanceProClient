@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AttendanceProClient.Preference
+namespace AttendanceProClient.Account
 {
     [Serializable]
     public class Account

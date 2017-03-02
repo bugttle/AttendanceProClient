@@ -1,4 +1,4 @@
-﻿namespace AttendanceProClient.Preference
+﻿namespace AttendanceProClient.Account
 {
     public class AccountManager
     {

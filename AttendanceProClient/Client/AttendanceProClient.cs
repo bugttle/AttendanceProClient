@@ -1,5 +1,5 @@
 ﻿using System;
-using AttendanceProClient.Preference;
+using AttendanceProClient.Account;
 
 namespace AttendanceProClient.Client
 {
@@ -40,7 +40,7 @@ namespace AttendanceProClient.Client
         /// </summary>
         /// <param name="account"></param>
         /// <param name="type"></param>
-        public void Attend(Account account, AttendanceTypes type)
+        public void Attend(Account.Account account, AttendanceTypes type)
         {
             // ログイン後のページ
             var html = LogOn(account.UserId, account.Password, account.CompanyCode);
