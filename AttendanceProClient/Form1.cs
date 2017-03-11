@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using AttendanceProClient.Account;
 using AttendanceProClient.Client;
 using AttendanceProClient.GlobalHook;
 using AttendanceProClient.Utilities;
-using static AttendanceProClient.GlobalHook.MouseHook;
 
 namespace AttendanceProClient
 {
@@ -39,7 +39,7 @@ namespace AttendanceProClient
             }
             else
             {
-                HookMouse();
+                HookMouse(true);
             }
         }
 
@@ -80,11 +80,33 @@ namespace AttendanceProClient
         // 勤怠処理の実行
         //
 
-        void Attend(AttendanceTypes type)
+        async Task CheckLogOn()
         {
             try
             {
-                mClient.Attend(mAccountManager.Account, type);
+                await mClient.ChceckLogOn(mAccountManager.Account);
+                ShowNotify("ログインに成功しました。", ToolTipIcon.Info);
+            }
+            catch (AttendanceProLoginException e)
+            {
+                var message = e.Message ?? "ログインに失敗しました。";
+                ShowNotify(message, ToolTipIcon.Error);
+            }
+            catch (AttendanceProPasswordExpiredException)
+            {
+                ShowNotify("パスワードの期限が切れています。更新してください。", ToolTipIcon.Error);
+            }
+            catch (Exception e)
+            {
+                ShowNotify("原因不明のエラーです。: " + e.ToString(), ToolTipIcon.Error);
+            }
+        }
+
+        async Task Attend(AttendanceTypes type)
+        {
+            try
+            {
+                await mClient.Attend(mAccountManager.Account, type);
                 ShowNotify("「" + type.ToName() + "」が完了しました。", ToolTipIcon.Info);
             }
             catch (AttendanceProLoginException e)
@@ -110,9 +132,43 @@ namespace AttendanceProClient
             }
         }
 
+        async void CheckAutoAttendance()
+        {
+            var timeKeeper = TimeKeeper.TimeKeeper.Instance;
+            if (!mIsShownDialog && timeKeeper.UpdateTime())
+            {
+                // 出退勤ダイアログの表示
+                var attendanceType = AttendanceTypes.In;
+                mIsShownDialog = true;
+                var result = MessageBox.Show("お早うございます。「" + attendanceType.ToName() + "」しますか？",
+                    Application.ProductName,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button1);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        await Attend(attendanceType);
+                        break;
+
+                    case DialogResult.No:
+                        break;
+                }
+                mIsShownDialog = false;
+                // この日の出退勤処理は終了
+                timeKeeper.IsFinished = true;
+            }
+        }
+
         //
         // Formのイベント
         //
+
+        void Form1_Shown(object sender, EventArgs e)
+        {
+            // マウスフックの停止
+            HookMouse(false);
+        }
 
         void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -129,6 +185,9 @@ namespace AttendanceProClient
                 {
                     ShowNotify("アカウント情報の保存に失敗しました。: " + err.ToString(), ToolTipIcon.Error);
                 }
+
+                // マウスフックの処理変更
+                HookMouse(mAccountManager.IsValidAccount());
             }
         }
 
@@ -137,11 +196,6 @@ namespace AttendanceProClient
         {
             mAccountManager.Account.UserId = ((TextBox)sender).Text;
             UpdateAttendnceButtons();
-
-            if (mAccountManager.IsValidAccount())
-            {
-                HookMouse();
-            }
         }
 
         // パスワードの更新
@@ -149,11 +203,6 @@ namespace AttendanceProClient
         {
             mAccountManager.Account.Password = ((TextBox)sender).Text;
             UpdateAttendnceButtons();
-
-            if (mAccountManager.IsValidAccount())
-            {
-                HookMouse();
-            }
         }
 
         // スタートアップチェックの変更
@@ -172,6 +221,13 @@ namespace AttendanceProClient
             }
         }
 
+        async void loginCheckButton_Click(object sender, EventArgs e)
+        {
+            loginCheckButton.Enabled = false;
+            await CheckLogOn();
+            loginCheckButton.Enabled = true;
+        }
+
         //
         // NotifyIcon関連
         //
@@ -184,15 +240,15 @@ namespace AttendanceProClient
         }
 
         // 出社
-        void toolStripMenuItemIn_Click(object sender, EventArgs e)
+        async void toolStripMenuItemIn_Click(object sender, EventArgs e)
         {
-            Attend(AttendanceTypes.In);
+            await Attend(AttendanceTypes.In);
         }
 
         // 退社
-        void toolStripMenuItemOut_Click(object sender, EventArgs e)
+        async void toolStripMenuItemOut_Click(object sender, EventArgs e)
         {
-            Attend(AttendanceTypes.Out);
+            await Attend(AttendanceTypes.Out);
         }
 
         // ブラウザで開く
@@ -239,45 +295,27 @@ namespace AttendanceProClient
             notifyIcon.ShowBalloonTip(timeout, tipTitle, tipText, tipIcon);
         }
 
+        //
         // マウスのフック
-        void HookFunc(ref StateMouse s)
-        {
-            var timeKeeper = TimeKeeper.TimeKeeper.Instance;
-            if (!mIsShownDialog && timeKeeper.UpdateTime())
-            {
-                // 出退勤ダイアログの表示
-                var attendanceType = AttendanceTypes.In;
-                mIsShownDialog = true;
-                var result = MessageBox.Show("お早うございます。「" + attendanceType.ToName() + "」しますか？",
-                    Application.ProductName,
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button1);
-                switch (result)
-                {
-                    case DialogResult.Yes:
-                        Attend(attendanceType);
-                        break;
+        //
 
-                    case DialogResult.No:
-                        break;
-                }
-                mIsShownDialog = false;
-                // この日の出退勤処理は終了
-                timeKeeper.IsFinished = true;
-            }
+        void HookFunc(ref MouseHook.StateMouse s)
+        {
+            // 出勤するかどうかのチェック
+            CheckAutoAttendance();
         }
 
-        void HookMouse()
+        void HookMouse(bool enabled)
         {
-            MouseHook.AddEvent(HookFunc);
-            if (MouseHook.IsHooking)
+            if (enabled)
             {
-                MouseHook.Stop();
+                MouseHook.AddEvent(HookFunc);
+                MouseHook.Start();
             }
             else
             {
-                MouseHook.Start();
+                MouseHook.RemoveEvent(HookFunc);
+                MouseHook.Stop();
             }
         }
     }

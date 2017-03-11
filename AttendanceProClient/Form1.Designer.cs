@@ -44,6 +44,7 @@
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.companyCodeTextBox = new System.Windows.Forms.TextBox();
             this.startupCheckBox = new System.Windows.Forms.CheckBox();
+            this.loginCheckButton = new System.Windows.Forms.Button();
             toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             userIdLabel = new System.Windows.Forms.Label();
             passwordLabel = new System.Windows.Forms.Label();
@@ -54,7 +55,7 @@
             // toolStripSeparator
             // 
             toolStripSeparator.Name = "toolStripSeparator";
-            toolStripSeparator.Size = new System.Drawing.Size(155, 6);
+            toolStripSeparator.Size = new System.Drawing.Size(136, 6);
             // 
             // userIdLabel
             // 
@@ -105,45 +106,45 @@
             this.toolStripMenuItemPreference,
             this.toolStripMenuItemExit});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(159, 126);
+            this.contextMenuStrip.Size = new System.Drawing.Size(140, 126);
             // 
             // toolStripMenuItemIn
             // 
             this.toolStripMenuItemIn.Name = "toolStripMenuItemIn";
-            this.toolStripMenuItemIn.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItemIn.Size = new System.Drawing.Size(139, 22);
             this.toolStripMenuItemIn.Text = "出社";
             this.toolStripMenuItemIn.Click += new System.EventHandler(this.toolStripMenuItemIn_Click);
             // 
             // toolStripMenuItemOut
             // 
             this.toolStripMenuItemOut.Name = "toolStripMenuItemOut";
-            this.toolStripMenuItemOut.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItemOut.Size = new System.Drawing.Size(139, 22);
             this.toolStripMenuItemOut.Text = "退社";
             this.toolStripMenuItemOut.Click += new System.EventHandler(this.toolStripMenuItemOut_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(155, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(136, 6);
             // 
             // toolStripMenuItemOpenBrowser
             // 
             this.toolStripMenuItemOpenBrowser.Name = "toolStripMenuItemOpenBrowser";
-            this.toolStripMenuItemOpenBrowser.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItemOpenBrowser.Size = new System.Drawing.Size(139, 22);
             this.toolStripMenuItemOpenBrowser.Text = "ブラウザで開く";
             this.toolStripMenuItemOpenBrowser.Click += new System.EventHandler(this.toolStripMenuItemOpenBrowser_Click);
             // 
             // toolStripMenuItemPreference
             // 
             this.toolStripMenuItemPreference.Name = "toolStripMenuItemPreference";
-            this.toolStripMenuItemPreference.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItemPreference.Size = new System.Drawing.Size(139, 22);
             this.toolStripMenuItemPreference.Text = "設定";
             this.toolStripMenuItemPreference.Click += new System.EventHandler(this.toolStripMenuItemPreference_Click);
             // 
             // toolStripMenuItemExit
             // 
             this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
-            this.toolStripMenuItemExit.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItemExit.Size = new System.Drawing.Size(139, 22);
             this.toolStripMenuItemExit.Text = "終了";
             this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
             // 
@@ -179,16 +180,27 @@
             this.startupCheckBox.Location = new System.Drawing.Point(12, 122);
             this.startupCheckBox.Name = "startupCheckBox";
             this.startupCheckBox.Size = new System.Drawing.Size(205, 16);
-            this.startupCheckBox.TabIndex = 7;
+            this.startupCheckBox.TabIndex = 10;
             this.startupCheckBox.Text = "スタートアップへ登録 (自動起動させる)";
             this.startupCheckBox.UseVisualStyleBackColor = true;
             this.startupCheckBox.CheckedChanged += new System.EventHandler(this.startupCheckBox_CheckedChanged);
+            // 
+            // loginCheckButton
+            // 
+            this.loginCheckButton.Location = new System.Drawing.Point(12, 158);
+            this.loginCheckButton.Name = "loginCheckButton";
+            this.loginCheckButton.Size = new System.Drawing.Size(200, 23);
+            this.loginCheckButton.TabIndex = 20;
+            this.loginCheckButton.Text = "ログインチェック";
+            this.loginCheckButton.UseVisualStyleBackColor = true;
+            this.loginCheckButton.Click += new System.EventHandler(this.loginCheckButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(224, 150);
+            this.ClientSize = new System.Drawing.Size(224, 192);
+            this.Controls.Add(this.loginCheckButton);
             this.Controls.Add(this.startupCheckBox);
             this.Controls.Add(this.companyCodeTextBox);
             this.Controls.Add(companyCodeLabel);
@@ -201,8 +213,11 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AttendancePro Client (非公式)";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Shown += new System.EventHandler(this.Form1_Shown);
             this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -222,6 +237,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOpenBrowser;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPreference;
         private System.Windows.Forms.CheckBox startupCheckBox;
+        private System.Windows.Forms.Button loginCheckButton;
     }
 }
 

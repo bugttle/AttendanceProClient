@@ -1,5 +1,5 @@
 ﻿using System;
-using AttendanceProClient.Account;
+using System.Threading.Tasks;
 
 namespace AttendanceProClient.Client
 {
@@ -20,19 +20,50 @@ namespace AttendanceProClient.Client
         }
 
         // ログイン
-        string LogOn(string userId, string password, string companyCode)
+        async Task<string> LogOn(string userId, string password, string companyCode)
         {
-            // トップページの取得
-            var html = wc.Get(AttendanceProUrls.LogOnURL);
+            return await Task.Run(() =>
+            {
+                // トップページの取得
+                var html = wc.Get(AttendanceProUrls.LogOnURL);
 
-            // ログイン実行
-            var query = QueryCreator.QueryForLogOnPage(html, userId, password, companyCode);
-            html = wc.Post(AttendanceProUrls.LogOnURL, query);
+                // ログイン実行
+                var query = QueryCreator.QueryForLogOnPage(html, userId, password, companyCode);
+                html = wc.Post(AttendanceProUrls.LogOnURL, query);
 
-            // ログインが正常に完了しているかのチェック
-            ResponseValidator.ValidateLoggedIn(html);
+                // ログインが正常に完了しているかのチェック
+                ResponseValidator.ValidateLoggedIn(html);
 
-            return html;
+                return html;
+            });
+        }
+
+        async Task Attend(string userId, string password, string companyCode, AttendanceTypes type)
+        {
+            // ログイン後のページ
+            var html = await LogOn(userId, password, companyCode);
+
+            await Task.Run(() =>
+            {
+                // 既に出退勤済かどうか
+                ResponseValidator.ValidateAlreadyAttended(html, type);
+
+                // 出退勤実行
+                var query = QueryCreator.QueryForAttendanceTableDailyPage(html, type);
+                html = wc.Post(AttendanceProUrls.AttendanceTableDailyURL, query);
+
+                // 出退勤が正常に完了しているかのチェック
+                ResponseValidator.ValidateAttended(html, type);
+            });
+        }
+
+        /// <summary>
+        /// ログインができるかのチェック
+        /// </summary>
+        /// <param name="account"></param>
+        public async Task ChceckLogOn(Account.Account account)
+        {
+            await LogOn(account.UserId, account.Password, account.CompanyCode);
         }
 
         /// <summary>
@@ -40,20 +71,9 @@ namespace AttendanceProClient.Client
         /// </summary>
         /// <param name="account"></param>
         /// <param name="type"></param>
-        public void Attend(Account.Account account, AttendanceTypes type)
+        public async Task Attend(Account.Account account, AttendanceTypes type)
         {
-            // ログイン後のページ
-            var html = LogOn(account.UserId, account.Password, account.CompanyCode);
-
-            // 既に出退勤済かどうか
-            ResponseValidator.ValidateAlreadyAttended(html, type);
-
-            // 出退勤実行
-            var query = QueryCreator.QueryForAttendanceTableDailyPage(html, type);
-            html = wc.Post(AttendanceProUrls.AttendanceTableDailyURL, query);
-
-            // 出退勤が正常に完了しているかのチェック
-            ResponseValidator.ValidateAttended(html, type);
+            await Attend(account.UserId, account.Password, account.CompanyCode, type);
         }
     }
 }
