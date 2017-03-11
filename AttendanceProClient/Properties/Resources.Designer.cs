@@ -59,5 +59,140 @@ namespace AttendanceProClient.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 原因不明のエラーです。.
+        /// </summary>
+        internal static string AnUnknownErrorOccurred {
+            get {
+                return ResourceManager.GetString("AnUnknownErrorOccurred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 出社.
+        /// </summary>
+        internal static string Arrival {
+            get {
+                return ResourceManager.GetString("Arrival", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 既に「{0}」済みです。.
+        /// </summary>
+        internal static string AttendAlready {
+            get {
+                return ResourceManager.GetString("AttendAlready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 「{0}」に失敗しました。.
+        /// </summary>
+        internal static string AttendanceFailed {
+            get {
+                return ResourceManager.GetString("AttendanceFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 「{0}」が完了しました。.
+        /// </summary>
+        internal static string AttendanceSucceeded {
+            get {
+                return ResourceManager.GetString("AttendanceSucceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 退社.
+        /// </summary>
+        internal static string Depart {
+            get {
+                return ResourceManager.GetString("Depart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to お早うございます。「{0}」しますか？.
+        /// </summary>
+        internal static string DoYouWantToArrival {
+            get {
+                return ResourceManager.GetString("DoYouWantToArrival", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to エラー.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to アカウント情報の読み込みに失敗しました。.
+        /// </summary>
+        internal static string FailedToLoadYourAccount {
+            get {
+                return ResourceManager.GetString("FailedToLoadYourAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to アカウント情報の保存に失敗しました。.
+        /// </summary>
+        internal static string FailedToSaveYourAccount {
+            get {
+                return ResourceManager.GetString("FailedToSaveYourAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to お知らせ.
+        /// </summary>
+        internal static string Information {
+            get {
+                return ResourceManager.GetString("Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 既に起動済みです。.
+        /// </summary>
+        internal static string ItHasAlreadyLaunched {
+            get {
+                return ResourceManager.GetString("ItHasAlreadyLaunched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ログインに失敗しました。.
+        /// </summary>
+        internal static string LoginFailed {
+            get {
+                return ResourceManager.GetString("LoginFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ログインに成功しました。.
+        /// </summary>
+        internal static string LoginSucceeded {
+            get {
+                return ResourceManager.GetString("LoginSucceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to パスワードの期限が切れています。更新してください。.
+        /// </summary>
+        internal static string PasswordHasExpired {
+            get {
+                return ResourceManager.GetString("PasswordHasExpired", resourceCulture);
+            }
+        }
     }
 }

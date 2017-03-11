@@ -117,19 +117,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="userIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemIn.Name" xml:space="preserve">
-    <value>toolStripMenuItemIn</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="userIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 19</value>
+  <data name="toolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 6</value>
   </data>
-  <data name="companyCodeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="userIdLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 22</value>
+  </data>
+  <data name="userIdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 12</value>
+  </data>
+  <data name="userIdLabel.Text" xml:space="preserve">
+    <value>User ID</value>
+  </data>
+  <data name="passwordLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 56</value>
+  </data>
+  <data name="passwordLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 12</value>
+  </data>
+  <data name="passwordLabel.Text" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="companyCodeLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>MS UI Gothic, 8pt</value>
+  </data>
+  <data name="companyCodeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 91</value>
+  </data>
+  <data name="companyCodeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 11</value>
+  </data>
+  <data name="companyCodeLabel.Text" xml:space="preserve">
+    <value>Company Code</value>
+  </data>
+  <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 126</value>
   </data>
   <data name="notifyIcon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -190,219 +213,68 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
   </data>
-  <data name="&gt;&gt;userIdTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemPreference.Name" xml:space="preserve">
-    <value>toolStripMenuItemPreference</value>
-  </data>
-  <data name="passwordLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 56</value>
-  </data>
-  <data name="toolStripMenuItemOpenBrowser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 22</value>
-  </data>
-  <data name="&gt;&gt;userIdTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;userIdLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="startupCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 16</value>
-  </data>
-  <data name="&gt;&gt;contextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemExit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;passwordTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;companyCodeTextBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;passwordLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="passwordLabel.Text" xml:space="preserve">
-    <value>パスワード</value>
-  </data>
-  <data name="companyCodeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 19</value>
-  </data>
-  <data name="&gt;&gt;loginCheckButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
-  </data>
-  <data name="startupCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 122</value>
-  </data>
-  <data name="companyCodeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 12</value>
-  </data>
-  <data name="loginCheckButton.Text" xml:space="preserve">
-    <value>ログインチェック</value>
-  </data>
-  <data name="toolStripMenuItemPreference.Text" xml:space="preserve">
-    <value>設定</value>
-  </data>
-  <data name="loginCheckButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 157</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemIn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
-  <data name="companyCodeLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator.Name" xml:space="preserve">
-    <value>toolStripSeparator</value>
-  </data>
-  <data name="passwordTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 53</value>
-  </data>
-  <data name="notifyIcon.Visible" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;startupCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;passwordLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="passwordLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 12</value>
-  </data>
-  <data name="passwordLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="userIdLabel.Text" xml:space="preserve">
-    <value>ユーザーID</value>
-  </data>
-  <data name="userIdLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
-    <value>contextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;userIdTextBox.Name" xml:space="preserve">
-    <value>userIdTextBox</value>
-  </data>
-  <data name="userIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 19</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemExit.Name" xml:space="preserve">
-    <value>toolStripMenuItemExit</value>
-  </data>
-  <data name="loginCheckButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 23</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemOpenBrowser.Name" xml:space="preserve">
-    <value>toolStripMenuItemOpenBrowser</value>
-  </data>
-  <data name="&gt;&gt;passwordTextBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemOut.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="passwordLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;startupCheckBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;passwordLabel.Name" xml:space="preserve">
-    <value>passwordLabel</value>
-  </data>
-  <data name="toolStripMenuItemOpenBrowser.Text" xml:space="preserve">
-    <value>ブラウザで開く</value>
-  </data>
-  <data name="&gt;&gt;companyCodeTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;companyCodeLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;userIdTextBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="passwordTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 19</value>
-  </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 6</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon.Name" xml:space="preserve">
-    <value>notifyIcon</value>
+  <data name="notifyIcon.Text" xml:space="preserve">
+    <value>AttendancePro Client (Unofficial)</value>
   </data>
   <data name="toolStripMenuItemIn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 22</value>
+    <value>161, 22</value>
   </data>
-  <data name="passwordTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="toolStripMenuItemIn.Text" xml:space="preserve">
+    <value>Arrival</value>
   </data>
-  <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>140, 126</value>
-  </data>
-  <data name="loginCheckButton.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+  <data name="toolStripMenuItemOut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
   </data>
   <data name="toolStripMenuItemOut.Text" xml:space="preserve">
-    <value>退社</value>
+    <value>Depart</value>
   </data>
-  <data name="notifyIcon.Text" xml:space="preserve">
-    <value>AttendancePro Client (非公式)</value>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 6</value>
   </data>
-  <data name="userIdLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 12</value>
+  <data name="toolStripMenuItemOpenBrowser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="toolStripMenuItemOpenBrowser.Text" xml:space="preserve">
+    <value>Open in browser</value>
+  </data>
+  <data name="toolStripMenuItemPreference.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="toolStripMenuItemPreference.Text" xml:space="preserve">
+    <value>Preference</value>
   </data>
   <data name="toolStripMenuItemExit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 22</value>
-  </data>
-  <data name="&gt;&gt;startupCheckBox.Name" xml:space="preserve">
-    <value>startupCheckBox</value>
-  </data>
-  <data name="&gt;&gt;companyCodeTextBox.Name" xml:space="preserve">
-    <value>companyCodeTextBox</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="toolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 6</value>
-  </data>
-  <data name="&gt;&gt;userIdLabel.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>161, 22</value>
   </data>
   <data name="toolStripMenuItemExit.Text" xml:space="preserve">
-    <value>終了</value>
+    <value>Exit</value>
   </data>
-  <data name="companyCodeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="userIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 19</value>
   </data>
-  <data name="startupCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+  <data name="userIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 19</value>
   </data>
-  <data name="companyCodeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 90</value>
+  <data name="passwordTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 53</value>
   </data>
-  <data name="&gt;&gt;companyCodeLabel.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="passwordTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 19</value>
   </data>
-  <data name="&gt;&gt;passwordLabel.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="companyCodeTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>88, 87</value>
+  </data>
+  <data name="companyCodeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 19</value>
+  </data>
+  <data name="startupCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 16</value>
+  </data>
+  <data name="startupCheckBox.Text" xml:space="preserve">
+    <value>Add to startup (automatically launch)</value>
+  </data>
+  <data name="loginCheckButton.Text" xml:space="preserve">
+    <value>Check Logon</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -463,124 +335,7 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
   </data>
-  <data name="&gt;&gt;passwordTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;companyCodeLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;companyCodeTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Form1</value>
-  </data>
-  <data name="&gt;&gt;loginCheckButton.Name" xml:space="preserve">
-    <value>loginCheckButton</value>
-  </data>
-  <data name="&gt;&gt;startupCheckBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="userIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;passwordTextBox.Name" xml:space="preserve">
-    <value>passwordTextBox</value>
-  </data>
-  <data name="&gt;&gt;companyCodeLabel.Name" xml:space="preserve">
-    <value>companyCodeLabel</value>
-  </data>
-  <data name="startupCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="userIdLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="companyCodeLabel.Text" xml:space="preserve">
-    <value>企業コード</value>
-  </data>
-  <data name="toolStripMenuItemPreference.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 22</value>
-  </data>
-  <data name="userIdLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 22</value>
-  </data>
-  <data name="&gt;&gt;userIdLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="toolStripMenuItemOut.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 22</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
-    <value>toolStripSeparator1</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemPreference.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="startupCheckBox.Text" xml:space="preserve">
-    <value>スタートアップへ登録 (自動起動させる)</value>
-  </data>
-  <data name="toolStripMenuItemIn.Text" xml:space="preserve">
-    <value>出社</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>AttendancePro Client (非公式)</value>
+    <value>AttendancePro Client (Unofficial)</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;userIdLabel.Name" xml:space="preserve">
-    <value>userIdLabel</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>245, 192</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemOut.Name" xml:space="preserve">
-    <value>toolStripMenuItemOut</value>
-  </data>
-  <data name="&gt;&gt;loginCheckButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="passwordLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="companyCodeLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="companyCodeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>72, 87</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemOpenBrowser.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;loginCheckButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <metadata name="passwordLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="userIdLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="companyCodeLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="notifyIcon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="toolStripSeparator.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>123, 17</value>
-  </metadata>
 </root>

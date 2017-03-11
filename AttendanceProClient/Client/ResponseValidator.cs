@@ -40,7 +40,7 @@
 
             // 出勤に成功していれば、 id="ctl00_ContentMain_txtStartTime" がある
             // 退勤に成功していれば、 id="ctl00_ContentMain_txtEndTime" がある
-            var id = (type == AttendanceTypes.In) ? "ctl00_ContentMain_txtStartTime" : "ctl00_ContentMain_txtEndTime";
+            var id = (type == AttendanceTypes.Arrival) ? "ctl00_ContentMain_txtStartTime" : "ctl00_ContentMain_txtEndTime";
             var node = doc.DocumentNode.SelectSingleNode("//input[@id='" + id + "']");
             if (node == null)
             {
@@ -63,7 +63,7 @@
 
             // 出勤に成功していれば、 id="ctl00_ContentMain_txtStartTime" がある
             // 退勤に成功していれば、 id="ctl00_ContentMain_txtEndTime" がある
-            var id = (type == AttendanceTypes.In) ? "ctl00_ContentMain_txtStartTime" : "ctl00_ContentMain_txtEndTime";
+            var id = (type == AttendanceTypes.Arrival) ? "ctl00_ContentMain_txtStartTime" : "ctl00_ContentMain_txtEndTime";
             var node = doc.DocumentNode.SelectSingleNode("//input[@id='" + id + "']");
             if (node != null)
             {

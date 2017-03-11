@@ -113,12 +113,12 @@ namespace AttendanceProClient.Client
 
             switch (type)
             {
-                case AttendanceTypes.In:
+                case AttendanceTypes.Arrival:
                     // 出社
                     ps.Add("ctl00$ContentMain$btnWebStartTime", "出社");
                     break;
 
-                case AttendanceTypes.Out:
+                case AttendanceTypes.Depart:
                     // 退社
                     ps.Add("ctl00$ContentMain$btnWebEndTime", "退社");
                     break;

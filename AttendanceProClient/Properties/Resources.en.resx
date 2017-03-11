@@ -118,48 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AnUnknownErrorOccurred" xml:space="preserve">
-    <value>原因不明のエラーです。</value>
+    <value>An unknown error occurred.</value>
   </data>
   <data name="Arrival" xml:space="preserve">
-    <value>出社</value>
+    <value>Arrival</value>
   </data>
   <data name="AttendAlready" xml:space="preserve">
-    <value>既に「{0}」済みです。</value>
+    <value>You had already "{0}".</value>
   </data>
   <data name="AttendanceFailed" xml:space="preserve">
-    <value>「{0}」に失敗しました。</value>
+    <value>"{0}" failed.</value>
   </data>
   <data name="AttendanceSucceeded" xml:space="preserve">
-    <value>「{0}」が完了しました。</value>
+    <value>"{0}" succeeded.</value>
   </data>
   <data name="Depart" xml:space="preserve">
-    <value>退社</value>
+    <value>Depart</value>
   </data>
   <data name="DoYouWantToArrival" xml:space="preserve">
-    <value>お早うございます。「{0}」しますか？</value>
+    <value>Good morning. Do you want to "{0}"?</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>エラー</value>
+    <value>Error</value>
   </data>
   <data name="FailedToLoadYourAccount" xml:space="preserve">
-    <value>アカウント情報の読み込みに失敗しました。</value>
+    <value>Failed to load your account.</value>
   </data>
   <data name="FailedToSaveYourAccount" xml:space="preserve">
-    <value>アカウント情報の保存に失敗しました。</value>
+    <value>Failed to save your account.</value>
   </data>
   <data name="Information" xml:space="preserve">
-    <value>お知らせ</value>
+    <value>Information</value>
   </data>
   <data name="ItHasAlreadyLaunched" xml:space="preserve">
-    <value>既に起動済みです。</value>
+    <value>It has already launched.</value>
   </data>
   <data name="LoginFailed" xml:space="preserve">
-    <value>ログインに失敗しました。</value>
+    <value>Login failed.</value>
   </data>
   <data name="LoginSucceeded" xml:space="preserve">
-    <value>ログインに成功しました。</value>
+    <value>Login succeeded.</value>
   </data>
   <data name="PasswordHasExpired" xml:space="preserve">
-    <value>パスワードの期限が切れています。更新してください。</value>
+    <value>Your password has expired and must be changed.</value>
   </data>
 </root>

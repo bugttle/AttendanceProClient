@@ -12,12 +12,17 @@ namespace AttendanceProClient
         [STAThread]
         static void Main()
         {
+#if false
+            // テスト用に英語モードにする
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en", false);
+#endif
+
             // Mutexを利用して、二重起動を防止
             bool createdNew;
             var mutex = new Mutex(true, Application.ProductName, out createdNew);
             if (!createdNew)
             {
-                MessageBox.Show("既に起動しています。");
+                MessageBox.Show(Properties.Resources.ItHasAlreadyLaunched);
                 mutex.Close();
                 return;
             }

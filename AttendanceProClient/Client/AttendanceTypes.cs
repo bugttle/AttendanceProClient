@@ -5,8 +5,8 @@ namespace AttendanceProClient
     // 出退勤の種類
     public enum AttendanceTypes
     {
-        In, // 出社
-        Out, // 退社
+        Arrival, // 出社
+        Depart, // 退社
     }
 
     static class AttendanceTypesExtensions
@@ -15,11 +15,11 @@ namespace AttendanceProClient
         {
             switch (type)
             {
-                case AttendanceTypes.In:
-                    return "出社";
+                case AttendanceTypes.Arrival:
+                    return Properties.Resources.Arrival;
 
-                case AttendanceTypes.Out:
-                    return "退社";
+                case AttendanceTypes.Depart:
+                    return Properties.Resources.Depart;
 
                 default:
                     throw new ArgumentOutOfRangeException("type", type, null);

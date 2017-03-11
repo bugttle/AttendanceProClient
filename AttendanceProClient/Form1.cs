@@ -25,7 +25,7 @@ namespace AttendanceProClient
             }
             catch (Exception e)
             {
-                ShowNotify("アカウント情報の読み込みに失敗しました。: " + e.ToString(), ToolTipIcon.Error);
+                ShowNotify(Properties.Resources.FailedToLoadYourAccount + " : " + e.ToString(), ToolTipIcon.Error);
             }
 
             // アカウント情報に基づいてUIの更新
@@ -85,20 +85,20 @@ namespace AttendanceProClient
             try
             {
                 await mClient.ChceckLogOn(mAccountManager.Account);
-                ShowNotify("ログインに成功しました。", ToolTipIcon.Info);
+                ShowNotify(Properties.Resources.LoginSucceeded, ToolTipIcon.Info);
             }
             catch (AttendanceProLoginException e)
             {
-                var message = e.Message ?? "ログインに失敗しました。";
+                var message = e.Message ?? Properties.Resources.LoginFailed;
                 ShowNotify(message, ToolTipIcon.Error);
             }
             catch (AttendanceProPasswordExpiredException)
             {
-                ShowNotify("パスワードの期限が切れています。更新してください。", ToolTipIcon.Error);
+                ShowNotify(Properties.Resources.PasswordHasExpired, ToolTipIcon.Error);
             }
             catch (Exception e)
             {
-                ShowNotify("原因不明のエラーです。: " + e.ToString(), ToolTipIcon.Error);
+                ShowNotify(Properties.Resources.AnUnknownErrorOccurred + " : " + e.ToString(), ToolTipIcon.Error);
             }
         }
 
@@ -107,28 +107,28 @@ namespace AttendanceProClient
             try
             {
                 await mClient.Attend(mAccountManager.Account, type);
-                ShowNotify("「" + type.ToName() + "」が完了しました。", ToolTipIcon.Info);
+                ShowNotify(string.Format(Properties.Resources.AttendanceSucceeded, type.ToName()), ToolTipIcon.Info);
             }
             catch (AttendanceProLoginException e)
             {
-                var message = e.Message ?? "ログインに失敗しました。";
+                var message = e.Message ?? Properties.Resources.LoginFailed;
                 ShowNotify(message, ToolTipIcon.Error);
             }
             catch (AttendanceProPasswordExpiredException)
             {
-                ShowNotify("パスワードの期限が切れています。更新してください。", ToolTipIcon.Error);
+                ShowNotify(Properties.Resources.PasswordHasExpired, ToolTipIcon.Error);
             }
             catch (AttendanceProAlreadyAttendException e)
             {
-                ShowNotify("既に「" + e.AttendanceType.ToName() + "」済みです。", ToolTipIcon.Warning);
+                ShowNotify(string.Format(Properties.Resources.AttendAlready, e.AttendanceType.ToName()), ToolTipIcon.Warning);
             }
             catch (AttendanceProAttendException e)
             {
-                ShowNotify("「" + e.AttendanceType.ToName() + "」 に失敗しました。", ToolTipIcon.Error);
+                ShowNotify(string.Format(Properties.Resources.AttendanceFailed, e.AttendanceType.ToName()), ToolTipIcon.Error);
             }
             catch (Exception e)
             {
-                ShowNotify("原因不明のエラーです。: " + e.ToString(), ToolTipIcon.Error);
+                ShowNotify(Properties.Resources.AnUnknownErrorOccurred + " : " + e.ToString(), ToolTipIcon.Error);
             }
         }
 
@@ -138,9 +138,9 @@ namespace AttendanceProClient
             if (!mIsShownDialog && timeKeeper.UpdateTime())
             {
                 // 出退勤ダイアログの表示
-                var attendanceType = AttendanceTypes.In;
+                var attendanceType = AttendanceTypes.Arrival;
                 mIsShownDialog = true;
-                var result = MessageBox.Show("お早うございます。「" + attendanceType.ToName() + "」しますか？",
+                var result = MessageBox.Show(string.Format(Properties.Resources.DoYouWantToArrival, attendanceType.ToName()),
                     Application.ProductName,
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question,
@@ -183,7 +183,7 @@ namespace AttendanceProClient
                 }
                 catch (Exception err)
                 {
-                    ShowNotify("アカウント情報の保存に失敗しました。: " + err.ToString(), ToolTipIcon.Error);
+                    ShowNotify(Properties.Resources.FailedToSaveYourAccount + " : " + err.ToString(), ToolTipIcon.Error);
                 }
 
                 // マウスフックの処理変更
@@ -242,13 +242,13 @@ namespace AttendanceProClient
         // 出社
         async void toolStripMenuItemIn_Click(object sender, EventArgs e)
         {
-            await Attend(AttendanceTypes.In);
+            await Attend(AttendanceTypes.Arrival);
         }
 
         // 退社
         async void toolStripMenuItemOut_Click(object sender, EventArgs e)
         {
-            await Attend(AttendanceTypes.Out);
+            await Attend(AttendanceTypes.Depart);
         }
 
         // ブラウザで開く
@@ -284,12 +284,12 @@ namespace AttendanceProClient
                     break;
 
                 case ToolTipIcon.Warning:
-                    tipTitle = "お知らせ";
+                    tipTitle = Properties.Resources.Information;
                     break;
 
                 case ToolTipIcon.Error:
                     timeout = 5000; // エラーのときは長めに
-                    tipTitle = "エラー";
+                    tipTitle = Properties.Resources.Error;
                     break;
             }
             notifyIcon.ShowBalloonTip(timeout, tipTitle, tipText, tipIcon);
