@@ -141,6 +141,9 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="FailedToFetchWorkingTable" xml:space="preserve">
+    <value>Failed to fetch working history page.</value>
+  </data>
   <data name="FailedToLoadYourAccount" xml:space="preserve">
     <value>Failed to load your account.</value>
   </data>
@@ -161,5 +164,11 @@
   </data>
   <data name="PasswordHasExpired" xml:space="preserve">
     <value>Your password has expired and must be changed.</value>
+  </data>
+  <data name="TotalOverTimeWork" xml:space="preserve">
+    <value>Your total overtime work is "{0}h {1}m"</value>
+  </data>
+  <data name="YouHaveNoInputDay" xml:space="preserve">
+    <value>You have "No Input" day.</value>
   </data>
 </root>

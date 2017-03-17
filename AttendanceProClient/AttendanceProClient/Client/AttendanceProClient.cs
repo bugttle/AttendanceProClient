@@ -38,7 +38,7 @@ namespace AttendanceProClient.Client
             });
         }
 
-        async Task Attend(string userId, string password, string companyCode, AttendanceTypes type)
+        async Task<WorkingTimeTable> Attend(string userId, string password, string companyCode, AttendanceTypes type)
         {
             // ログイン後のページ
             var html = await LogOn(userId, password, companyCode);
@@ -54,6 +54,31 @@ namespace AttendanceProClient.Client
 
                 // 出退勤が正常に完了しているかのチェック
                 ResponseValidator.ValidateAttended(html, type);
+            });
+
+            // 月次勤務表の情報を取得
+            return await FetchWorkingTimeTable(userId, password, companyCode, withLogOn: false);
+        }
+
+        async Task<WorkingTimeTable> FetchWorkingTimeTable(string userId, string password, string companyCode, bool withLogOn)
+        {
+            var html = "";
+
+            if (withLogOn)
+            {
+                // ログオン処理
+                html = await LogOn(userId, password, companyCode);
+            }
+
+            return await Task.Run(() =>
+            {
+                // 月次勤務表から情報を取得する
+                html = wc.Get(AttendanceProUrls.AttendanceTableFullTime);
+
+                // 月次勤務表が取得できているかのチェック
+                var doc = ResponseValidator.ValidateFetchedTable(html);
+
+                return new WorkingTimeTable(doc);
             });
         }
 
@@ -71,9 +96,20 @@ namespace AttendanceProClient.Client
         /// </summary>
         /// <param name="account"></param>
         /// <param name="type"></param>
-        public async Task Attend(Account.Account account, AttendanceTypes type)
+        public async Task<WorkingTimeTable> Attend(Account.Account account, AttendanceTypes type)
         {
-            await Attend(account.UserId, account.Password, account.CompanyCode, type);
+            return await Attend(account.UserId, account.Password, account.CompanyCode, type);
+        }
+
+        /// <summary>
+        /// 月次勤務表から情報を取得する
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public async Task<WorkingTimeTable> FetchWorkingTimeTable(Account.Account account)
+        {
+            return await FetchWorkingTimeTable(account.UserId, account.Password, account.CompanyCode, withLogOn: true);
         }
     }
 }

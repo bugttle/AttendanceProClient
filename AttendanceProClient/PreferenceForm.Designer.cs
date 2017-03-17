@@ -1,5 +1,5 @@
 ﻿namespace AttendanceProClient {
-    partial class Form1 {
+    partial class PreferenceForm {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>
@@ -28,7 +28,7 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PreferenceForm));
             System.Windows.Forms.Label userIdLabel;
             System.Windows.Forms.Label passwordLabel;
             System.Windows.Forms.Label companyCodeLabel;

@@ -141,6 +141,9 @@
   <data name="Error" xml:space="preserve">
     <value>エラー</value>
   </data>
+  <data name="FailedToFetchWorkingTable" xml:space="preserve">
+    <value>月次勤務表の取得に失敗しました。</value>
+  </data>
   <data name="FailedToLoadYourAccount" xml:space="preserve">
     <value>アカウント情報の読み込みに失敗しました。</value>
   </data>
@@ -161,5 +164,11 @@
   </data>
   <data name="PasswordHasExpired" xml:space="preserve">
     <value>パスワードの期限が切れています。更新してください。</value>
+  </data>
+  <data name="TotalOverTimeWork" xml:space="preserve">
+    <value>累計残業時間は「{0}時間{1}分」です。</value>
+  </data>
+  <data name="YouHaveNoInputDay" xml:space="preserve">
+    <value>「未入力」の日があります。</value>
   </data>
 </root>

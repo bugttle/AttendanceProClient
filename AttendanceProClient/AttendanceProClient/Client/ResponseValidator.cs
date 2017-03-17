@@ -1,11 +1,13 @@
-﻿namespace AttendanceProClient.Client
+﻿using HtmlAgilityPack;
+
+namespace AttendanceProClient.Client
 {
     public static class ResponseValidator
     {
         // ログインが正常に完了しているかのチェック
         public static void ValidateLoggedIn(string html)
         {
-            var doc = new HtmlAgilityPack.HtmlDocument();
+            var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
             // ログインに失敗していた場合に表示されるメッセージの確認
@@ -35,7 +37,7 @@
 
         public static void ValidateAlreadyAttended(string html, AttendanceTypes type)
         {
-            var doc = new HtmlAgilityPack.HtmlDocument();
+            var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
             // 出勤に成功していれば、 id="ctl00_ContentMain_txtStartTime" がある
@@ -58,7 +60,7 @@
 
         public static void ValidateAttended(string html, AttendanceTypes type)
         {
-            var doc = new HtmlAgilityPack.HtmlDocument();
+            var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
             // 出勤に成功していれば、 id="ctl00_ContentMain_txtStartTime" がある
@@ -76,6 +78,20 @@
             }
 
             throw new AttendanceProAttendException(type);
+        }
+
+        public static HtmlDocument ValidateFetchedTable(string html)
+        {
+            var doc = new HtmlDocument();
+            doc.LoadHtml(html);
+
+            var div = doc.DocumentNode.SelectNodes("//div[@id='ctl00_ContentMain_pnlAttendData']");
+            if (div != null)
+            {
+                return doc;
+            }
+
+            throw new AttendanceProFetchTableException();
         }
     }
 }
