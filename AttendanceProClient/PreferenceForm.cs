@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -104,6 +103,39 @@ namespace AttendanceProClient
             }
         }
 
+        // 勤務時間の表示
+        void ShowWorkingLog(WorkingTimeTable workingLog, bool ignoreTodaysEmptyForm)
+        {
+            // 出勤履歴の情報
+            var hasEmptyForm = (0 < workingLog.EmptyFormsCount);
+            if (ignoreTodaysEmptyForm)
+            {
+                // 本日分のみ「未入力」を無視する
+                if (workingLog.EmptyFormsCount == 1)
+                {
+                    hasEmptyForm = false;
+                }
+            }
+            var message = string.Format(Properties.Resources.TotalOverTimeWork, workingLog.TotalWorkingDifference.Hours, workingLog.TotalWorkingDifference.Minutes);
+            var messageIcon = ToolTipIcon.Info;
+            if (hasEmptyForm)
+            {
+                // 未入力な日があればアイコンを変えてメッセージの追加
+                messageIcon = ToolTipIcon.Warning;
+                message += "\n" + Properties.Resources.YouHaveNoInputDay;
+            }
+
+            // 勤務時間の表示
+            ShowNotify(message, messageIcon);
+        }
+
+        // 勤務時間を取得
+        async Task FetchWorkingLog()
+        {
+            var workingLog = await mClient.FetchWorkingTimeTable(mAccountManager.Account);
+            ShowWorkingLog(workingLog, ignoreTodaysEmptyForm: false);
+        }
+
         // 出退勤実行
         async Task Attend(AttendanceTypes type)
         {
@@ -111,30 +143,13 @@ namespace AttendanceProClient
             {
                 var workingLog = await mClient.Attend(mAccountManager.Account, type);
 
-                // 出勤履歴の情報
-                var hasEmptyForm = (0 < workingLog.EmptyFormsCount);
-                if (type == AttendanceTypes.Arrival)
-                {
-                    if (workingLog.EmptyFormsCount == 1)
-                    {
-                        // 出社時ならば、本日分のみ「未入力」を無視
-                        hasEmptyForm = false;
-                    }
-                }
-                var message = string.Format(Properties.Resources.TotalOverTimeWork, workingLog.TotalWorkingDifference.Hours, workingLog.TotalWorkingDifference.Minutes);
-                var messageIcon = ToolTipIcon.Info;
-                if (hasEmptyForm)
-                {
-                    // 未入力な日があればアイコンを変えてメッセージの追加
-                    messageIcon = ToolTipIcon.Warning;
-                    message += "\n" + Properties.Resources.YouHaveNoInputDay;
-                }
-
                 // 出勤退勤の完了メッセージ(短めの時間表示させる)
                 int showingTime = 1000;
                 ShowNotify(string.Format(Properties.Resources.AttendanceSucceeded, type.ToName()), ToolTipIcon.Info, timeout: showingTime);
-                await Task.Delay(showingTime); // 少しのディレイを挿んで通知メッセージの表示
-                ShowNotify(message, messageIcon);
+
+                // 少しのディレイを挿んで通知メッセージの表示
+                await Task.Delay(showingTime);
+                ShowWorkingLog(workingLog, ignoreTodaysEmptyForm: (type == AttendanceTypes.Arrival));
             }
             catch (AttendanceProLoginException e)
             {
@@ -283,6 +298,12 @@ namespace AttendanceProClient
             await Attend(AttendanceTypes.Depart);
         }
 
+        // 勤務時間の表示
+        async void toolStripMenuItemShowWorkingLog_Click(object sender, EventArgs e)
+        {
+            await FetchWorkingLog();
+        }
+
         // ブラウザで開く
         void toolStripMenuItemOpenBrowser_Click(object sender, EventArgs e)
         {
@@ -338,16 +359,16 @@ namespace AttendanceProClient
 
         void HookMouse(bool enabled)
         {
-            //if (enabled)
-            //{
-            //    MouseHook.AddEvent(HookFunc);
-            //    MouseHook.Start();
-            //}
-            //else
-            //{
-            //    MouseHook.RemoveEvent(HookFunc);
-            //    MouseHook.Stop();
-            //}
+            if (enabled)
+            {
+                MouseHook.AddEvent(HookFunc);
+                MouseHook.Start();
+            }
+            else
+            {
+                MouseHook.RemoveEvent(HookFunc);
+                MouseHook.Stop();
+            }
         }
     }
 }

@@ -37,6 +37,8 @@
             this.toolStripMenuItemIn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemOut = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemShowWorkingLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemOpenBrowser = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemPreference = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,8 +56,8 @@
             // 
             // toolStripSeparator
             // 
-            resources.ApplyResources(toolStripSeparator, "toolStripSeparator");
             toolStripSeparator.Name = "toolStripSeparator";
+            resources.ApplyResources(toolStripSeparator, "toolStripSeparator");
             // 
             // userIdLabel
             // 
@@ -74,56 +76,69 @@
             // 
             // notifyIcon
             // 
-            resources.ApplyResources(this.notifyIcon, "notifyIcon");
             this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
+            resources.ApplyResources(this.notifyIcon, "notifyIcon");
             this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
             // 
             // contextMenuStrip
             // 
-            resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemIn,
             this.toolStripMenuItemOut,
             this.toolStripSeparator1,
+            this.toolStripMenuItemShowWorkingLog,
+            this.toolStripSeparator2,
             this.toolStripMenuItemOpenBrowser,
             toolStripSeparator,
             this.toolStripMenuItemPreference,
             this.toolStripMenuItemExit});
             this.contextMenuStrip.Name = "contextMenuStrip";
+            resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             // 
             // toolStripMenuItemIn
             // 
-            resources.ApplyResources(this.toolStripMenuItemIn, "toolStripMenuItemIn");
             this.toolStripMenuItemIn.Name = "toolStripMenuItemIn";
+            resources.ApplyResources(this.toolStripMenuItemIn, "toolStripMenuItemIn");
             this.toolStripMenuItemIn.Click += new System.EventHandler(this.toolStripMenuItemIn_Click);
             // 
             // toolStripMenuItemOut
             // 
-            resources.ApplyResources(this.toolStripMenuItemOut, "toolStripMenuItemOut");
             this.toolStripMenuItemOut.Name = "toolStripMenuItemOut";
+            resources.ApplyResources(this.toolStripMenuItemOut, "toolStripMenuItemOut");
             this.toolStripMenuItemOut.Click += new System.EventHandler(this.toolStripMenuItemOut_Click);
             // 
             // toolStripSeparator1
             // 
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            // 
+            // toolStripMenuItemShowWorkingLog
+            // 
+            this.toolStripMenuItemShowWorkingLog.Name = "toolStripMenuItemShowWorkingLog";
+            resources.ApplyResources(this.toolStripMenuItemShowWorkingLog, "toolStripMenuItemShowWorkingLog");
+            this.toolStripMenuItemShowWorkingLog.Click += new System.EventHandler(this.toolStripMenuItemShowWorkingLog_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // toolStripMenuItemOpenBrowser
             // 
-            resources.ApplyResources(this.toolStripMenuItemOpenBrowser, "toolStripMenuItemOpenBrowser");
             this.toolStripMenuItemOpenBrowser.Name = "toolStripMenuItemOpenBrowser";
+            resources.ApplyResources(this.toolStripMenuItemOpenBrowser, "toolStripMenuItemOpenBrowser");
             this.toolStripMenuItemOpenBrowser.Click += new System.EventHandler(this.toolStripMenuItemOpenBrowser_Click);
             // 
             // toolStripMenuItemPreference
             // 
-            resources.ApplyResources(this.toolStripMenuItemPreference, "toolStripMenuItemPreference");
             this.toolStripMenuItemPreference.Name = "toolStripMenuItemPreference";
+            resources.ApplyResources(this.toolStripMenuItemPreference, "toolStripMenuItemPreference");
             this.toolStripMenuItemPreference.Click += new System.EventHandler(this.toolStripMenuItemPreference_Click);
             // 
             // toolStripMenuItemExit
             // 
-            resources.ApplyResources(this.toolStripMenuItemExit, "toolStripMenuItemExit");
             this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
+            resources.ApplyResources(this.toolStripMenuItemExit, "toolStripMenuItemExit");
             this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
             // 
             // userIdTextBox
@@ -160,7 +175,7 @@
             this.loginCheckButton.UseVisualStyleBackColor = true;
             this.loginCheckButton.Click += new System.EventHandler(this.loginCheckButton_Click);
             // 
-            // Form1
+            // PreferenceForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -174,7 +189,7 @@
             this.Controls.Add(userIdLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "PreferenceForm";
             this.ShowInTaskbar = false;
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -199,6 +214,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPreference;
         private System.Windows.Forms.CheckBox startupCheckBox;
         private System.Windows.Forms.Button loginCheckButton;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowWorkingLog;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 
