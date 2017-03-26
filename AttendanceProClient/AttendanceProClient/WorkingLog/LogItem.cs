@@ -3,7 +3,7 @@ using AttendanceProClient.Utilities;
 
 namespace AttendanceProClient.Client
 {
-    public struct WorkingLogItem
+    public struct LogItem
     {
         // 日付
         public string Date { get; set; }
@@ -18,7 +18,7 @@ namespace AttendanceProClient.Client
         public TimeSpan WokingHour { get; private set; }
 
         // 標準差
-        public TimeSpan WorkingDifference { get; private set; }
+        public TimeSpan Overtime { get; private set; }
 
         // 「変更」ボタンが押せるか
         public bool IsButtonEnabled { get; set; }
@@ -42,7 +42,7 @@ namespace AttendanceProClient.Client
         {
             if (!string.IsNullOrEmpty(time))
             {
-                WorkingDifference = TimeUtility.ToTimeSpan(time);
+                Overtime = TimeUtility.ToTimeSpan(time);
             }
         }
     }

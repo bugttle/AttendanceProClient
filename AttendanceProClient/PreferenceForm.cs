@@ -11,8 +11,6 @@ namespace AttendanceProClient
 {
     public partial class PreferenceForm : Form
     {
-        AccountManager mAccountManager = new AccountManager();
-        AttendanceProClient mClient = new AttendanceProClient();
         bool mIsShownDialog = false;
 
         public PreferenceForm()
@@ -21,7 +19,7 @@ namespace AttendanceProClient
 
             try
             {
-                mAccountManager.Load();
+                AccountManager.Instance.Load();
             }
             catch (Exception e)
             {
@@ -31,7 +29,7 @@ namespace AttendanceProClient
             // アカウント情報に基づいてUIの更新
             UpdateUI();
 
-            if (!mAccountManager.IsValidAccount())
+            if (!AccountManager.Instance.IsValidAccount())
             {
                 // アカウント情報が正しくなければフォームを表示する
                 Show();
@@ -57,7 +55,7 @@ namespace AttendanceProClient
         // アカウント情報の反映
         void UpdateAccountTextBoxies()
         {
-            var account = mAccountManager.Account;
+            var account = AccountManager.Instance.Account;
             userIdTextBox.Text = account.UserId;
             passwordTextBox.Text = account.Password;
             companyCodeTextBox.Text = account.CompanyCode;
@@ -66,7 +64,7 @@ namespace AttendanceProClient
         // 出退勤のボタンの有効/無効化
         void UpdateAttendnceButtons()
         {
-            var enabled = mAccountManager.IsValidAccount();
+            var enabled = AccountManager.Instance.IsValidAccount();
             toolStripMenuItemIn.Enabled = enabled;
             toolStripMenuItemOut.Enabled = enabled;
         }
@@ -85,7 +83,7 @@ namespace AttendanceProClient
         {
             try
             {
-                await mClient.ChceckLogOn(mAccountManager.Account);
+                await AttendanceProClient.Instance.ChceckLogOn(AccountManager.Instance.Account);
                 ShowNotify(Properties.Resources.LoginSucceeded, ToolTipIcon.Info);
             }
             catch (AttendanceProLoginException e)
@@ -104,7 +102,7 @@ namespace AttendanceProClient
         }
 
         // 勤務時間の表示
-        void ShowWorkingLog(WorkingTimeTable workingLog, bool ignoreTodaysEmptyForm)
+        void ShowWorkingLog(WorkingLog workingLog, bool ignoreTodaysEmptyForm)
         {
             // 出勤履歴の情報
             var hasEmptyForm = (0 < workingLog.EmptyFormsCount);
@@ -116,7 +114,7 @@ namespace AttendanceProClient
                     hasEmptyForm = false;
                 }
             }
-            var message = string.Format(Properties.Resources.TotalOverTimeWork, workingLog.TotalWorkingDifference.Hours, workingLog.TotalWorkingDifference.Minutes);
+            var message = string.Format(Properties.Resources.TotalOverTimeWork, workingLog.TotalMonthlyOvertime.Hours, workingLog.TotalMonthlyOvertime.Minutes);
             var messageIcon = ToolTipIcon.Info;
             if (hasEmptyForm)
             {
@@ -132,7 +130,7 @@ namespace AttendanceProClient
         // 勤務時間を取得
         async Task FetchWorkingLog()
         {
-            var workingLog = await mClient.FetchWorkingTimeTable(mAccountManager.Account);
+            var workingLog = await AttendanceProClient.Instance.FetchOwnWorkingLog(AccountManager.Instance.Account);
             ShowWorkingLog(workingLog, ignoreTodaysEmptyForm: false);
         }
 
@@ -141,7 +139,7 @@ namespace AttendanceProClient
         {
             try
             {
-                var workingLog = await mClient.Attend(mAccountManager.Account, type);
+                var workingLog = await AttendanceProClient.Instance.Attend(AccountManager.Instance.Account, type);
 
                 // 出勤退勤の完了メッセージ(短めの時間表示させる)
                 int showingTime = 1000;
@@ -168,7 +166,7 @@ namespace AttendanceProClient
             {
                 ShowNotify(string.Format(Properties.Resources.AttendanceFailed, e.AttendanceType.ToName()), ToolTipIcon.Error);
             }
-            catch (AttendanceProFetchTableException)
+            catch (AttendanceProFetchTableFullTimeException)
             {
                 ShowNotify(Properties.Resources.FailedToFetchWorkingTable, ToolTipIcon.Error);
             }
@@ -226,7 +224,7 @@ namespace AttendanceProClient
 
                 try
                 {
-                    mAccountManager.Save(); // アカウント情報の保存
+                    AccountManager.Instance.Save(); // アカウント情報の保存
                 }
                 catch (Exception err)
                 {
@@ -234,21 +232,21 @@ namespace AttendanceProClient
                 }
 
                 // マウスフックの処理変更
-                HookMouse(mAccountManager.IsValidAccount());
+                HookMouse(AccountManager.Instance.IsValidAccount());
             }
         }
 
         // ユーザIDの更新
         void userIdTextBox_TextChanged(object sender, EventArgs e)
         {
-            mAccountManager.Account.UserId = ((TextBox)sender).Text;
+            AccountManager.Instance.Account.UserId = ((TextBox)sender).Text;
             UpdateAttendnceButtons();
         }
 
         // パスワードの更新
         void passwordTextBox_TextChanged(object sender, EventArgs e)
         {
-            mAccountManager.Account.Password = ((TextBox)sender).Text;
+            AccountManager.Instance.Account.Password = ((TextBox)sender).Text;
             UpdateAttendnceButtons();
         }
 
@@ -298,10 +296,15 @@ namespace AttendanceProClient
             await Attend(AttendanceTypes.Depart);
         }
 
-        // 勤務時間の表示
+        // 自分の勤務時間を表示
         async void toolStripMenuItemShowWorkingLog_Click(object sender, EventArgs e)
         {
             await FetchWorkingLog();
+        }
+
+        void toolStripMenuItemShowSubordinateLogs_Click(object sender, EventArgs e)
+        {
+            new MonthlyReportForm().Show();
         }
 
         // ブラウザで開く

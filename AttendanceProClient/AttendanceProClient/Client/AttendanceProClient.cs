@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace AttendanceProClient.Client
@@ -7,11 +9,27 @@ namespace AttendanceProClient.Client
     // Warning CA1001  Implement IDisposable on 'AttendanceProClient' because it creates members of the following IDisposable types: 'CookieAwareWebClient'.
     class AttendanceProClient : IDisposable
     {
-        CookieAwareWebClient wc = new CookieAwareWebClient();
-
-        public AttendanceProClient()
+        CookieAwareWebClient wc = new CookieAwareWebClient()
         {
-            wc.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36");
+            Encoding = Encoding.UTF8
+        };
+
+        static AttendanceProClient mInstance = null;
+
+        public static AttendanceProClient Instance
+        {
+            get
+            {
+                if (mInstance == null)
+                {
+                    mInstance = new AttendanceProClient();
+                }
+                return mInstance;
+            }
+        }
+
+        AttendanceProClient()
+        {
         }
 
         public void Dispose()
@@ -38,7 +56,7 @@ namespace AttendanceProClient.Client
             });
         }
 
-        async Task<WorkingTimeTable> Attend(string userId, string password, string companyCode, AttendanceTypes type)
+        async Task<WorkingLogOwn> Attend(string userId, string password, string companyCode, AttendanceTypes type)
         {
             // ログイン後のページ
             var html = await LogOn(userId, password, companyCode);
@@ -57,10 +75,10 @@ namespace AttendanceProClient.Client
             });
 
             // 月次勤務表の情報を取得
-            return await FetchWorkingTimeTable(userId, password, companyCode, withLogOn: false);
+            return await FetchOwnWorkingLog(userId, password, companyCode, withLogOn: false);
         }
 
-        async Task<WorkingTimeTable> FetchWorkingTimeTable(string userId, string password, string companyCode, bool withLogOn)
+        async Task<WorkingLogOwn> FetchOwnWorkingLog(string userId, string password, string companyCode, bool withLogOn)
         {
             var html = "";
 
@@ -76,9 +94,65 @@ namespace AttendanceProClient.Client
                 html = wc.Get(AttendanceProUrls.AttendanceTableFullTime);
 
                 // 月次勤務表が取得できているかのチェック
-                var doc = ResponseValidator.ValidateFetchedTable(html);
+                var doc = ResponseValidator.ValidateFetchedTableFullTime(html);
 
-                return new WorkingTimeTable(doc);
+                return new WorkingLogOwn(doc);
+            });
+        }
+
+        async Task<WorkingLogSubordinate> FetchSubordinateWorkingLog(string html, string targetSubordinate)
+        {
+            return await Task.Run(() =>
+            {
+                // まずは ApprovalMonthlyへアクセスしてURLを取得する
+                var query = QueryCreator.QueryForApprovalMonthlyPage(html, targetSubordinate);
+                html = wc.Post(AttendanceProUrls.ApprovalMonthly, query);
+
+                // AttendanceExercisedMonthlyDetails へのアクセス
+                var url = QueryCreator.UrlForAttendanceExercisedMonthlyDetailsPage(html);
+                html = wc.Get(url);
+                var doc = ResponseValidator.ValidateFetchedAttendanceExercisedMonthlyDetails(html);
+
+                return new WorkingLogSubordinate(doc);
+            });
+        }
+
+        async Task<List<WorkingLogSubordinate>> FetchSubordinateWorkingLogs(string html)
+        {
+            // 部下全員分の情報を取得
+            var targetSubordinates = QueryCreator.FindTargetSubordinates(html);
+            if (targetSubordinates != null)
+            {
+                var subordinateLogs = new List<WorkingLogSubordinate>();
+                foreach (var targetSubordinate in targetSubordinates)
+                {
+                    /* AttendanceExercisedMonthlyDetails へのアクセス */
+                    var log = await FetchSubordinateWorkingLog(html, targetSubordinate);
+                    subordinateLogs.Add(log);
+
+                    var random = new Random();
+                    await Task.Delay(500 + random.Next(500));
+                }
+                return subordinateLogs;
+            }
+
+            return null;
+        }
+
+        async Task<List<WorkingLogSubordinate>> FetchSubordinateWorkingLogs(string userId, string password, string companyCode)
+        {
+            var html = "";
+
+            // ログオン処理
+            html = await LogOn(userId, password, companyCode);
+
+            return await Task.Run(() =>
+            {
+                // ApprovalMonthlyへアクセス
+                html = wc.Get(AttendanceProUrls.ApprovalMonthly);
+                ResponseValidator.ValidateFetchedApprovalMonthly(html);
+
+                return FetchSubordinateWorkingLogs(html);
             });
         }
 
@@ -96,7 +170,7 @@ namespace AttendanceProClient.Client
         /// </summary>
         /// <param name="account"></param>
         /// <param name="type"></param>
-        public async Task<WorkingTimeTable> Attend(Account.Account account, AttendanceTypes type)
+        public async Task<WorkingLogOwn> Attend(Account.Account account, AttendanceTypes type)
         {
             return await Attend(account.UserId, account.Password, account.CompanyCode, type);
         }
@@ -107,9 +181,19 @@ namespace AttendanceProClient.Client
         /// <param name="account"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public async Task<WorkingTimeTable> FetchWorkingTimeTable(Account.Account account)
+        public async Task<WorkingLogOwn> FetchOwnWorkingLog(Account.Account account)
         {
-            return await FetchWorkingTimeTable(account.UserId, account.Password, account.CompanyCode, withLogOn: true);
+            return await FetchOwnWorkingLog(account.UserId, account.Password, account.CompanyCode, withLogOn: true);
+        }
+
+        /// <summary>
+        /// 月時承認から部下の勤務情報を取得する
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        public async Task<List<WorkingLogSubordinate>> FetchSubordinateWorkingLogs(Account.Account account)
+        {
+            return await FetchSubordinateWorkingLogs(account.UserId, account.Password, account.CompanyCode);
         }
     }
 }

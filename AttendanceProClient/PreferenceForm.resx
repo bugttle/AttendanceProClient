@@ -122,7 +122,7 @@
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="toolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 6</value>
+    <value>186, 6</value>
   </data>
   <metadata name="userIdLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -231,49 +231,55 @@
     <value>123, 17</value>
   </metadata>
   <data name="toolStripMenuItemIn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 22</value>
+    <value>189, 22</value>
   </data>
   <data name="toolStripMenuItemIn.Text" xml:space="preserve">
     <value>出社</value>
   </data>
   <data name="toolStripMenuItemOut.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 22</value>
+    <value>189, 22</value>
   </data>
   <data name="toolStripMenuItemOut.Text" xml:space="preserve">
     <value>退社</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 6</value>
+    <value>186, 6</value>
   </data>
-  <data name="toolStripMenuItemShowWorkingLog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 22</value>
+  <data name="toolStripMenuItemShowOwnLog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 22</value>
   </data>
-  <data name="toolStripMenuItemShowWorkingLog.Text" xml:space="preserve">
+  <data name="toolStripMenuItemShowOwnLog.Text" xml:space="preserve">
     <value>勤務時間の表示</value>
   </data>
+  <data name="toolStripMenuItemShowSubordinateLogs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 22</value>
+  </data>
+  <data name="toolStripMenuItemShowSubordinateLogs.Text" xml:space="preserve">
+    <value>部下の勤務時間を表示</value>
+  </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 6</value>
+    <value>186, 6</value>
   </data>
   <data name="toolStripMenuItemOpenBrowser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 22</value>
+    <value>189, 22</value>
   </data>
   <data name="toolStripMenuItemOpenBrowser.Text" xml:space="preserve">
     <value>ブラウザで開く</value>
   </data>
   <data name="toolStripMenuItemPreference.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 22</value>
+    <value>189, 22</value>
   </data>
   <data name="toolStripMenuItemPreference.Text" xml:space="preserve">
     <value>設定</value>
   </data>
   <data name="toolStripMenuItemExit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 22</value>
+    <value>189, 22</value>
   </data>
   <data name="toolStripMenuItemExit.Text" xml:space="preserve">
     <value>終了</value>
   </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 176</value>
+    <value>190, 198</value>
   </data>
   <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
     <value>contextMenuStrip</value>
@@ -565,10 +571,10 @@
   <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItemShowWorkingLog.Name" xml:space="preserve">
-    <value>toolStripMenuItemShowWorkingLog</value>
+  <data name="&gt;&gt;toolStripMenuItemShowOwnLog.Name" xml:space="preserve">
+    <value>toolStripMenuItemShowOwnLog</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItemShowWorkingLog.Type" xml:space="preserve">
+  <data name="&gt;&gt;toolStripMenuItemShowOwnLog.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
@@ -593,6 +599,12 @@
     <value>toolStripMenuItemExit</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItemExit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemShowSubordinateLogs.Name" xml:space="preserve">
+    <value>toolStripMenuItemShowSubordinateLogs</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemShowSubordinateLogs.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

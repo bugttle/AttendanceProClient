@@ -80,7 +80,7 @@ namespace AttendanceProClient.Client
             throw new AttendanceProAttendException(type);
         }
 
-        public static HtmlDocument ValidateFetchedTable(string html)
+        public static HtmlDocument ValidateFetchedTableFullTime(string html)
         {
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
@@ -91,7 +91,35 @@ namespace AttendanceProClient.Client
                 return doc;
             }
 
-            throw new AttendanceProFetchTableException();
+            throw new AttendanceProFetchTableFullTimeException();
+        }
+
+        public static void ValidateFetchedApprovalMonthly(string html)
+        {
+            var doc = new HtmlDocument();
+            doc.LoadHtml(html);
+
+            var form = doc.DocumentNode.SelectNodes("//form[@action='ApprovalMonthly.aspx']");
+            if (form != null)
+            {
+                return;
+            }
+
+            throw new AttendanceProFetchTableFullTimeException();
+        }
+
+        public static HtmlDocument ValidateFetchedAttendanceExercisedMonthlyDetails(string html)
+        {
+            var doc = new HtmlDocument();
+            doc.LoadHtml(html);
+
+            var form = doc.DocumentNode.SelectNodes("//table[@id='ctl00_ContentMain_gvResults']");
+            if (form != null)
+            {
+                return doc;
+            }
+
+            throw new AttendanceProFetchAttendanceExercisedMonthlyDetailsException();
         }
     }
 }

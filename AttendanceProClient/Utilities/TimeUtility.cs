@@ -5,7 +5,7 @@ namespace AttendanceProClient.Utilities
 {
     public class TimeUtility
     {
-        static Regex TimeRegex = new Regex(@"(-?)(\d\d)h:(\d\d)m", RegexOptions.IgnoreCase);
+        static Regex TimeRegex = new Regex(@"(-?)(\d+)h:(\d+)m", RegexOptions.IgnoreCase);
 
         public static TimeSpan ToTimeSpan(string str)
         {

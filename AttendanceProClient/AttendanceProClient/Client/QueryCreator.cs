@@ -1,9 +1,17 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Web;
 
 namespace AttendanceProClient.Client
 {
     public static class QueryCreator
     {
+        static Regex AttendanceExercisedMonthlyDetailsWebResourceUrlRegex = new Regex(@"src=""(/WebResource.axd\?.+?)""", RegexOptions.Multiline);
+        static Regex AttendanceExercisedMonthlyDetailsUrlRegex = new Regex(@"'(AttendanceExercisedMonthlyDetails.aspx\?.+?)';", RegexOptions.Multiline);
+
         /// <summary>
         /// ログインページを解析し、ログインのクエリを作成する
         /// </summary>
@@ -125,6 +133,111 @@ namespace AttendanceProClient.Client
             }
 
             return ps;
+        }
+
+        public static IEnumerable<string> FindTargetSubordinates(string html)
+        {
+            var doc = new HtmlAgilityPack.HtmlDocument();
+            doc.LoadHtml(html);
+
+            var subordinateNodes = doc.DocumentNode.SelectNodes("//table[@id='ctl00_ContentMain_gvResultsShiftType1']//input[@type='submit']");
+            if (subordinateNodes != null)
+            {
+                foreach (var node in subordinateNodes.Select(node => node.GetAttributeValue("name", null)))
+                {
+                    Console.WriteLine(node);
+                }
+
+                return subordinateNodes.Select(node => node.GetAttributeValue("name", null));
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// トップページを解析し、部下の月時承認ページへのリクエストを作成する。
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="target">ex.) ctl00$ContentMain$gvResultsShiftType1$ctl02$DialogDisplayButton1</param>
+        /// <returns></returns>
+        public static NameValueCollection QueryForApprovalMonthlyPage(string html, string targetSubordinate)
+        {
+            var ps = new NameValueCollection();
+
+            var doc = new HtmlAgilityPack.HtmlDocument();
+            doc.LoadHtml(html);
+
+            ps.Add("__EVENTTARGET", "");
+            ps.Add("__EVENTARGUMENT", "");
+            ps.Add("__LASTFOCUS", "");
+            var viewStateNode = doc.DocumentNode.SelectSingleNode("//input[@id='__VIEWSTATE']");
+            if (viewStateNode != null)
+            {
+                ps.Add("__VIEWSTATE", viewStateNode.GetAttributeValue("value", ""));
+            }
+            var viewStateGeneratorNode = doc.DocumentNode.SelectSingleNode("//input[@id='__VIEWSTATEGENERATOR']");
+            if (viewStateGeneratorNode != null)
+            {
+                ps.Add("__VIEWSTATEGENERATOR", viewStateGeneratorNode.GetAttributeValue("value", ""));
+            }
+            ps.Add("__VIEWSTATEENCRYPTED", "");
+            ps.Add("ctl00$Header$ddlSelectedLanguage", "1");
+
+            var yearMonthNode = doc.DocumentNode.SelectSingleNode("//select[@id='ctl00_ContentMain_ddlYearMonth']/option[@selected='selected']");
+            if (yearMonthNode != null)
+            {
+                ps.Add("ctl00$ContentMain$ddlYearMonth", yearMonthNode.GetAttributeValue("value", ""));
+            }
+            ps.Add("ctl00$ContentMain$ddlShiftType", "");
+
+            var handingDayNode = doc.DocumentNode.SelectSingleNode("//input[@id='ctl00_ContentMain_TxtHandlingDay']");
+            if (handingDayNode != null)
+            {
+                ps.Add("ctl00$ContentMain$TxtHandlingDay", handingDayNode.GetAttributeValue("value", ""));
+            }
+
+            ps.Add(targetSubordinate, "詳細");
+
+            var hdnCheckNode = doc.DocumentNode.SelectSingleNode("//input[@id='ctl00_HdnCheck']");
+            if (hdnCheckNode != null)
+            {
+                ps.Add("ctl00$HdnCheck", hdnCheckNode.GetAttributeValue("value", ""));
+            }
+
+            return ps;
+        }
+
+        public static string UrlForAttendanceExercisedMonthlyDetailsPage(string html)
+        {
+            /* オリジナルスクリプト部分
+             <script type='text/javascript' language='javascript'>
+             <!--
+               var url = 'AttendanceExercisedMonthlyDetails.aspx?EID=96&YM=2017/03&ST=2&PG=MA&VW=FA';
+               var userAgent = window.navigator.userAgent.toLowerCase();
+               var ret;
+               if (userAgent.indexOf('msie') > -1 || userAgent.indexOf('trident/') > -1) {
+                   ret = window.showModalDialog(url+((url.indexOf('?')==-1)?'?r=':'&r=')+parseInt(Math.random()*(new Date()).getMilliseconds()),'','status:no;scroll:yes;resizable=yes;maximize:yes;minimize:yes');
+               }else{
+                   var idx = url.indexOf('?');
+                   idx = (idx==-1)?url.length:idx;
+                   var temp = url.slice(0,idx);
+                   ret = window.open(url+((url.indexOf('?')==-1)?'?r=':'&r=')+parseInt(Math.random()*(new Date()).getMilliseconds()),temp,'resizable=yes,scrollbars=yes,alwaysRaised=yes');
+               }
+                __doPostBack('__Page','');
+             -->
+             */
+            // https://attendance.cvi.co.jp/AttendanceExercisedMonthlyDetails.aspx?EID=64&YM=2017/03&ST=2&PG=MA&VW=FA&r=9
+
+            var match = AttendanceExercisedMonthlyDetailsUrlRegex.Match(html);
+            if (match.Success && 1 < match.Groups.Count)
+            {
+                var urlString = match.Groups[1] + "&r=" + DateTime.Now.Millisecond.ToString();
+                var uri = new Uri(AttendanceProUrls.TopURL + "/" + urlString);
+
+                var ps = HttpUtility.ParseQueryString(uri.Query);
+                return uri.GetLeftPart(UriPartial.Path) + "?" + ps.ToString();
+            }
+
+            return null;
         }
     }
 }

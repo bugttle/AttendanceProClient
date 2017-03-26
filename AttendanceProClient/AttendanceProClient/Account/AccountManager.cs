@@ -4,6 +4,24 @@
     {
         public Account Account { get; private set; }
 
+        static AccountManager mInstance = null;
+
+        public static AccountManager Instance
+        {
+            get
+            {
+                if (mInstance == null)
+                {
+                    mInstance = new AccountManager();
+                }
+                return mInstance;
+            }
+        }
+
+        AccountManager()
+        {
+        }
+
         /// <summary>
         /// アカウント情報の読み出し
         /// </summary>

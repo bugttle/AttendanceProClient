@@ -58,6 +58,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,18 +72,28 @@
     <Compile Include="AttendanceProClient\AttendanceTypes.cs" />
     <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProAlreadyAttendException.cs" />
     <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProAttendException.cs" />
-    <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProFetchTableException.cs" />
+    <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProFetchAttendanceExercisedMonthlyDetailsException.cs" />
+    <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProFetchApprovalMonthly.cs" />
+    <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProFetchTableFullTimeException.cs" />
     <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProPasswordExpiredException.cs" />
     <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProLoginException.cs" />
     <Compile Include="AttendanceProClient\Client\AttendanceProUrls.cs" />
     <Compile Include="AttendanceProClient\Client\QueryCreator.cs" />
     <Compile Include="AttendanceProClient\Client\ResponseValidator.cs" />
+    <Compile Include="AttendanceProClient\WorkingLog\WorkingLogSubordinate.cs" />
+    <Compile Include="AttendanceProClient\WorkingLog\WorkingLogOwn.cs" />
     <Compile Include="AttendanceProClient\WorkingLog\WorkingLog.cs" />
-    <Compile Include="AttendanceProClient\WorkingLog\WorkingLogItem.cs" />
+    <Compile Include="AttendanceProClient\WorkingLog\LogItem.cs" />
     <Compile Include="GlobalHook\MouseHook.cs" />
     <Compile Include="AttendanceProClient\Account\Account.cs" />
     <Compile Include="AttendanceProClient\Client\AttendanceProClient.cs" />
     <Compile Include="AttendanceProClient\Client\CookieAwareWebClient.cs" />
+    <Compile Include="MonthlyReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonthlyReportForm.Designer.cs">
+      <DependentUpon>MonthlyReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PreferenceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +112,9 @@
     <Compile Include="AttendanceProClient\TimeKeeper.cs" />
     <Compile Include="Utilities\StartupLinkUtility.cs" />
     <Compile Include="Utilities\TimeUtility.cs" />
+    <EmbeddedResource Include="MonthlyReportForm.resx">
+      <DependentUpon>MonthlyReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PreferenceForm.en.resx">
       <DependentUpon>PreferenceForm.cs</DependentUpon>
     </EmbeddedResource>

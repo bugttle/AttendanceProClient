@@ -1,4 +1,6 @@
-﻿namespace AttendanceProClient {
+﻿using AttendanceProClient.Client;
+
+namespace AttendanceProClient {
     partial class PreferenceForm {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -14,7 +16,7 @@
                 components.Dispose();
 
                 // WebClientの破棄
-                mClient.Dispose();
+                AttendanceProClient.Instance.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -37,7 +39,7 @@
             this.toolStripMenuItemIn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemOut = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItemShowWorkingLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowOwnLog = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemOpenBrowser = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemPreference = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,6 +49,7 @@
             this.companyCodeTextBox = new System.Windows.Forms.TextBox();
             this.startupCheckBox = new System.Windows.Forms.CheckBox();
             this.loginCheckButton = new System.Windows.Forms.Button();
+            this.toolStripMenuItemShowSubordinateLogs = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             userIdLabel = new System.Windows.Forms.Label();
             passwordLabel = new System.Windows.Forms.Label();
@@ -86,7 +89,8 @@
             this.toolStripMenuItemIn,
             this.toolStripMenuItemOut,
             this.toolStripSeparator1,
-            this.toolStripMenuItemShowWorkingLog,
+            this.toolStripMenuItemShowOwnLog,
+            this.toolStripMenuItemShowSubordinateLogs,
             this.toolStripSeparator2,
             this.toolStripMenuItemOpenBrowser,
             toolStripSeparator,
@@ -112,11 +116,11 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
-            // toolStripMenuItemShowWorkingLog
+            // toolStripMenuItemShowOwnLog
             // 
-            this.toolStripMenuItemShowWorkingLog.Name = "toolStripMenuItemShowWorkingLog";
-            resources.ApplyResources(this.toolStripMenuItemShowWorkingLog, "toolStripMenuItemShowWorkingLog");
-            this.toolStripMenuItemShowWorkingLog.Click += new System.EventHandler(this.toolStripMenuItemShowWorkingLog_Click);
+            this.toolStripMenuItemShowOwnLog.Name = "toolStripMenuItemShowOwnLog";
+            resources.ApplyResources(this.toolStripMenuItemShowOwnLog, "toolStripMenuItemShowOwnLog");
+            this.toolStripMenuItemShowOwnLog.Click += new System.EventHandler(this.toolStripMenuItemShowWorkingLog_Click);
             // 
             // toolStripSeparator2
             // 
@@ -175,6 +179,12 @@
             this.loginCheckButton.UseVisualStyleBackColor = true;
             this.loginCheckButton.Click += new System.EventHandler(this.loginCheckButton_Click);
             // 
+            // toolStripMenuItemShowSubordinateLogs
+            // 
+            this.toolStripMenuItemShowSubordinateLogs.Name = "toolStripMenuItemShowSubordinateLogs";
+            resources.ApplyResources(this.toolStripMenuItemShowSubordinateLogs, "toolStripMenuItemShowSubordinateLogs");
+            this.toolStripMenuItemShowSubordinateLogs.Click += new System.EventHandler(this.toolStripMenuItemShowSubordinateLogs_Click);
+            // 
             // PreferenceForm
             // 
             resources.ApplyResources(this, "$this");
@@ -214,8 +224,9 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPreference;
         private System.Windows.Forms.CheckBox startupCheckBox;
         private System.Windows.Forms.Button loginCheckButton;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowWorkingLog;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowOwnLog;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowSubordinateLogs;
     }
 }
 
