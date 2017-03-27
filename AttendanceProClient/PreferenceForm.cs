@@ -130,8 +130,28 @@ namespace AttendanceProClient
         // 勤務時間を取得
         async Task FetchWorkingLog()
         {
-            var workingLog = await AttendanceProClient.Instance.FetchOwnWorkingLog(AccountManager.Instance.Account);
-            ShowWorkingLog(workingLog, ignoreTodaysEmptyForm: false);
+            try
+            {
+                var workingLog = await AttendanceProClient.Instance.FetchOwnWorkingLog(AccountManager.Instance.Account);
+                ShowWorkingLog(workingLog, ignoreTodaysEmptyForm: false);
+            }
+            catch (AttendanceProLoginException e)
+            {
+                var message = e.Message ?? Properties.Resources.LoginFailed;
+                ShowNotify(message, ToolTipIcon.Error);
+            }
+            catch (AttendanceProPasswordExpiredException)
+            {
+                ShowNotify(Properties.Resources.PasswordHasExpired, ToolTipIcon.Error);
+            }
+            catch (AttendanceProFetchTableFullTimeException)
+            {
+                ShowNotify(Properties.Resources.FailedToFetchWorkingTable, ToolTipIcon.Error);
+            }
+            catch (Exception e)
+            {
+                ShowNotify(Properties.Resources.AnUnknownErrorOccurred + " : " + e.ToString(), ToolTipIcon.Error);
+            }
         }
 
         // 出退勤実行
