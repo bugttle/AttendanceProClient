@@ -349,7 +349,7 @@ namespace AttendanceProClient
         }
 
         // 通知メッセージの表示
-        void ShowNotify(string tipText, ToolTipIcon tipIcon, int timeout = 3000)
+        public void ShowNotify(string tipText, ToolTipIcon tipIcon, int timeout = 3000)
         {
             string tipTitle = "";
             switch (tipIcon)

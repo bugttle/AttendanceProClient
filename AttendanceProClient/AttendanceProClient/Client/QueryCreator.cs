@@ -143,11 +143,6 @@ namespace AttendanceProClient.Client
             var subordinateNodes = doc.DocumentNode.SelectNodes("//table[@id='ctl00_ContentMain_gvResultsShiftType1']//input[@type='submit']");
             if (subordinateNodes != null)
             {
-                foreach (var node in subordinateNodes.Select(node => node.GetAttributeValue("name", null)))
-                {
-                    Console.WriteLine(node);
-                }
-
                 return subordinateNodes.Select(node => node.GetAttributeValue("name", null));
             }
             return null;

@@ -28,21 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonthlyReportForm));
             this.workingLogsTextBox = new System.Windows.Forms.TextBox();
             this.reloadButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // workingLogsTextBox
             // 
+            this.workingLogsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.workingLogsTextBox.Location = new System.Drawing.Point(12, 12);
             this.workingLogsTextBox.Multiline = true;
             this.workingLogsTextBox.Name = "workingLogsTextBox";
-            this.workingLogsTextBox.Size = new System.Drawing.Size(260, 203);
+            this.workingLogsTextBox.Size = new System.Drawing.Size(312, 203);
             this.workingLogsTextBox.TabIndex = 0;
             // 
             // reloadButton
             // 
-            this.reloadButton.Location = new System.Drawing.Point(101, 226);
+            this.reloadButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.reloadButton.Location = new System.Drawing.Point(127, 226);
             this.reloadButton.Name = "reloadButton";
             this.reloadButton.Size = new System.Drawing.Size(75, 23);
             this.reloadButton.TabIndex = 1;
@@ -54,11 +59,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(336, 261);
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.workingLogsTextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MonthlyReportForm";
-            this.Text = "MonthlyReportForm";
+            this.Text = "部下の勤務情報を表示";
             this.Load += new System.EventHandler(this.MonthlyReportForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
