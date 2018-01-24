@@ -257,6 +257,9 @@
   <data name="toolStripMenuItemShowSubordinateLogs.Text" xml:space="preserve">
     <value>部下の勤務時間を表示</value>
   </data>
+  <data name="toolStripMenuItemShowSubordinateLogs.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 6</value>
   </data>
@@ -279,7 +282,7 @@
     <value>終了</value>
   </data>
   <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 198</value>
+    <value>190, 176</value>
   </data>
   <data name="&gt;&gt;contextMenuStrip.Name" xml:space="preserve">
     <value>contextMenuStrip</value>
@@ -577,6 +580,12 @@
   <data name="&gt;&gt;toolStripMenuItemShowOwnLog.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripMenuItemShowSubordinateLogs.Name" xml:space="preserve">
+    <value>toolStripMenuItemShowSubordinateLogs</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemShowSubordinateLogs.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
     <value>toolStripSeparator2</value>
   </data>
@@ -599,12 +608,6 @@
     <value>toolStripMenuItemExit</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItemExit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemShowSubordinateLogs.Name" xml:space="preserve">
-    <value>toolStripMenuItemShowSubordinateLogs</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItemShowSubordinateLogs.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

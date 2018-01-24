@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using AttendanceProClient.Utilities;
 
 namespace AttendanceProClient.Client
 {
@@ -10,13 +9,13 @@ namespace AttendanceProClient.Client
         public string PersonName { get; protected set; }
 
         // 所定労働時間
-        public TimeSpan TotalMonthlyNeeds { get; private set; }
+        public TimeSpan TotalMonthlyNeeds { get; protected set; }
 
         // 勤務時間
-        public TimeSpan TotalMonthlyCurrent { get; private set; }
+        public TimeSpan TotalMonthlyCurrent { get; protected set; }
 
         // 不就労
-        public TimeSpan TotalMonthlyRemains { get; private set; }
+        public TimeSpan TotalMonthlyRemains { get; protected set; }
 
         // 累計残業時間
         public TimeSpan TotalMonthlyOvertime { get; protected set; }
@@ -26,32 +25,5 @@ namespace AttendanceProClient.Client
 
         // 履歴
         public List<LogItem> Histories { get; protected set; }
-
-        // 本日の作業ログ
-        public LogItem TodayWorkdayHistory { get; protected set; }
-
-        public void SetTotalMonthlyNeeds(string time)
-        {
-            if (!string.IsNullOrEmpty(time))
-            {
-                TotalMonthlyNeeds = TimeUtility.ToTimeSpan(time);
-            }
-        }
-
-        public void SetTotalMonthlyCurrent(string time)
-        {
-            if (!string.IsNullOrEmpty(time))
-            {
-                TotalMonthlyCurrent = TimeUtility.ToTimeSpan(time);
-            }
-        }
-
-        public void SetTotalMonthlyRemains(string time)
-        {
-            if (!string.IsNullOrEmpty(time))
-            {
-                TotalMonthlyRemains = TimeUtility.ToTimeSpan(time);
-            }
-        }
-    }
+    }   
 }

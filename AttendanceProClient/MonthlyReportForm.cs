@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -29,41 +30,57 @@ namespace AttendanceProClient
                 var account = AccountManager.Instance.Account;
                 var workingLogs = await AttendanceProClient.Instance.FetchSubordinateWorkingLogs(account);
 
-                workingLogsTextBox.Text = "名前 | 所定労働時間 | 勤務時間 | 合計残業時間" + Environment.NewLine + "==============================" + Environment.NewLine;
-                workingLogsTextBox.Text += string.Join(Environment.NewLine, workingLogs.Select(log =>
+                while (workingLogs.MoveNext())
                 {
-                    return log.PersonName + " | " +
-                    string.Format("{0:F1}h | ", log.TotalMonthlyNeeds.TotalHours) +
-                    string.Format("{0:F1}h | ", log.TotalMonthlyCurrent.TotalHours) +
-                    string.Format("{0:F1}h", log.TotalMonthlyOvertime.TotalHours);
-                }).ToArray());
+                    var log = await workingLogs.Current;
+                    subordinatesDataGridView.Rows.Add(new string[] {
+                        log.PersonName,
+                        string.Format("{0:F1}h", log.TotalMonthlyNeeds.TotalHours),
+                        string.Format("{0:F1}h", log.TotalMonthlyCurrent.TotalHours),
+                        string.Format("{0:F1}h", log.TotalMonthlyRemains.TotalHours),
+                        string.Format("{0:F1}h", log.TotalMonthlyOvertime.TotalHours),
+                        log.EmptyFormsCount.ToString()
+                    });
+                }
+
+                /*
+                 * 名前
+所定労働時間
+勤務時間
+不就労
+累計残業時間
+未入力数
+*/
+                //workingLogsTextBox.Text = "名前 | 所定労働時間 | 勤務時間 | 不就労 | 累計残業時間 | 未入力日数" + Environment.NewLine + "==============================" + Environment.NewLine;
+                //workingLogsTextBox.Text += string.Join(Environment.NewLine, workingLogs.Select(log =>
+                //{
+                //    return log.PersonName + " | " +
+                //    string.Format("{0:F1}h | ", log.TotalMonthlyNeeds.TotalHours) +
+                //    string.Format("{0:F1}h | ", log.TotalMonthlyCurrent.TotalHours) +
+                //    string.Format("{0:F1}h", log.TotalMonthlyOvertime.TotalHours);
+                //}).ToArray());
 
                 reloadButton.Enabled = true;
 
-                ShowNotify("残業時間の情報を取得しました。", ToolTipIcon.Info);
+                notifyIcon.ShowBalloonTip("残業時間の情報を取得しました。", ToolTipIcon.Info);
             }
             catch (AttendanceProLoginException e)
             {
                 var message = e.Message ?? Properties.Resources.LoginFailed;
-                ShowNotify(message, ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(message, ToolTipIcon.Error);
             }
             catch (AttendanceProPasswordExpiredException)
             {
-                ShowNotify(Properties.Resources.PasswordHasExpired, ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(Properties.Resources.PasswordHasExpired, ToolTipIcon.Error);
             }
             catch (AttendanceProFetchTableFullTimeException)
             {
-                ShowNotify(Properties.Resources.FailedToFetchWorkingTable, ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(Properties.Resources.FailedToFetchWorkingTable, ToolTipIcon.Error);
             }
             catch (Exception e)
             {
-                ShowNotify(Properties.Resources.AnUnknownErrorOccurred + " : " + e.ToString(), ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(Properties.Resources.AnUnknownErrorOccurred + " : " + e.ToString(), ToolTipIcon.Error);
             }
-        }
-
-        void ShowNotify(string tipText, ToolTipIcon tipIcon, int timeout = 3000)
-        {
-            (ParentForm as PreferenceForm).ShowNotify(tipText, tipIcon);
         }
 
         void reloadButton_Click(object sender, EventArgs e)

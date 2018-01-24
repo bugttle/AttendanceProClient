@@ -23,7 +23,7 @@ namespace AttendanceProClient
             }
             catch (Exception e)
             {
-                ShowNotify(Properties.Resources.FailedToLoadYourAccount + " : " + e.ToString(), ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(Properties.Resources.FailedToLoadYourAccount + " : " + e.ToString(), ToolTipIcon.Error);
             }
 
             // アカウント情報に基づいてUIの更新
@@ -39,6 +39,8 @@ namespace AttendanceProClient
             {
                 HookMouse(true);
             }
+            Show();
+            Activate();
         }
 
         //
@@ -84,20 +86,20 @@ namespace AttendanceProClient
             try
             {
                 await AttendanceProClient.Instance.ChceckLogOn(AccountManager.Instance.Account);
-                ShowNotify(Properties.Resources.LoginSucceeded, ToolTipIcon.Info);
+                notifyIcon.ShowBalloonTip(Properties.Resources.LoginSucceeded, ToolTipIcon.Info);
             }
             catch (AttendanceProLoginException e)
             {
                 var message = e.Message ?? Properties.Resources.LoginFailed;
-                ShowNotify(message, ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(message, ToolTipIcon.Error);
             }
             catch (AttendanceProPasswordExpiredException)
             {
-                ShowNotify(Properties.Resources.PasswordHasExpired, ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(Properties.Resources.PasswordHasExpired, ToolTipIcon.Error);
             }
             catch (Exception e)
             {
-                ShowNotify(Properties.Resources.AnUnknownErrorOccurred + " : " + e.ToString(), ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(Properties.Resources.AnUnknownErrorOccurred + " : " + e.ToString(), ToolTipIcon.Error);
             }
         }
 
@@ -120,11 +122,11 @@ namespace AttendanceProClient
             {
                 // 未入力な日があればアイコンを変えてメッセージの追加
                 messageIcon = ToolTipIcon.Warning;
-                message += "\n" + Properties.Resources.YouHaveNoInputDay;
+                message += Environment.NewLine + Properties.Resources.YouHaveNoInputDay;
             }
 
             // 勤務時間の表示
-            ShowNotify(message, messageIcon);
+            notifyIcon.ShowBalloonTip(message, messageIcon);
         }
 
         // 勤務時間を取得
@@ -138,19 +140,19 @@ namespace AttendanceProClient
             catch (AttendanceProLoginException e)
             {
                 var message = e.Message ?? Properties.Resources.LoginFailed;
-                ShowNotify(message, ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(message, ToolTipIcon.Error);
             }
             catch (AttendanceProPasswordExpiredException)
             {
-                ShowNotify(Properties.Resources.PasswordHasExpired, ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(Properties.Resources.PasswordHasExpired, ToolTipIcon.Error);
             }
             catch (AttendanceProFetchTableFullTimeException)
             {
-                ShowNotify(Properties.Resources.FailedToFetchWorkingTable, ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(Properties.Resources.FailedToFetchWorkingTable, ToolTipIcon.Error);
             }
             catch (Exception e)
             {
-                ShowNotify(Properties.Resources.AnUnknownErrorOccurred + " : " + e.ToString(), ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(Properties.Resources.AnUnknownErrorOccurred + " : " + e.ToString(), ToolTipIcon.Error);
             }
         }
 
@@ -163,7 +165,7 @@ namespace AttendanceProClient
 
                 // 出勤退勤の完了メッセージ(短めの時間表示させる)
                 int showingTime = 1000;
-                ShowNotify(string.Format(Properties.Resources.AttendanceSucceeded, type.ToName()), ToolTipIcon.Info, timeout: showingTime);
+                notifyIcon.ShowBalloonTip(string.Format(Properties.Resources.AttendanceSucceeded, type.ToName()), ToolTipIcon.Info, timeout: showingTime);
 
                 // 少しのディレイを挿んで通知メッセージの表示
                 await Task.Delay(showingTime);
@@ -172,27 +174,27 @@ namespace AttendanceProClient
             catch (AttendanceProLoginException e)
             {
                 var message = e.Message ?? Properties.Resources.LoginFailed;
-                ShowNotify(message, ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(message, ToolTipIcon.Error);
             }
             catch (AttendanceProPasswordExpiredException)
             {
-                ShowNotify(Properties.Resources.PasswordHasExpired, ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(Properties.Resources.PasswordHasExpired, ToolTipIcon.Error);
             }
             catch (AttendanceProAlreadyAttendException e)
             {
-                ShowNotify(string.Format(Properties.Resources.AttendAlready, e.AttendanceType.ToName()), ToolTipIcon.Warning);
+                notifyIcon.ShowBalloonTip(string.Format(Properties.Resources.AttendAlready, e.AttendanceType.ToName()), ToolTipIcon.Warning);
             }
             catch (AttendanceProAttendException e)
             {
-                ShowNotify(string.Format(Properties.Resources.AttendanceFailed, e.AttendanceType.ToName()), ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(string.Format(Properties.Resources.AttendanceFailed, e.AttendanceType.ToName()), ToolTipIcon.Error);
             }
             catch (AttendanceProFetchTableFullTimeException)
             {
-                ShowNotify(Properties.Resources.FailedToFetchWorkingTable, ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(Properties.Resources.FailedToFetchWorkingTable, ToolTipIcon.Error);
             }
             catch (Exception e)
             {
-                ShowNotify(Properties.Resources.AnUnknownErrorOccurred + " : " + e.ToString(), ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(Properties.Resources.AnUnknownErrorOccurred + " : " + e.ToString(), ToolTipIcon.Error);
             }
         }
 
@@ -248,7 +250,7 @@ namespace AttendanceProClient
                 }
                 catch (Exception err)
                 {
-                    ShowNotify(Properties.Resources.FailedToSaveYourAccount + " : " + err.ToString(), ToolTipIcon.Error);
+                    notifyIcon.ShowBalloonTip(Properties.Resources.FailedToSaveYourAccount + " : " + err.ToString(), ToolTipIcon.Error);
                 }
 
                 // マウスフックの処理変更
@@ -290,6 +292,10 @@ namespace AttendanceProClient
         {
             loginCheckButton.Enabled = false;
             await CheckLogOn();
+
+            var isManager = await AttendanceProClient.Instance.IsManagerAccount();
+            toolStripMenuItemShowSubordinateLogs.Visible = isManager;
+
             loginCheckButton.Enabled = true;
         }
 
@@ -322,6 +328,7 @@ namespace AttendanceProClient
             await FetchWorkingLog();
         }
 
+        // 部下の勤務時間を表示
         void toolStripMenuItemShowSubordinateLogs_Click(object sender, EventArgs e)
         {
             new MonthlyReportForm().Show();
@@ -348,28 +355,6 @@ namespace AttendanceProClient
             Application.Exit();
         }
 
-        // 通知メッセージの表示
-        public void ShowNotify(string tipText, ToolTipIcon tipIcon, int timeout = 3000)
-        {
-            string tipTitle = "";
-            switch (tipIcon)
-            {
-                case ToolTipIcon.None:
-                case ToolTipIcon.Info:
-                    break;
-
-                case ToolTipIcon.Warning:
-                    tipTitle = Properties.Resources.Information;
-                    break;
-
-                case ToolTipIcon.Error:
-                    timeout = 5000; // エラーのときは長めに
-                    tipTitle = Properties.Resources.Error;
-                    break;
-            }
-            notifyIcon.ShowBalloonTip(timeout, tipTitle, tipText, tipIcon);
-        }
-
         //
         // マウスのフック
         //
@@ -382,16 +367,16 @@ namespace AttendanceProClient
 
         void HookMouse(bool enabled)
         {
-            if (enabled)
-            {
-                MouseHook.AddEvent(HookFunc);
-                MouseHook.Start();
-            }
-            else
-            {
-                MouseHook.RemoveEvent(HookFunc);
-                MouseHook.Stop();
-            }
+            //if (enabled)
+            //{
+            //    MouseHook.AddEvent(HookFunc);
+            //    MouseHook.Start();
+            //}
+            //else
+            //{
+            //    MouseHook.RemoveEvent(HookFunc);
+            //    MouseHook.Stop();
+            //}
         }
     }
 }

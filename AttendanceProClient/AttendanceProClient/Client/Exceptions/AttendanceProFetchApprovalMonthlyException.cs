@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace AttendanceProClient.Client
 {
     /// <summary>
-    /// 月次勤務表の取得に失敗した場合の Exception
+    ///     Exception
     /// </summary>
     [SerializableAttribute]
     class AttendanceProFetchApprovalMonthlyException : SystemException

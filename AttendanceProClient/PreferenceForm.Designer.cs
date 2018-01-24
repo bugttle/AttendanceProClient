@@ -40,6 +40,7 @@ namespace AttendanceProClient {
             this.toolStripMenuItemOut = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemShowOwnLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemShowSubordinateLogs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemOpenBrowser = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemPreference = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +50,6 @@ namespace AttendanceProClient {
             this.companyCodeTextBox = new System.Windows.Forms.TextBox();
             this.startupCheckBox = new System.Windows.Forms.CheckBox();
             this.loginCheckButton = new System.Windows.Forms.Button();
-            this.toolStripMenuItemShowSubordinateLogs = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             userIdLabel = new System.Windows.Forms.Label();
             passwordLabel = new System.Windows.Forms.Label();
@@ -122,6 +122,12 @@ namespace AttendanceProClient {
             resources.ApplyResources(this.toolStripMenuItemShowOwnLog, "toolStripMenuItemShowOwnLog");
             this.toolStripMenuItemShowOwnLog.Click += new System.EventHandler(this.toolStripMenuItemShowWorkingLog_Click);
             // 
+            // toolStripMenuItemShowSubordinateLogs
+            // 
+            this.toolStripMenuItemShowSubordinateLogs.Name = "toolStripMenuItemShowSubordinateLogs";
+            resources.ApplyResources(this.toolStripMenuItemShowSubordinateLogs, "toolStripMenuItemShowSubordinateLogs");
+            this.toolStripMenuItemShowSubordinateLogs.Click += new System.EventHandler(this.toolStripMenuItemShowSubordinateLogs_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -178,12 +184,6 @@ namespace AttendanceProClient {
             this.loginCheckButton.Name = "loginCheckButton";
             this.loginCheckButton.UseVisualStyleBackColor = true;
             this.loginCheckButton.Click += new System.EventHandler(this.loginCheckButton_Click);
-            // 
-            // toolStripMenuItemShowSubordinateLogs
-            // 
-            this.toolStripMenuItemShowSubordinateLogs.Name = "toolStripMenuItemShowSubordinateLogs";
-            resources.ApplyResources(this.toolStripMenuItemShowSubordinateLogs, "toolStripMenuItemShowSubordinateLogs");
-            this.toolStripMenuItemShowSubordinateLogs.Click += new System.EventHandler(this.toolStripMenuItemShowSubordinateLogs_Click);
             // 
             // PreferenceForm
             // 

@@ -105,7 +105,7 @@ namespace AttendanceProClient.Client
                 return;
             }
 
-            throw new AttendanceProFetchTableFullTimeException();
+            throw new AttendanceProFetchApprovalMonthlyException();
         }
 
         public static HtmlDocument ValidateFetchedAttendanceExercisedMonthlyDetails(string html)

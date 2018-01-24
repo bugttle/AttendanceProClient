@@ -117,29 +117,25 @@ namespace AttendanceProClient.Client
             });
         }
 
-        async Task<List<WorkingLogSubordinate>> FetchSubordinateWorkingLogs(string html)
+        IEnumerator<Task<WorkingLogSubordinate>> FetchSubordinateWorkingLogs(string html)
         {
             // 部下全員分の情報を取得
             var targetSubordinates = QueryCreator.FindTargetSubordinates(html);
             if (targetSubordinates != null)
             {
-                var subordinateLogs = new List<WorkingLogSubordinate>();
                 foreach (var targetSubordinate in targetSubordinates)
                 {
-                    /* AttendanceExercisedMonthlyDetails へのアクセス */
-                    var log = await FetchSubordinateWorkingLog(html, targetSubordinate);
-                    subordinateLogs.Add(log);
-
-                    var random = new Random();
-                    await Task.Delay(500 + random.Next(500));
+                    yield return Task.Run(async () =>
+                    {
+                        /* AttendanceExercisedMonthlyDetails へのアクセス */
+                        await Task.Delay(500 + new Random().Next(500));
+                        return await FetchSubordinateWorkingLog(html, targetSubordinate);
+                    });
                 }
-                return subordinateLogs;
             }
-
-            return null;
         }
 
-        async Task<List<WorkingLogSubordinate>> FetchSubordinateWorkingLogs(string userId, string password, string companyCode)
+        async Task<IEnumerator<Task<WorkingLogSubordinate>>> FetchSubordinateWorkingLogs(string userId, string password, string companyCode)
         {
             var html = "";
 
@@ -160,9 +156,9 @@ namespace AttendanceProClient.Client
         /// ログインができるかのチェック
         /// </summary>
         /// <param name="account"></param>
-        public async Task ChceckLogOn(Account.Account account)
+        public async Task<string> ChceckLogOn(Account.Account account)
         {
-            await LogOn(account.UserId, account.Password, account.CompanyCode);
+            return await LogOn(account.UserId, account.Password, account.CompanyCode);
         }
 
         /// <summary>
@@ -187,11 +183,34 @@ namespace AttendanceProClient.Client
         }
 
         /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> IsManagerAccount()
+        {
+            return await Task.Run(() =>
+            {
+                // ApprovalMonthlyへアクセス
+                var html = wc.Get(AttendanceProUrls.ApprovalMonthly);
+
+                try
+                {
+                    ResponseValidator.ValidateFetchedApprovalMonthly(html); // ???
+                    return true;
+                }
+                catch (AttendanceProPermissionException)
+                {
+                    return false;
+                }
+            });
+        }
+
+        /// <summary>
         /// 月時承認から部下の勤務情報を取得する
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public async Task<List<WorkingLogSubordinate>> FetchSubordinateWorkingLogs(Account.Account account)
+        public async Task<IEnumerator<Task<WorkingLogSubordinate>>> FetchSubordinateWorkingLogs(Account.Account account)
         {
             return await FetchSubordinateWorkingLogs(account.UserId, account.Password, account.CompanyCode);
         }

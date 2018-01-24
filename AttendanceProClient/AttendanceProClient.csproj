@@ -73,13 +73,15 @@
     <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProAlreadyAttendException.cs" />
     <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProAttendException.cs" />
     <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProFetchAttendanceExercisedMonthlyDetailsException.cs" />
-    <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProFetchApprovalMonthly.cs" />
     <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProFetchTableFullTimeException.cs" />
+    <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProFetchApprovalMonthlyException.cs" />
+    <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProPermissionException.cs" />
     <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProPasswordExpiredException.cs" />
     <Compile Include="AttendanceProClient\Client\Exceptions\AttendanceProLoginException.cs" />
     <Compile Include="AttendanceProClient\Client\AttendanceProUrls.cs" />
     <Compile Include="AttendanceProClient\Client\QueryCreator.cs" />
     <Compile Include="AttendanceProClient\Client\ResponseValidator.cs" />
+    <Compile Include="Extensions\NotifyIconExtension.cs" />
     <Compile Include="AttendanceProClient\WorkingLog\WorkingLogSubordinate.cs" />
     <Compile Include="AttendanceProClient\WorkingLog\WorkingLogOwn.cs" />
     <Compile Include="AttendanceProClient\WorkingLog\WorkingLog.cs" />
