@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AttendanceProClient</RootNamespace>
     <AssemblyName>AttendanceProClient</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
@@ -26,6 +26,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -86,7 +87,6 @@
     <Compile Include="AttendanceProClient\WorkingLog\WorkingLogOwn.cs" />
     <Compile Include="AttendanceProClient\WorkingLog\WorkingLog.cs" />
     <Compile Include="AttendanceProClient\WorkingLog\LogItem.cs" />
-    <Compile Include="GlobalHook\MouseHook.cs" />
     <Compile Include="AttendanceProClient\Account\Account.cs" />
     <Compile Include="AttendanceProClient\Client\AttendanceProClient.cs" />
     <Compile Include="AttendanceProClient\Client\CookieAwareWebClient.cs" />
@@ -112,7 +112,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="AttendanceProClient\TimeKeeper.cs" />
-    <Compile Include="Utilities\StartupLinkUtility.cs" />
     <Compile Include="Utilities\TimeUtility.cs" />
     <EmbeddedResource Include="MonthlyReportForm.resx">
       <DependentUpon>MonthlyReportForm.cs</DependentUpon>
@@ -167,7 +166,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <COMReference Include="IWshRuntimeLibrary">
       <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
@@ -178,6 +176,13 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\ArmyKnifeDotNet\ArmyKnifeDotNet\ArmyKnifeDotNet.csproj">
+      <Project>{1a86c378-3772-4c97-90df-7de0583a471f}</Project>
+      <Name>ArmyKnifeDotNet</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

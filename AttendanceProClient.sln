@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttendanceProClient", "AttendanceProClient\AttendanceProClient.csproj", "{1ECB34F5-F17C-46FA-B12F-22B08B2158DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmyKnifeDotNet", "..\..\..\ArmyKnifeDotNet\ArmyKnifeDotNet\ArmyKnifeDotNet.csproj", "{1A86C378-3772-4C97-90DF-7DE0583A471F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1ECB34F5-F17C-46FA-B12F-22B08B2158DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1ECB34F5-F17C-46FA-B12F-22B08B2158DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1ECB34F5-F17C-46FA-B12F-22B08B2158DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A86C378-3772-4C97-90DF-7DE0583A471F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A86C378-3772-4C97-90DF-7DE0583A471F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A86C378-3772-4C97-90DF-7DE0583A471F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A86C378-3772-4C97-90DF-7DE0583A471F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
