@@ -198,7 +198,7 @@ namespace AttendanceProClient.Client
                     ResponseValidator.ValidateFetchedApprovalMonthly(html); // ???
                     return true;
                 }
-                catch (AttendanceProPermissionException)
+                catch (AttendanceProFetchApprovalMonthlyException)
                 {
                     return false;
                 }

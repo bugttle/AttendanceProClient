@@ -1,4 +1,6 @@
-﻿namespace AttendanceProClient.Account
+﻿using ArmyKnifeDotNet.IO.Serializer;
+
+namespace AttendanceProClient.Account
 {
     public class AccountManager
     {
@@ -28,11 +30,14 @@
         /// <returns></returns>
         public Account Load()
         {
-            var serializer = new AccountEncryptionSerializer();
-            Account = serializer.DeserializeFromFile();
-            if (Account == null)
+            try
             {
-                Account = new Account();
+                var serializer = new EncryptionSerializer();
+                Account = serializer.DeserializeFromFile<Account>();
+            }
+            catch
+            {
+                Account = new Account("", "", "");
             }
             return Account;
         }
@@ -42,8 +47,18 @@
         /// </summary>
         public void Save()
         {
-            var serializer = new AccountEncryptionSerializer();
-            serializer.SerializeToFile(Account);
+            var serializer = new EncryptionSerializer();
+            serializer.SerializeToFile<Account>(Account);
+        }
+
+        public void SetUserId(string userId)
+        {
+            Account = new Account(userId, Account.Password, Account.CompanyCode);
+        }
+
+        public void SetPassword(string password)
+        {
+            Account = new Account(Account.UserId, password, Account.CompanyCode);
         }
 
         /// <summary>
@@ -52,11 +67,9 @@
         /// <returns></returns>
         public bool IsValidAccount()
         {
-            if (Account == null)
-            {
-                return false;
-            }
-            return (0 < Account.UserId.Length && 0 < Account.Password.Length && 0 < Account.CompanyCode.Length);
+            return Account.UserId != null && 0 < Account.UserId.Length &&
+                Account.Password != null && 0 < Account.Password.Length &&
+                Account.CompanyCode != null && 0 < Account.CompanyCode.Length;
         }
     }
 }

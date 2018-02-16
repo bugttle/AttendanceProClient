@@ -33,7 +33,9 @@ namespace AttendanceProClient
                 Application.SetCompatibleTextRenderingDefault(false);
 
                 // 起動時にFormを表示したくないので、Runメソッドに渡さない
-                new PreferenceForm();
+                var form = new PreferenceForm();
+                form.Init();
+
                 Application.Run();
             }
             finally
