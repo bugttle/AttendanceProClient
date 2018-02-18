@@ -25,5 +25,5 @@ namespace AttendanceProClient.Client
 
         // 履歴
         public List<LogItem> Histories { get; protected set; }
-    }   
+    }
 }

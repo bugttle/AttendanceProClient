@@ -150,6 +150,9 @@
   <data name="FailedToSaveYourAccount" xml:space="preserve">
     <value>アカウント情報の保存に失敗しました。</value>
   </data>
+  <data name="GotOvertimeHours" xml:space="preserve">
+    <value>残業時間を取得しました。</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>お知らせ</value>
   </data>
@@ -161,6 +164,9 @@
   </data>
   <data name="LoginSucceeded" xml:space="preserve">
     <value>ログインに成功しました。</value>
+  </data>
+  <data name="NowLoading" xml:space="preserve">
+    <value>読み込み中です。</value>
   </data>
   <data name="PasswordHasExpired" xml:space="preserve">
     <value>パスワードの期限が切れています。更新してください。</value>

@@ -226,7 +226,7 @@ namespace AttendanceProClient.Client
             if (match.Success && 1 < match.Groups.Count)
             {
                 var urlString = match.Groups[1] + "&r=" + DateTime.Now.Millisecond.ToString();
-                var uri = new Uri(AttendanceProUrls.TopURL + "/" + urlString);
+                var uri = new Uri(AttendanceProURLs.Top + "/" + urlString);
 
                 var ps = HttpUtility.ParseQueryString(uri.Query);
                 return uri.GetLeftPart(UriPartial.Path) + "?" + ps.ToString();

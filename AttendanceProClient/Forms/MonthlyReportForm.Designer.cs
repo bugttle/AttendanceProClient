@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonthlyReportForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonthlyReportForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -42,40 +42,31 @@
             this.workingLogsTextBox = new System.Windows.Forms.TextBox();
             this.reloadButton = new System.Windows.Forms.Button();
             this.subordinatesDataGridView = new System.Windows.Forms.DataGridView();
-            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.dataGridViewColumnPersonName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewColumnTotalMonthlyNeeds = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewWorkingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTotalOvertime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.subordinatesDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // workingLogsTextBox
             // 
-            this.workingLogsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.workingLogsTextBox.Location = new System.Drawing.Point(12, 12);
-            this.workingLogsTextBox.Multiline = true;
+            resources.ApplyResources(this.workingLogsTextBox, "workingLogsTextBox");
             this.workingLogsTextBox.Name = "workingLogsTextBox";
-            this.workingLogsTextBox.Size = new System.Drawing.Size(331, 46);
-            this.workingLogsTextBox.TabIndex = 0;
             // 
             // reloadButton
             // 
-            this.reloadButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.reloadButton.Location = new System.Drawing.Point(292, 272);
+            resources.ApplyResources(this.reloadButton, "reloadButton");
             this.reloadButton.Name = "reloadButton";
-            this.reloadButton.Size = new System.Drawing.Size(75, 23);
-            this.reloadButton.TabIndex = 1;
-            this.reloadButton.Text = "更新";
             this.reloadButton.UseVisualStyleBackColor = true;
             this.reloadButton.Click += new System.EventHandler(this.reloadButton_Click);
             // 
             // subordinatesDataGridView
             // 
+            resources.ApplyResources(this.subordinatesDataGridView, "subordinatesDataGridView");
             this.subordinatesDataGridView.AllowUserToAddRows = false;
             this.subordinatesDataGridView.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -102,7 +93,6 @@
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.subordinatesDataGridView.DefaultCellStyle = dataGridViewCellStyle8;
-            this.subordinatesDataGridView.Location = new System.Drawing.Point(12, 12);
             this.subordinatesDataGridView.Name = "subordinatesDataGridView";
             this.subordinatesDataGridView.ReadOnly = true;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -114,20 +104,12 @@
             dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.subordinatesDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.subordinatesDataGridView.RowTemplate.Height = 21;
-            this.subordinatesDataGridView.Size = new System.Drawing.Size(643, 250);
-            this.subordinatesDataGridView.TabIndex = 2;
-            // 
-            // notifyIcon
-            // 
-            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "AttendancePro Client (非公式)";
-            this.notifyIcon.Visible = true;
             // 
             // dataGridViewColumnPersonName
             // 
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.dataGridViewColumnPersonName.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewColumnPersonName.HeaderText = "名前";
+            resources.ApplyResources(this.dataGridViewColumnPersonName, "dataGridViewColumnPersonName");
             this.dataGridViewColumnPersonName.Name = "dataGridViewColumnPersonName";
             this.dataGridViewColumnPersonName.ReadOnly = true;
             // 
@@ -135,7 +117,7 @@
             // 
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.dataGridViewColumnTotalMonthlyNeeds.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewColumnTotalMonthlyNeeds.HeaderText = "所定労働時間";
+            resources.ApplyResources(this.dataGridViewColumnTotalMonthlyNeeds, "dataGridViewColumnTotalMonthlyNeeds");
             this.dataGridViewColumnTotalMonthlyNeeds.Name = "dataGridViewColumnTotalMonthlyNeeds";
             this.dataGridViewColumnTotalMonthlyNeeds.ReadOnly = true;
             // 
@@ -143,7 +125,7 @@
             // 
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.dataGridViewWorkingTime.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewWorkingTime.HeaderText = "勤務時間";
+            resources.ApplyResources(this.dataGridViewWorkingTime, "dataGridViewWorkingTime");
             this.dataGridViewWorkingTime.Name = "dataGridViewWorkingTime";
             this.dataGridViewWorkingTime.ReadOnly = true;
             // 
@@ -151,7 +133,7 @@
             // 
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.dataGridViewColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridViewColumn.HeaderText = "不就労";
+            resources.ApplyResources(this.dataGridViewColumn, "dataGridViewColumn");
             this.dataGridViewColumn.Name = "dataGridViewColumn";
             this.dataGridViewColumn.ReadOnly = true;
             // 
@@ -159,7 +141,7 @@
             // 
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.dataGridViewTotalOvertime.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewTotalOvertime.HeaderText = "累計残業時間";
+            resources.ApplyResources(this.dataGridViewTotalOvertime, "dataGridViewTotalOvertime");
             this.dataGridViewTotalOvertime.Name = "dataGridViewTotalOvertime";
             this.dataGridViewTotalOvertime.ReadOnly = true;
             // 
@@ -167,21 +149,22 @@
             // 
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.col.DefaultCellStyle = dataGridViewCellStyle7;
-            this.col.HeaderText = "未入力日数";
+            resources.ApplyResources(this.col, "col");
             this.col.Name = "col";
             this.col.ReadOnly = true;
             // 
+            // notifyIcon
+            // 
+            resources.ApplyResources(this.notifyIcon, "notifyIcon");
+            // 
             // MonthlyReportForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 307);
             this.Controls.Add(this.subordinatesDataGridView);
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.workingLogsTextBox);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MonthlyReportForm";
-            this.Text = "部下の勤務情報を表示";
             this.Load += new System.EventHandler(this.MonthlyReportForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.subordinatesDataGridView)).EndInit();
             this.ResumeLayout(false);

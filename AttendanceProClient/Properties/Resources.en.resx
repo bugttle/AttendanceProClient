@@ -150,6 +150,9 @@
   <data name="FailedToSaveYourAccount" xml:space="preserve">
     <value>Failed to save your account.</value>
   </data>
+  <data name="GotOvertimeHours" xml:space="preserve">
+    <value>Got overtime hours.</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Information</value>
   </data>
@@ -161,6 +164,9 @@
   </data>
   <data name="LoginSucceeded" xml:space="preserve">
     <value>Login succeeded.</value>
+  </data>
+  <data name="NowLoading" xml:space="preserve">
+    <value>Now loading.</value>
   </data>
   <data name="PasswordHasExpired" xml:space="preserve">
     <value>Your password has expired and must be changed.</value>

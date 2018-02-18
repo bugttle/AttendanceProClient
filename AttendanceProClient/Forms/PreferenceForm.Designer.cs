@@ -59,8 +59,8 @@ namespace AttendanceProClient {
             // 
             // toolStripSeparator
             // 
-            toolStripSeparator.Name = "toolStripSeparator";
             resources.ApplyResources(toolStripSeparator, "toolStripSeparator");
+            toolStripSeparator.Name = "toolStripSeparator";
             // 
             // userIdLabel
             // 
@@ -79,12 +79,13 @@ namespace AttendanceProClient {
             // 
             // notifyIcon
             // 
-            this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
             resources.ApplyResources(this.notifyIcon, "notifyIcon");
+            this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
             this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
             // 
             // contextMenuStrip
             // 
+            resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemIn,
             this.toolStripMenuItemOut,
@@ -97,58 +98,57 @@ namespace AttendanceProClient {
             this.toolStripMenuItemPreference,
             this.toolStripMenuItemExit});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
             // 
             // toolStripMenuItemIn
             // 
-            this.toolStripMenuItemIn.Name = "toolStripMenuItemIn";
             resources.ApplyResources(this.toolStripMenuItemIn, "toolStripMenuItemIn");
+            this.toolStripMenuItemIn.Name = "toolStripMenuItemIn";
             this.toolStripMenuItemIn.Click += new System.EventHandler(this.toolStripMenuItemIn_Click);
             // 
             // toolStripMenuItemOut
             // 
-            this.toolStripMenuItemOut.Name = "toolStripMenuItemOut";
             resources.ApplyResources(this.toolStripMenuItemOut, "toolStripMenuItemOut");
+            this.toolStripMenuItemOut.Name = "toolStripMenuItemOut";
             this.toolStripMenuItemOut.Click += new System.EventHandler(this.toolStripMenuItemOut_Click);
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
             resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
             // 
             // toolStripMenuItemShowOwnLog
             // 
-            this.toolStripMenuItemShowOwnLog.Name = "toolStripMenuItemShowOwnLog";
             resources.ApplyResources(this.toolStripMenuItemShowOwnLog, "toolStripMenuItemShowOwnLog");
+            this.toolStripMenuItemShowOwnLog.Name = "toolStripMenuItemShowOwnLog";
             this.toolStripMenuItemShowOwnLog.Click += new System.EventHandler(this.toolStripMenuItemShowWorkingLog_Click);
             // 
             // toolStripMenuItemShowSubordinateLogs
             // 
-            this.toolStripMenuItemShowSubordinateLogs.Name = "toolStripMenuItemShowSubordinateLogs";
             resources.ApplyResources(this.toolStripMenuItemShowSubordinateLogs, "toolStripMenuItemShowSubordinateLogs");
+            this.toolStripMenuItemShowSubordinateLogs.Name = "toolStripMenuItemShowSubordinateLogs";
             this.toolStripMenuItemShowSubordinateLogs.Click += new System.EventHandler(this.toolStripMenuItemShowSubordinateLogs_Click);
             // 
             // toolStripSeparator2
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
             resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
             // 
             // toolStripMenuItemOpenBrowser
             // 
-            this.toolStripMenuItemOpenBrowser.Name = "toolStripMenuItemOpenBrowser";
             resources.ApplyResources(this.toolStripMenuItemOpenBrowser, "toolStripMenuItemOpenBrowser");
+            this.toolStripMenuItemOpenBrowser.Name = "toolStripMenuItemOpenBrowser";
             this.toolStripMenuItemOpenBrowser.Click += new System.EventHandler(this.toolStripMenuItemOpenBrowser_Click);
             // 
             // toolStripMenuItemPreference
             // 
-            this.toolStripMenuItemPreference.Name = "toolStripMenuItemPreference";
             resources.ApplyResources(this.toolStripMenuItemPreference, "toolStripMenuItemPreference");
+            this.toolStripMenuItemPreference.Name = "toolStripMenuItemPreference";
             this.toolStripMenuItemPreference.Click += new System.EventHandler(this.toolStripMenuItemPreference_Click);
             // 
             // toolStripMenuItemExit
             // 
-            this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
             resources.ApplyResources(this.toolStripMenuItemExit, "toolStripMenuItemExit");
+            this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
             this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
             // 
             // userIdTextBox

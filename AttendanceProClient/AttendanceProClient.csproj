@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AttendanceProClient</RootNamespace>
     <AssemblyName>AttendanceProClient</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
@@ -52,13 +52,30 @@
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Moq, Version=4.8.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.8.1\lib\net45\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -89,17 +106,16 @@
     <Compile Include="AttendanceProClient\WorkingLog\LogItem.cs" />
     <Compile Include="AttendanceProClient\Account\Account.cs" />
     <Compile Include="AttendanceProClient\Client\AttendanceProClient.cs" />
-    <Compile Include="AttendanceProClient\Client\CookieAwareWebClient.cs" />
-    <Compile Include="MonthlyReportForm.cs">
+    <Compile Include="Forms\MonthlyReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MonthlyReportForm.Designer.cs">
+    <Compile Include="Forms\MonthlyReportForm.Designer.cs">
       <DependentUpon>MonthlyReportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PreferenceForm.cs">
+    <Compile Include="Forms\PreferenceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PreferenceForm.Designer.cs">
+    <Compile Include="Forms\PreferenceForm.Designer.cs">
       <DependentUpon>PreferenceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -111,15 +127,17 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="AttendanceProClient\TimeKeeper.cs" />
-    <Compile Include="Utilities\TimeUtility.cs" />
-    <EmbeddedResource Include="MonthlyReportForm.resx">
+    <EmbeddedResource Include="Forms\MonthlyReportForm.en.resx">
       <DependentUpon>MonthlyReportForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PreferenceForm.en.resx">
+    <EmbeddedResource Include="Forms\MonthlyReportForm.resx">
+      <DependentUpon>MonthlyReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PreferenceForm.en.resx">
       <DependentUpon>PreferenceForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PreferenceForm.resx">
+    <EmbeddedResource Include="Forms\PreferenceForm.resx">
       <DependentUpon>PreferenceForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -186,7 +204,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>: "C:\Program Files (x86)\Microsoft\ILMerge\ILMerge.exe" /v4 /ndebug /out:AttendanceProClient.exe $(TargetFileName) HtmlAgilityPack.dll</PostBuildEvent>
+    <PostBuildEvent>: "C:\Program Files (x86)\Microsoft\ILMerge\ILMerge.exe" /v4 /ndebug /out:AttendanceProClient.exe $(TargetFileName) HtmlAgilityPack.dll
+
+mkdir build
+mkdir build\dll &gt; NUL 2&gt;&amp;1
+copy *.dll build\dll\
+copy $(TargetFileName) build
+copy $(TargetFileName).config build</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

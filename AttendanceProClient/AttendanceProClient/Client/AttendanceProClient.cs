@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArmyKnifeDotNet.Web;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,17 +15,17 @@ namespace AttendanceProClient.Client
             Encoding = Encoding.UTF8
         };
 
-        static AttendanceProClient mInstance = null;
+        static AttendanceProClient instance = null;
 
         public static AttendanceProClient Instance
         {
             get
             {
-                if (mInstance == null)
+                if (instance == null)
                 {
-                    mInstance = new AttendanceProClient();
+                    instance = new AttendanceProClient();
                 }
-                return mInstance;
+                return instance;
             }
         }
 
@@ -43,11 +44,11 @@ namespace AttendanceProClient.Client
             return await Task.Run(() =>
             {
                 // トップページの取得
-                var html = wc.Get(AttendanceProUrls.LogOnURL);
+                var html = wc.Get(AttendanceProURLs.LogOn);
 
                 // ログイン実行
                 var query = QueryCreator.QueryForLogOnPage(html, userId, password, companyCode);
-                html = wc.Post(AttendanceProUrls.LogOnURL, query);
+                html = wc.Post(AttendanceProURLs.LogOn, query);
 
                 // ログインが正常に完了しているかのチェック
                 ResponseValidator.ValidateLoggedIn(html);
@@ -68,7 +69,7 @@ namespace AttendanceProClient.Client
 
                 // 出退勤実行
                 var query = QueryCreator.QueryForAttendanceTableDailyPage(html, type);
-                html = wc.Post(AttendanceProUrls.AttendanceTableDailyURL, query);
+                html = wc.Post(AttendanceProURLs.AttendanceTableDaily, query);
 
                 // 出退勤が正常に完了しているかのチェック
                 ResponseValidator.ValidateAttended(html, type);
@@ -91,7 +92,7 @@ namespace AttendanceProClient.Client
             return await Task.Run(() =>
             {
                 // 月次勤務表から情報を取得する
-                html = wc.Get(AttendanceProUrls.AttendanceTableFullTime);
+                html = wc.Get(AttendanceProURLs.AttendanceTableFullTime);
 
                 // 月次勤務表が取得できているかのチェック
                 var doc = ResponseValidator.ValidateFetchedTableFullTime(html);
@@ -106,7 +107,7 @@ namespace AttendanceProClient.Client
             {
                 // まずは ApprovalMonthlyへアクセスしてURLを取得する
                 var query = QueryCreator.QueryForApprovalMonthlyPage(html, targetSubordinate);
-                html = wc.Post(AttendanceProUrls.ApprovalMonthly, query);
+                html = wc.Post(AttendanceProURLs.ApprovalMonthly, query);
 
                 // AttendanceExercisedMonthlyDetails へのアクセス
                 var url = QueryCreator.UrlForAttendanceExercisedMonthlyDetailsPage(html);
@@ -145,7 +146,7 @@ namespace AttendanceProClient.Client
             return await Task.Run(() =>
             {
                 // ApprovalMonthlyへアクセス
-                html = wc.Get(AttendanceProUrls.ApprovalMonthly);
+                html = wc.Get(AttendanceProURLs.ApprovalMonthly);
                 ResponseValidator.ValidateFetchedApprovalMonthly(html);
 
                 return FetchSubordinateWorkingLogs(html);
@@ -191,7 +192,7 @@ namespace AttendanceProClient.Client
             return await Task.Run(() =>
             {
                 // ApprovalMonthlyへアクセス
-                var html = wc.Get(AttendanceProUrls.ApprovalMonthly);
+                var html = wc.Get(AttendanceProURLs.ApprovalMonthly);
 
                 try
                 {

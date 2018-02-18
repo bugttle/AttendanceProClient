@@ -160,6 +160,15 @@ namespace AttendanceProClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 残業時間を取得しました。.
+        /// </summary>
+        internal static string GotOvertimeHours {
+            get {
+                return ResourceManager.GetString("GotOvertimeHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to お知らせ.
         /// </summary>
         internal static string Information {
@@ -192,6 +201,15 @@ namespace AttendanceProClient.Properties {
         internal static string LoginSucceeded {
             get {
                 return ResourceManager.GetString("LoginSucceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 読み込み中です。.
+        /// </summary>
+        internal static string NowLoading {
+            get {
+                return ResourceManager.GetString("NowLoading", resourceCulture);
             }
         }
         

@@ -341,7 +341,7 @@ namespace AttendanceProClient
         // ブラウザで開く
         void toolStripMenuItemOpenBrowser_Click(object sender, EventArgs e)
         {
-            Process.Start(AttendanceProUrls.TopURL);
+            Process.Start(AttendanceProURLs.Top);
         }
 
         // 設定

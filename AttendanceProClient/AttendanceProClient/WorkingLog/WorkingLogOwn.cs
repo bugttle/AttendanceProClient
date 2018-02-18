@@ -1,7 +1,6 @@
-﻿using HtmlAgilityPack;
-using System;
+﻿using ArmyKnifeDotNet.Text;
+using HtmlAgilityPack;
 using System.Collections.Generic;
-using AttendanceProClient.Utilities;
 
 namespace AttendanceProClient.Client
 {
@@ -15,7 +14,7 @@ namespace AttendanceProClient.Client
 
         public WorkingLogOwn(HtmlDocument doc)
         {
-            var today = DateTime.Now;
+            var today = System.DateTime.Now;
 
             var personNameNode = doc.DocumentNode.SelectSingleNode("//span[@id='ctl00_ContentMain_PageHeaderUC1_lblEmployeeName']");
             if (personNameNode != null)
@@ -27,11 +26,11 @@ namespace AttendanceProClient.Client
             if (detailTdNodes != null)
             {
                 // 所定労働時間
-                TotalMonthlyNeeds = TimeUtility.ToTimeSpan(detailTdNodes[0].InnerText);
+                TotalMonthlyNeeds = Convert.ToTimeSpan(detailTdNodes[0].InnerText);
                 // 勤務時間
-                TotalMonthlyCurrent = TimeUtility.ToTimeSpan(detailTdNodes[1].InnerText);
+                TotalMonthlyCurrent = Convert.ToTimeSpan(detailTdNodes[1].InnerText);
                 // 不就労
-                TotalMonthlyRemains = TimeUtility.ToTimeSpan(detailTdNodes[7].InnerText);
+                TotalMonthlyRemains = Convert.ToTimeSpan(detailTdNodes[7].InnerText);
             }
 
             // 日々の履歴
@@ -83,12 +82,12 @@ namespace AttendanceProClient.Client
                         {
                             // 勤務時間
                             hasWorkingTime = true;
-                            log.WorkingHour = TimeUtility.ToTimeSpan(tdNode.InnerText);
+                            log.WorkingHour = Convert.ToTimeSpan(tdNode.InnerText);
                         }
                         else if (idName.EndsWith("_celFreeColumn2"))
                         {
                             // 標準差
-                            log.Overtime = TimeUtility.ToTimeSpan(tdNode.InnerText);
+                            log.Overtime = Convert.ToTimeSpan(tdNode.InnerText);
                         }
                     }
                 }

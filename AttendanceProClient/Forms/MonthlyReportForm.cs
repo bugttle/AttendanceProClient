@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 using AttendanceProClient.Account;
 using AttendanceProClient.Client;
@@ -25,13 +22,14 @@ namespace AttendanceProClient
             try
             {
                 reloadButton.Enabled = false;
-                workingLogsTextBox.Text = "読み込み中...";
+                workingLogsTextBox.Text = Properties.Resources.NowLoading;
 
                 var account = AccountManager.Instance.Account;
                 var workingLogs = await AttendanceProClient.Instance.FetchSubordinateWorkingLogs(account);
 
                 while (workingLogs.MoveNext())
                 {
+                    // 名前, 所定労働時間, 勤務時間, 不就労, 累計残業時間, 未入力日数
                     var log = await workingLogs.Current;
                     subordinatesDataGridView.Rows.Add(new string[] {
                         log.PersonName,
@@ -43,26 +41,9 @@ namespace AttendanceProClient
                     });
                 }
 
-                /*
-                 * 名前
-所定労働時間
-勤務時間
-不就労
-累計残業時間
-未入力数
-*/
-                //workingLogsTextBox.Text = "名前 | 所定労働時間 | 勤務時間 | 不就労 | 累計残業時間 | 未入力日数" + Environment.NewLine + "==============================" + Environment.NewLine;
-                //workingLogsTextBox.Text += string.Join(Environment.NewLine, workingLogs.Select(log =>
-                //{
-                //    return log.PersonName + " | " +
-                //    string.Format("{0:F1}h | ", log.TotalMonthlyNeeds.TotalHours) +
-                //    string.Format("{0:F1}h | ", log.TotalMonthlyCurrent.TotalHours) +
-                //    string.Format("{0:F1}h", log.TotalMonthlyOvertime.TotalHours);
-                //}).ToArray());
-
                 reloadButton.Enabled = true;
 
-                notifyIcon.ShowBalloonTip("残業時間の情報を取得しました。", ToolTipIcon.Info);
+                notifyIcon.ShowBalloonTip(Properties.Resources.GotOvertimeHours, ToolTipIcon.Info);
             }
             catch (AttendanceProLoginException e)
             {
