@@ -6,20 +6,35 @@ namespace AttendanceProClient.Client
 {
     public class WorkingLogOwn : WorkingLog
     {
+        // 月時確定のボタンが押せるかどうか
+        public bool IsMonthlyCommitButtonEnabled { get; private set; }
+
         // 最後の勤務日ログ
         public LogItem LastWorkdayLog { get; private set; }
 
-        LogItem LastWeekdayLog;
-        public bool IsTodayLastWorkday { get; private set; }
+        // 最後の平日
+        LogItem lastWeekdayLog;
+
+        public bool IsTodayLastWorkday
+        {
+            // 月の最終日出社日かどうかを判定
+            get { return lastWeekdayLog.IsChangeButtonEnabled; }
+        }
 
         public WorkingLogOwn(HtmlDocument doc)
         {
-            var today = System.DateTime.Now;
-
+            // 名前
             var personNameNode = doc.DocumentNode.SelectSingleNode("//span[@id='ctl00_ContentMain_PageHeaderUC1_lblEmployeeName']");
             if (personNameNode != null)
             {
                 PersonName = personNameNode.InnerText;
+            }
+
+            // 月次確定
+            var monthlyCommitButtonNode = doc.DocumentNode.SelectSingleNode("//input[@id='ctl00_ContentMain_MonthlyCommitButton']");
+            if (monthlyCommitButtonNode != null)
+            {
+                IsMonthlyCommitButtonEnabled = (monthlyCommitButtonNode.GetAttributeValue("disabled", "") != "disabled");
             }
 
             var detailTdNodes = doc.DocumentNode.SelectNodes("//table[@id='ctl00_ContentMain_grdMonthlyTotal']//tr[2]/td");
@@ -53,7 +68,6 @@ namespace AttendanceProClient.Client
                 // ステータスが「未入力」かどうか
                 var isNotEnteredStatus = false;
                 var hasWorkingTime = false;
-                var isButtonEnabled = false;
 
                 foreach (var tdNode in trNode.ChildNodes)
                 {
@@ -69,7 +83,7 @@ namespace AttendanceProClient.Client
                     {
                         // 「変更」ボタンが押せるかどうか
                         var inputNode = tdNode.FirstChild;
-                        isButtonEnabled = (inputNode.GetAttributeValue("disabled", "") != "disabled");
+                        log.IsChangeButtonEnabled = (inputNode.GetAttributeValue("disabled", "") != "disabled");
                     }
                     else if (idName != null)
                     {
@@ -93,7 +107,7 @@ namespace AttendanceProClient.Client
                 }
 
                 // 入力すべき日に入力しているかどうか
-                if (log.IsWeekday && isButtonEnabled && isNotEnteredStatus)
+                if (log.IsWeekday && log.IsChangeButtonEnabled && isNotEnteredStatus)
                 {
                     log.HasEmptyForm = true;
                     EmptyFormsCount++;
@@ -104,23 +118,17 @@ namespace AttendanceProClient.Client
                 {
                     // 累計残業時間
                     TotalMonthlyOvertime += log.Overtime;
-                    // 最後の勤務日
+                    // 働いた最後の日
                     LastWorkdayLog = log;
                 }
 
                 if (log.IsWeekday)
                 {
                     // 最後の平日を記憶
-                    LastWeekdayLog = log;
+                    lastWeekdayLog = log;
                 }
 
                 Histories.Add(log);
-            }
-
-            // 月の最終日かどうかを判定
-            if (LastWeekdayLog.Day < today.Day)
-            {
-                IsTodayLastWorkday = true;
             }
         }
     }

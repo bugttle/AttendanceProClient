@@ -141,6 +141,9 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="FailedToFetchSubordinateWorkHour" xml:space="preserve">
+    <value>Failed to fetch subordinate work hour.</value>
+  </data>
   <data name="FailedToFetchWorkingTable" xml:space="preserve">
     <value>Failed to fetch working history page.</value>
   </data>
@@ -176,5 +179,8 @@
   </data>
   <data name="YouHaveNoInputDay" xml:space="preserve">
     <value>You have "No Input" day.</value>
+  </data>
+  <data name="YouShouldSendMonthlyCommit" xml:space="preserve">
+    <value>You should send Monthly Commit.</value>
   </data>
 </root>

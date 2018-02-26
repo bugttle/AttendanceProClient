@@ -23,6 +23,19 @@ namespace AttendanceProClient.Client
         // 今日までの「未入力」な平日の数
         public int EmptyFormsCount { get; protected set; }
 
+        public bool HasEmptyForm(bool ignoreToday)
+        {
+            if (ignoreToday)
+            {
+                // 本日分のみ「未入力」を無視する
+                return (0 < EmptyFormsCount - 1);
+            }
+            else
+            {
+                return (0 < EmptyFormsCount);
+            }
+        }
+
         // 履歴
         public List<LogItem> Histories { get; protected set; }
     }

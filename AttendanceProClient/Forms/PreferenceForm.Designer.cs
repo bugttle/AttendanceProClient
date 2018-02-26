@@ -203,6 +203,7 @@ namespace AttendanceProClient {
             this.ShowInTaskbar = false;
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PreferenceForm_FormClosing);
+            this.Load += new System.EventHandler(this.PreferenceForm_Load);
             this.Shown += new System.EventHandler(this.PreferenceForm_Shown);
             this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);

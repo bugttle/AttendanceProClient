@@ -141,6 +141,9 @@
   <data name="Error" xml:space="preserve">
     <value>エラー</value>
   </data>
+  <data name="FailedToFetchSubordinateWorkHour" xml:space="preserve">
+    <value>部下の勤務表の取得に失敗しました。</value>
+  </data>
   <data name="FailedToFetchWorkingTable" xml:space="preserve">
     <value>月次勤務表の取得に失敗しました。</value>
   </data>
@@ -176,5 +179,8 @@
   </data>
   <data name="YouHaveNoInputDay" xml:space="preserve">
     <value>「未入力」の日があります。</value>
+  </data>
+  <data name="YouShouldSendMonthlyCommit" xml:space="preserve">
+    <value>「月次確定」をする必要があります。</value>
   </data>
 </root>

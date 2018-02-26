@@ -133,6 +133,15 @@ namespace AttendanceProClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 部下の勤務表の取得に失敗しました。.
+        /// </summary>
+        internal static string FailedToFetchSubordinateWorkHour {
+            get {
+                return ResourceManager.GetString("FailedToFetchSubordinateWorkHour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 月次勤務表の取得に失敗しました。.
         /// </summary>
         internal static string FailedToFetchWorkingTable {
@@ -237,6 +246,15 @@ namespace AttendanceProClient.Properties {
         internal static string YouHaveNoInputDay {
             get {
                 return ResourceManager.GetString("YouHaveNoInputDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 「月次確定」をする必要があります。.
+        /// </summary>
+        internal static string YouShouldSendMonthlyCommit {
+            get {
+                return ResourceManager.GetString("YouShouldSendMonthlyCommit", resourceCulture);
             }
         }
     }

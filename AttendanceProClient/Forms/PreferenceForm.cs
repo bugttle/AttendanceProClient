@@ -1,4 +1,5 @@
-﻿using ArmyKnifeDotNet.IO.File;
+﻿using ArmyKnifeDotNet.Diagnostics;
+using ArmyKnifeDotNet.IO.File;
 using ArmyKnifeDotNet.IO.GlobalHook;
 using System;
 using System.Diagnostics;
@@ -44,6 +45,11 @@ namespace AttendanceProClient
                 await CheckLogOn();
                 HookMouse(true);
             }
+        }
+
+        private void PreferenceForm_Load(object sender, EventArgs e)
+        {
+            this.Text += " - " + Versions.GetApplicationVersion();
         }
 
         //
@@ -110,25 +116,22 @@ namespace AttendanceProClient
         }
 
         // 勤務時間の表示
-        void ShowWorkingLog(WorkingLog workingLog, bool ignoreTodaysEmptyForm)
+        void ShowWorkingLog(WorkingLogOwn workingLog, bool ignoreTodaysEmptyForm)
         {
             // 出勤履歴の情報
-            var hasEmptyForm = (0 < workingLog.EmptyFormsCount);
-            if (ignoreTodaysEmptyForm)
-            {
-                // 本日分のみ「未入力」を無視する
-                if (workingLog.EmptyFormsCount == 1)
-                {
-                    hasEmptyForm = false;
-                }
-            }
             var message = string.Format(Properties.Resources.TotalOverTimeWork, workingLog.TotalMonthlyOvertime.Hours, workingLog.TotalMonthlyOvertime.Minutes);
             var messageIcon = ToolTipIcon.Info;
-            if (hasEmptyForm)
+            if (workingLog.HasEmptyForm(ignoreTodaysEmptyForm))
             {
                 // 未入力な日があればアイコンを変えてメッセージの追加
                 messageIcon = ToolTipIcon.Warning;
                 message += Environment.NewLine + Properties.Resources.YouHaveNoInputDay;
+            }
+            if (workingLog.IsTodayLastWorkday && workingLog.IsMonthlyCommitButtonEnabled)
+            {
+                // 月の最終出社日かつ、月次確定がまだであれば、アイコンを変えてメッセージの追加
+                messageIcon = ToolTipIcon.Warning;
+                message += Environment.NewLine + Environment.NewLine + Properties.Resources.YouShouldSendMonthlyCommit;
             }
 
             // 勤務時間の表示
@@ -213,7 +216,8 @@ namespace AttendanceProClient
                 // 出退勤ダイアログの表示
                 var attendanceType = AttendanceTypes.Arrival;
                 mIsShownDialog = true;
-                var result = MessageBox.Show(string.Format(Properties.Resources.DoYouWantToArrival, attendanceType.ToName()),
+                var result = MessageBox.Show(
+                    string.Format(Properties.Resources.DoYouWantToArrival, attendanceType.ToName()),
                     Application.ProductName,
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question,

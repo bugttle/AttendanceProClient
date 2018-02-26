@@ -19,11 +19,10 @@ namespace AttendanceProClient
 
         async void UpdateSubordinateLog()
         {
+            reloadButton.Enabled = false;
+
             try
             {
-                reloadButton.Enabled = false;
-                workingLogsTextBox.Text = Properties.Resources.NowLoading;
-
                 var account = AccountManager.Instance.Account;
                 var workingLogs = await AttendanceProClient.Instance.FetchSubordinateWorkingLogs(account);
 
@@ -41,8 +40,6 @@ namespace AttendanceProClient
                     });
                 }
 
-                reloadButton.Enabled = true;
-
                 notifyIcon.ShowBalloonTip(Properties.Resources.GotOvertimeHours, ToolTipIcon.Info);
             }
             catch (AttendanceProLoginException e)
@@ -54,15 +51,22 @@ namespace AttendanceProClient
             {
                 notifyIcon.ShowBalloonTip(Properties.Resources.PasswordHasExpired, ToolTipIcon.Error);
             }
-            catch (AttendanceProFetchTableFullTimeException)
+            catch (AttendanceProFetchApprovalMonthlyException)
             {
-                notifyIcon.ShowBalloonTip(Properties.Resources.FailedToFetchWorkingTable, ToolTipIcon.Error);
+                notifyIcon.ShowBalloonTip(Properties.Resources.FailedToFetchSubordinateWorkHour, ToolTipIcon.Error);
             }
             catch (Exception e)
             {
                 notifyIcon.ShowBalloonTip(Properties.Resources.AnUnknownErrorOccurred + " : " + e.ToString(), ToolTipIcon.Error);
             }
+
+            // 更新ボタンを戻す
+            reloadButton.Enabled = true;
         }
+
+        //
+        // UI
+        //
 
         void reloadButton_Click(object sender, EventArgs e)
         {

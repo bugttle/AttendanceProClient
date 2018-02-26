@@ -16,6 +16,9 @@ namespace AttendanceProClient.Client
         // 「未入力」な項目があるかどうか
         public bool HasEmptyForm { get; set; }
 
+        // 「変更」ボタンが押せるかどうか
+        public bool IsChangeButtonEnabled { get; set; }
+
         // 勤務時間
         public TimeSpan WorkingHour { get; set; }
 
