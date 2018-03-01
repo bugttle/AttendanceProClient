@@ -206,11 +206,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>mkdir build
-mkdir build\dll &gt; NUL 2&gt;&amp;1
-copy *.dll build\dll\
-copy $(TargetFileName) build
-copy $(TargetFileName).config build</PostBuildEvent>
+    <PostBuildEvent>mkdir dist
+mkdir dist\dll &gt; NUL 2&gt;&amp;1
+copy *.dll dist\dll
+copy $(TargetFileName) dist
+copy $(TargetFileName).config dist
+xcopy /E /I /Y en dist\en</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
