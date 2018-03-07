@@ -117,10 +117,99 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;dataGridViewColumnTotalMonthlyNeeds.Name" xml:space="preserve">
-    <value>dataGridViewColumnTotalMonthlyNeeds</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="reloadButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="reloadButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>292, 272</value>
+  </data>
+  <data name="reloadButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="reloadButton.Text" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.Name" xml:space="preserve">
+    <value>reloadButton</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="subordinatesDataGridView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <metadata name="dataGridViewColumnPersonName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="dataGridViewColumnPersonName.HeaderText" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <metadata name="dataGridViewColumnTotalMonthlyNeeds.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="dataGridViewColumnTotalMonthlyNeeds.HeaderText" xml:space="preserve">
+    <value>所定労働時間</value>
+  </data>
+  <metadata name="dataGridViewWorkingTime.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="dataGridViewWorkingTime.HeaderText" xml:space="preserve">
+    <value>勤務時間</value>
+  </data>
+  <metadata name="dataGridViewColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="dataGridViewColumn.HeaderText" xml:space="preserve">
+    <value>不就労</value>
+  </data>
+  <metadata name="dataGridViewTotalOvertime.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="dataGridViewTotalOvertime.HeaderText" xml:space="preserve">
+    <value>累計残業時間</value>
+  </data>
+  <metadata name="col.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="col.HeaderText" xml:space="preserve">
+    <value>未入力日数</value>
+  </data>
+  <data name="subordinatesDataGridView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="subordinatesDataGridView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>643, 250</value>
+  </data>
+  <data name="subordinatesDataGridView.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;subordinatesDataGridView.Name" xml:space="preserve">
+    <value>subordinatesDataGridView</value>
+  </data>
+  <data name="&gt;&gt;subordinatesDataGridView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;subordinatesDataGridView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;subordinatesDataGridView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="notifyIcon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 20</value>
+  </metadata>
   <data name="notifyIcon.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAAAAEAGACoDAAAFgAAACgAAAAgAAAAQAAAAAEAGAAAAAAAgAwAAAAAAAAAAAAAAAAAAAAA
@@ -180,97 +269,20 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
   </data>
-  <data name="&gt;&gt;dataGridViewTotalOvertime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="reloadButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="col.HeaderText" xml:space="preserve">
-    <value>未入力日数</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewWorkingTime.Name" xml:space="preserve">
-    <value>dataGridViewWorkingTime</value>
-  </data>
-  <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="subordinatesDataGridView.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;subordinatesDataGridView.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;reloadButton.Name" xml:space="preserve">
-    <value>reloadButton</value>
-  </data>
-  <data name="&gt;&gt;workingLogsTextBox.Name" xml:space="preserve">
-    <value>workingLogsTextBox</value>
-  </data>
-  <data name="subordinatesDataGridView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="&gt;&gt;col.Name" xml:space="preserve">
-    <value>col</value>
-  </data>
-  <data name="reloadButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>292, 272</value>
-  </data>
-  <data name="workingLogsTextBox.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="notifyIcon.Text" xml:space="preserve">
     <value>AttendancePro Client (非公式)</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>667, 307</value>
-  </data>
-  <data name="&gt;&gt;subordinatesDataGridView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;col.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewColumn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="dataGridViewTotalOvertime.HeaderText" xml:space="preserve">
-    <value>累計残業時間</value>
-  </data>
-  <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="reloadButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="workingLogsTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>331, 46</value>
-  </data>
-  <data name="workingLogsTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewTotalOvertime.Name" xml:space="preserve">
-    <value>dataGridViewTotalOvertime</value>
-  </data>
-  <data name="workingLogsTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="notifyIcon.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;dataGridViewColumnPersonName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
   </data>
-  <data name="&gt;&gt;notifyIcon.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewWorkingTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>667, 307</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -331,91 +343,55 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
   </data>
-  <data name="&gt;&gt;reloadButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;workingLogsTextBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewColumn.Name" xml:space="preserve">
-    <value>dataGridViewColumn</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>部下の勤務情報</value>
   </data>
   <data name="&gt;&gt;dataGridViewColumnPersonName.Name" xml:space="preserve">
     <value>dataGridViewColumnPersonName</value>
   </data>
-  <data name="workingLogsTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;dataGridViewColumnPersonName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;workingLogsTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="dataGridViewWorkingTime.HeaderText" xml:space="preserve">
-    <value>勤務時間</value>
-  </data>
-  <data name="reloadButton.Text" xml:space="preserve">
-    <value>更新</value>
-  </data>
-  <data name="subordinatesDataGridView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>643, 250</value>
-  </data>
-  <data name="&gt;&gt;subordinatesDataGridView.Name" xml:space="preserve">
-    <value>subordinatesDataGridView</value>
-  </data>
-  <data name="dataGridViewColumn.HeaderText" xml:space="preserve">
-    <value>不就労</value>
-  </data>
-  <data name="dataGridViewColumnPersonName.HeaderText" xml:space="preserve">
-    <value>名前</value>
-  </data>
-  <data name="dataGridViewColumnTotalMonthlyNeeds.HeaderText" xml:space="preserve">
-    <value>所定労働時間</value>
-  </data>
-  <data name="&gt;&gt;notifyIcon.Name" xml:space="preserve">
-    <value>notifyIcon</value>
-  </data>
-  <data name="&gt;&gt;subordinatesDataGridView.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;reloadButton.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;dataGridViewColumnTotalMonthlyNeeds.Name" xml:space="preserve">
+    <value>dataGridViewColumnTotalMonthlyNeeds</value>
   </data>
   <data name="&gt;&gt;dataGridViewColumnTotalMonthlyNeeds.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>部下の勤務情報</value>
+  <data name="&gt;&gt;dataGridViewWorkingTime.Name" xml:space="preserve">
+    <value>dataGridViewWorkingTime</value>
   </data>
-  <data name="&gt;&gt;workingLogsTextBox.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;dataGridViewWorkingTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewColumn.Name" xml:space="preserve">
+    <value>dataGridViewColumn</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTotalOvertime.Name" xml:space="preserve">
+    <value>dataGridViewTotalOvertime</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewTotalOvertime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;col.Name" xml:space="preserve">
+    <value>col</value>
+  </data>
+  <data name="&gt;&gt;col.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;notifyIcon.Name" xml:space="preserve">
+    <value>notifyIcon</value>
+  </data>
+  <data name="&gt;&gt;notifyIcon.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MonthlyReportForm</value>
   </data>
-  <metadata name="dataGridViewColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dataGridViewColumnPersonName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="notifyIcon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>16, 20</value>
-  </metadata>
-  <metadata name="dataGridViewTotalOvertime.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="col.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dataGridViewWorkingTime.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dataGridViewColumnTotalMonthlyNeeds.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

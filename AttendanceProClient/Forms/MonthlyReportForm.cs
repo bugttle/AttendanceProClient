@@ -20,6 +20,7 @@ namespace AttendanceProClient
         async void UpdateSubordinateLog()
         {
             reloadButton.Enabled = false;
+            subordinatesDataGridView.Rows.Clear();
 
             try
             {
