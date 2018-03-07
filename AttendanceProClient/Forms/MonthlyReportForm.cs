@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using AttendanceProClient.Account;
 using AttendanceProClient.Client;
+using AttendanceProClient.Client.Exceptions;
 
 namespace AttendanceProClient
 {

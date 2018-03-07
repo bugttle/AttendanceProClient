@@ -2,7 +2,7 @@
 using HtmlAgilityPack;
 using System.Collections.Generic;
 
-namespace AttendanceProClient.Client
+namespace AttendanceProClient.Log
 {
     public class WorkingLogSubordinate : WorkingLog
     {
@@ -50,8 +50,19 @@ namespace AttendanceProClient.Client
                 // 年月日
                 log.Date = tdNodes[0].FirstChild.InnerText;
 
+                // 変更
+                var inputNode = tdNodes[6].FirstChild;
+                log.HasChangeButton = (inputNode != null);  // 部下のページでは、過去の日付の場合、ボタンが存在しない
+                log.IsChangeButtonEnabled = (inputNode != null && inputNode.GetAttributeValue("disabled", "") != "disabled");
+
                 // 承認状況
-                log.HasEmptyForm = (tdNodes[7].InnerText == "未入力");
+                var isNotEnteredStatus = (tdNodes[7].InnerText == "未入力");  // ステータスが「未入力」かどうか
+                // 入力すべき日に入力しているかどうか
+                if (log.IsWeekday && isNotEnteredStatus)
+                {
+                    log.HasEmptyForm = true;
+                    EmptyFormsCount++;
+                }
 
                 // 勤務時間
                 log.WorkingHour = Convert.ToTimeSpan(tdNodes[8].InnerText);
@@ -60,14 +71,10 @@ namespace AttendanceProClient.Client
                 log.Overtime = Convert.ToTimeSpan(tdNodes[10].InnerText);
 
                 // 勤務時間の累計
-                if (today.Day <= i)
+                if (log.IsWeekday && (!log.HasChangeButton || log.IsChangeButtonEnabled))
                 {
                     // 累計残業時間
                     TotalMonthlyOvertime += log.Overtime;
-                    if (log.HasEmptyForm)
-                    {
-                        EmptyFormsCount++;
-                    }
                 }
 
                 Histories.Add(log);

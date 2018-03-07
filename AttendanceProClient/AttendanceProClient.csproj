@@ -58,8 +58,8 @@
       <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="HtmlAgilityPack, Version=1.7.1.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.7.1\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Moq, Version=4.8.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
@@ -102,10 +102,10 @@
     <Compile Include="AttendanceProClient\Client\QueryCreator.cs" />
     <Compile Include="AttendanceProClient\Client\ResponseValidator.cs" />
     <Compile Include="Extensions\NotifyIconExtension.cs" />
-    <Compile Include="AttendanceProClient\WorkingLog\WorkingLogSubordinate.cs" />
-    <Compile Include="AttendanceProClient\WorkingLog\WorkingLogOwn.cs" />
-    <Compile Include="AttendanceProClient\WorkingLog\WorkingLog.cs" />
-    <Compile Include="AttendanceProClient\WorkingLog\LogItem.cs" />
+    <Compile Include="AttendanceProClient\Log\WorkingLogSubordinate.cs" />
+    <Compile Include="AttendanceProClient\Log\WorkingLogOwn.cs" />
+    <Compile Include="AttendanceProClient\Log\WorkingLog.cs" />
+    <Compile Include="AttendanceProClient\Log\LogItem.cs" />
     <Compile Include="AttendanceProClient\Account\Account.cs" />
     <Compile Include="AttendanceProClient\Client\AttendanceProClient.cs" />
     <Compile Include="Forms\MonthlyReportForm.cs">
@@ -186,17 +186,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="IWshRuntimeLibrary">
-      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\ArmyKnifeDotNet\ArmyKnifeDotNet\ArmyKnifeDotNet.csproj">

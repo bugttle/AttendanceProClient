@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AttendanceProClient.Client
+namespace AttendanceProClient.Log
 {
     public class WorkingLog
     {

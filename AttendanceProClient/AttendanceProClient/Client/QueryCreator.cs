@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace AttendanceProClient.Client
         {
             var ps = new NameValueCollection();
 
-            var doc = new HtmlAgilityPack.HtmlDocument();
+            var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
             foreach (var node in doc.DocumentNode.SelectNodes("//input"))
@@ -77,7 +78,7 @@ namespace AttendanceProClient.Client
         {
             var ps = new NameValueCollection();
 
-            var doc = new HtmlAgilityPack.HtmlDocument();
+            var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
             ps.Add("__EVENTTARGET", "");
@@ -137,7 +138,7 @@ namespace AttendanceProClient.Client
 
         public static IEnumerable<string> FindTargetSubordinates(string html)
         {
-            var doc = new HtmlAgilityPack.HtmlDocument();
+            var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
             var subordinateNodes = doc.DocumentNode.SelectNodes("//table[@id='ctl00_ContentMain_gvResultsShiftType1']//input[@type='submit']");
@@ -158,7 +159,7 @@ namespace AttendanceProClient.Client
         {
             var ps = new NameValueCollection();
 
-            var doc = new HtmlAgilityPack.HtmlDocument();
+            var doc = new HtmlDocument();
             doc.LoadHtml(html);
 
             ps.Add("__EVENTTARGET", "");

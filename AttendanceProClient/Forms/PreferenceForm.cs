@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AttendanceProClient.Account;
 using AttendanceProClient.Client;
+using AttendanceProClient.Client.Exceptions;
+using AttendanceProClient.Log;
 
 namespace AttendanceProClient
 {
@@ -210,7 +212,7 @@ namespace AttendanceProClient
         // 自動出勤のチェック
         async void CheckAutoAttendance()
         {
-            var timeKeeper = TimeKeeper.TimeKeeper.Instance;
+            var timeKeeper = TimeKeeper.Instance;
             if (!mIsShownDialog && timeKeeper.UpdateTime())
             {
                 // 出退勤ダイアログの表示

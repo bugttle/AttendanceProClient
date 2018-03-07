@@ -2,7 +2,7 @@
 using HtmlAgilityPack;
 using System.Collections.Generic;
 
-namespace AttendanceProClient.Client
+namespace AttendanceProClient.Log
 {
     public class WorkingLogOwn : WorkingLog
     {
@@ -83,6 +83,7 @@ namespace AttendanceProClient.Client
                     {
                         // 「変更」ボタンが押せるかどうか
                         var inputNode = tdNode.FirstChild;
+                        log.HasChangeButton = true;  // 個人のページには常にある
                         log.IsChangeButtonEnabled = (inputNode.GetAttributeValue("disabled", "") != "disabled");
                     }
                     else if (idName != null)

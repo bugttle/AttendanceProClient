@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using AttendanceProClient.Client.Exceptions;
 
 namespace AttendanceProClient.Client
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AttendanceProClient.TimeKeeper
+namespace AttendanceProClient
 {
     public class TimeKeeper
     {

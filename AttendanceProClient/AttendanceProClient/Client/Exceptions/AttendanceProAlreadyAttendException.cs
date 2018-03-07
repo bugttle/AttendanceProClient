@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace AttendanceProClient.Client
+namespace AttendanceProClient.Client.Exceptions
 {
     /// <summary>
     ///  出退勤処理時の Exception

@@ -1,5 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using HtmlAgilityPack;
+using AttendanceProClient.Log;
 
 namespace AttendanceProClientTests
 {
@@ -9,6 +11,10 @@ namespace AttendanceProClientTests
         [TestMethod]
         public void TestMethod1()
         {
+            var doc = new HtmlDocument();
+            doc.Load("../../TestHtml/AttendanceExercisedMonthlyDetails/1.html");
+
+            var log = new WorkingLogSubordinate(doc);
         }
     }
 }

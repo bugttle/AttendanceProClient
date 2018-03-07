@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AttendanceProClient.Client
+namespace AttendanceProClient.Log
 {
     public struct LogItem
     {
@@ -15,6 +15,9 @@ namespace AttendanceProClient.Client
 
         // 「未入力」な項目があるかどうか
         public bool HasEmptyForm { get; set; }
+
+        // 「変更」ボタンがあるかどうか
+        public bool HasChangeButton { get; set; }
 
         // 「変更」ボタンが押せるかどうか
         public bool IsChangeButtonEnabled { get; set; }
