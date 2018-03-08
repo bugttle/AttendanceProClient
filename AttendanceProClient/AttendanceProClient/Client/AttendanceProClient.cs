@@ -94,13 +94,15 @@ namespace AttendanceProClient.Client
 
             return await Task.Run(() =>
             {
+                var today = DateTime.Today.Day;
+
                 // 月次勤務表から情報を取得する
                 html = wc.Get(AttendanceProURLs.AttendanceTableFullTime);
 
                 // 月次勤務表が取得できているかのチェック
                 var doc = ResponseValidator.ValidateFetchedTableFullTime(html);
 
-                return new WorkingLogOwn(doc);
+                return new WorkingLogOwn(doc, today);
             });
         }
 
@@ -108,6 +110,8 @@ namespace AttendanceProClient.Client
         {
             return await Task.Run(() =>
             {
+                var today = DateTime.Today.Day;
+
                 // まずは ApprovalMonthlyへアクセスしてURLを取得する
                 var query = QueryCreator.QueryForApprovalMonthlyPage(html, targetSubordinate);
                 html = wc.Post(AttendanceProURLs.ApprovalMonthly, query);
@@ -117,7 +121,7 @@ namespace AttendanceProClient.Client
                 html = wc.Get(url);
                 var doc = ResponseValidator.ValidateFetchedAttendanceExercisedMonthlyDetails(html);
 
-                return new WorkingLogSubordinate(doc);
+                return new WorkingLogSubordinate(doc, today);
             });
         }
 

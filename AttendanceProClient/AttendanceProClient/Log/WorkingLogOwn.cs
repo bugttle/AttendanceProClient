@@ -21,7 +21,7 @@ namespace AttendanceProClient.Log
             get { return lastWeekdayLog.IsChangeButtonEnabled; }
         }
 
-        public WorkingLogOwn(HtmlDocument doc)
+        public WorkingLogOwn(HtmlDocument doc, int today)
         {
             // 名前
             var personNameNode = doc.DocumentNode.SelectSingleNode("//span[@id='ctl00_ContentMain_PageHeaderUC1_lblEmployeeName']");
@@ -61,12 +61,14 @@ namespace AttendanceProClient.Log
                 // 日付
                 log.Day = i;
 
+                // 過去の日付かどうか
+                var isPastDay = log.Day < today;
+
                 // 平日かどうか
                 var bgColor = trNode.GetAttributeValue("style", "");
                 log.IsWeekday = bgColor.Contains("background-color:White;");
 
-                // ステータスが「未入力」かどうか
-                var isNotEnteredStatus = false;
+                // 勤務時間が入力されているかどうか
                 var hasWorkingTime = false;
 
                 foreach (var tdNode in trNode.ChildNodes)
@@ -83,17 +85,11 @@ namespace AttendanceProClient.Log
                     {
                         // 「変更」ボタンが押せるかどうか
                         var inputNode = tdNode.FirstChild;
-                        log.HasChangeButton = true;  // 個人のページには常にある
                         log.IsChangeButtonEnabled = (inputNode.GetAttributeValue("disabled", "") != "disabled");
                     }
                     else if (idName != null)
                     {
-                        if (idName.EndsWith("_CellState"))
-                        {
-                            // 承認状況
-                            isNotEnteredStatus = (tdNode.InnerText == "未入力");
-                        }
-                        else if (idName.EndsWith("_celFreeColumn1"))
+                        if (idName.EndsWith("_celFreeColumn1"))
                         {
                             // 勤務時間
                             hasWorkingTime = true;
@@ -107,8 +103,8 @@ namespace AttendanceProClient.Log
                     }
                 }
 
-                // 入力すべき日に入力しているかどうか
-                if (log.IsWeekday && log.IsChangeButtonEnabled && isNotEnteredStatus)
+                // 昨日までで、入力すべき日に入力しているかどうか
+                if (isPastDay && log.IsWeekday && !hasWorkingTime)
                 {
                     log.HasEmptyForm = true;
                     EmptyFormsCount++;

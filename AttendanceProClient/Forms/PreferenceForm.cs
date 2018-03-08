@@ -118,12 +118,12 @@ namespace AttendanceProClient
         }
 
         // 勤務時間の表示
-        void ShowWorkingLog(WorkingLogOwn workingLog, bool ignoreTodaysEmptyForm)
+        void ShowWorkingLog(WorkingLogOwn workingLog)
         {
             // 出勤履歴の情報
             var message = string.Format(Properties.Resources.TotalOverTimeWork, workingLog.TotalMonthlyOvertime.Hours, workingLog.TotalMonthlyOvertime.Minutes);
             var messageIcon = ToolTipIcon.Info;
-            if (workingLog.HasEmptyForm(ignoreTodaysEmptyForm))
+            if (workingLog.HasEmptyForm)
             {
                 // 未入力な日があればアイコンを変えてメッセージの追加
                 messageIcon = ToolTipIcon.Warning;
@@ -146,7 +146,7 @@ namespace AttendanceProClient
             try
             {
                 var workingLog = await AttendanceProClient.Instance.FetchOwnWorkingLog(AccountManager.Instance.Account);
-                ShowWorkingLog(workingLog, ignoreTodaysEmptyForm: false);
+                ShowWorkingLog(workingLog);
             }
             catch (AttendanceProLoginException e)
             {
@@ -180,7 +180,7 @@ namespace AttendanceProClient
 
                 // 少しのディレイを挿んで通知メッセージの表示
                 await Task.Delay(showingTime);
-                ShowWorkingLog(workingLog, ignoreTodaysEmptyForm: (type == AttendanceTypes.Arrival));
+                ShowWorkingLog(workingLog);
             }
             catch (AttendanceProLoginException e)
             {
