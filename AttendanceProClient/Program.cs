@@ -1,5 +1,5 @@
-﻿using System;
-using System.Threading;
+﻿using DotNetCommonLibrary.Threading;
+using System;
 using System.Windows.Forms;
 
 namespace AttendanceProClient
@@ -18,30 +18,23 @@ namespace AttendanceProClient
 #endif
 
             // Mutexを利用して、二重起動を防止
-            bool createdNew;
-            var mutex = new Mutex(true, Application.ProductName, out createdNew);
-            if (!createdNew)
+            using (var mutex = new MutexLock(Application.ProductName))
             {
-                MessageBox.Show(Properties.Resources.ItHasAlreadyLaunched);
-                mutex.Close();
-                return;
-            }
+                try
+                {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
 
-            try
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
+                    // 起動時にFormを表示したくないので、Runメソッドに渡さない
+                    var form = new PreferenceForm();
+                    form.Init();
 
-                // 起動時にFormを表示したくないので、Runメソッドに渡さない
-                var form = new PreferenceForm();
-                form.Init();
-
-                Application.Run();
-            }
-            finally
-            {
-                mutex.ReleaseMutex();
-                mutex.Close();
+                    Application.Run();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(Properties.Resources.ItHasAlreadyLaunched);
+                }
             }
         }
     }

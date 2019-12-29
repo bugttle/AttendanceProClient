@@ -1,14 +1,13 @@
-﻿using ArmyKnifeDotNet.Diagnostics;
-using ArmyKnifeDotNet.IO.File;
-using ArmyKnifeDotNet.IO.GlobalHook;
-using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using AttendanceProClient.Account;
+﻿using AttendanceProClient.Account;
 using AttendanceProClient.Client;
 using AttendanceProClient.Client.Exceptions;
 using AttendanceProClient.Log;
+using DotNetCommonLibrary.Diagnostics;
+using DotNetCommonLibrary.IO.File.Utilities;
+using DotNetCommonLibrary.IO.GlobalHook.Mouse;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AttendanceProClient
 {
@@ -51,7 +50,7 @@ namespace AttendanceProClient
 
         private void PreferenceForm_Load(object sender, EventArgs e)
         {
-            this.Text += " - " + Versions.GetApplicationVersion();
+            this.Text += " - " + FileVersionInfo.GetProductVersion();
         }
 
         //
@@ -84,7 +83,7 @@ namespace AttendanceProClient
 
         void UpdateStartupCheckbox()
         {
-            startupCheckBox.Checked = StartupLink.Exists();
+            startupCheckBox.Checked = StartupLink.Exists(Application.ExecutablePath);
         }
 
         //
@@ -96,10 +95,10 @@ namespace AttendanceProClient
         {
             try
             {
-                await AttendanceProClient.Instance.ChceckLogOn(AccountManager.Instance.Account);
+                await Client.AttendanceProClient.Instance.ChceckLogOn(AccountManager.Instance.Account);
                 notifyIcon.ShowBalloonTip(Properties.Resources.LoginSucceeded, ToolTipIcon.Info);
 
-                var isManager = await AttendanceProClient.Instance.IsManagerAccount();
+                var isManager = await Client.AttendanceProClient.Instance.IsManagerAccount();
                 toolStripMenuItemShowSubordinateLogs.Visible = isManager;
             }
             catch (AttendanceProLoginException e)
@@ -145,7 +144,7 @@ namespace AttendanceProClient
         {
             try
             {
-                var workingLog = await AttendanceProClient.Instance.FetchOwnWorkingLog(AccountManager.Instance.Account);
+                var workingLog = await Client.AttendanceProClient.Instance.FetchOwnWorkingLog(AccountManager.Instance.Account);
                 ShowWorkingLog(workingLog);
             }
             catch (AttendanceProLoginException e)
@@ -172,7 +171,7 @@ namespace AttendanceProClient
         {
             try
             {
-                var workingLog = await AttendanceProClient.Instance.Attend(AccountManager.Instance.Account, type);
+                var workingLog = await Client.AttendanceProClient.Instance.Attend(AccountManager.Instance.Account, type);
 
                 // 出勤退勤の完了メッセージ(短めの時間表示させる)
                 int showingTime = 1000;
@@ -293,11 +292,11 @@ namespace AttendanceProClient
             {
                 if (startupCheckBox.Checked)
                 {
-                    StartupLink.Create();
+                    StartupLink.CreateStartup(Application.ExecutablePath);
                 }
                 else
                 {
-                    StartupLink.Remove();
+                    StartupLink.RemoveStartup(Application.ExecutablePath);
                 }
             }
         }
@@ -347,7 +346,7 @@ namespace AttendanceProClient
         // ブラウザで開く
         void toolStripMenuItemOpenBrowser_Click(object sender, EventArgs e)
         {
-            Process.Start(AttendanceProURLs.Top);
+            new Process().ExecuteAsync(AttendanceProURLs.Top);
         }
 
         // 設定
@@ -369,7 +368,7 @@ namespace AttendanceProClient
         // マウスのフック
         //
 
-        void HookFunc(ref MouseHook.StateMouse s)
+        void HookFunc(ref MouseState s)
         {
             // 出勤するかどうかのチェック
             CheckAutoAttendance();
@@ -379,12 +378,12 @@ namespace AttendanceProClient
         {
             if (enabled)
             {
-                MouseHook.AddEvent(HookFunc);
+                MouseHook.HookEvent += HookFunc;
                 MouseHook.Start();
             }
             else
             {
-                MouseHook.RemoveEvent(HookFunc);
+                MouseHook.HookEvent -= HookFunc;
                 MouseHook.Stop();
             }
         }

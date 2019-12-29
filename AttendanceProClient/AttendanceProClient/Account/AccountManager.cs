@@ -1,4 +1,4 @@
-﻿using ArmyKnifeDotNet.IO.Serializer;
+﻿using DotNetCommonLibrary.IO.File.Serializer;
 
 namespace AttendanceProClient.Account
 {
@@ -32,8 +32,7 @@ namespace AttendanceProClient.Account
         {
             try
             {
-                var serializer = new EncryptionSerializer();
-                Account = serializer.DeserializeFromFile<Account>();
+                Account = EncryptionSerializer.Decrypt<Account>(EncryptionSerializer.DefaultFilePath);
             }
             catch
             {
@@ -47,8 +46,7 @@ namespace AttendanceProClient.Account
         /// </summary>
         public void Save()
         {
-            var serializer = new EncryptionSerializer();
-            serializer.SerializeToFile<Account>(Account);
+            EncryptionSerializer.Encrypt<Account>(Account, EncryptionSerializer.DefaultFilePath);
         }
 
         public void SetUserId(string userId)

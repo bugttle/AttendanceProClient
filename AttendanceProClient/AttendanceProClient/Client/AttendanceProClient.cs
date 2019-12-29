@@ -1,4 +1,4 @@
-﻿using ArmyKnifeDotNet.Web;
+﻿using DotNetCommonLibrary.Net;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,9 +10,9 @@ namespace AttendanceProClient.Client
 {
     // Disposeを実装しないと、以下のWarningが出るため、実装している
     // Warning CA1001  Implement IDisposable on 'AttendanceProClient' because it creates members of the following IDisposable types: 'CookieAwareWebClient'.
-    class AttendanceProClient : IDisposable
+    public class AttendanceProClient : IDisposable
     {
-        CookieAwareWebClient wc = new CookieAwareWebClient()
+        readonly CookieAwareWebClient wc = new CookieAwareWebClient()
         {
             Encoding = Encoding.UTF8,
             UserAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"
@@ -36,9 +36,24 @@ namespace AttendanceProClient.Client
         {
         }
 
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                wc.Dispose();
+            }
+        }
+
+
         public void Dispose()
         {
-            wc.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~AttendanceProClient()
+        {
+            Dispose(false);
         }
 
         // ログイン

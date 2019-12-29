@@ -26,7 +26,7 @@ namespace AttendanceProClient
             try
             {
                 var account = AccountManager.Instance.Account;
-                var workingLogs = await AttendanceProClient.Instance.FetchSubordinateWorkingLogs(account);
+                var workingLogs = await Client.AttendanceProClient.Instance.FetchSubordinateWorkingLogs(account);
 
                 while (workingLogs.MoveNext())
                 {

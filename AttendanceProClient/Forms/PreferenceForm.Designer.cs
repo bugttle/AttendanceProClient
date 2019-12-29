@@ -16,7 +16,7 @@ namespace AttendanceProClient {
                 components.Dispose();
 
                 // WebClientの破棄
-                AttendanceProClient.Instance.Dispose();
+                Client.AttendanceProClient.Instance.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -1,0 +1,3 @@
+[submodule "DotNetCommonLibrary"]
+	path = DotNetCommonLibrary
+	url = git@github.com:bugttle/DotNetCommonLibrary.git

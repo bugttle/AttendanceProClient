@@ -1,4 +1,4 @@
-﻿using ArmyKnifeDotNet.Text;
+﻿using DotNetCommonLibrary.Text;
 using HtmlAgilityPack;
 using System.Collections.Generic;
 
@@ -19,11 +19,11 @@ namespace AttendanceProClient.Log
             if (detailTdNodes != null)
             {
                 // 所定労働時間
-                TotalMonthlyNeeds = Convert.ToTimeSpan(detailTdNodes[0].InnerText);
+                TotalMonthlyNeeds = Converter.ToTimeSpan(detailTdNodes[0].InnerText);
                 // 勤務時間
-                TotalMonthlyCurrent = Convert.ToTimeSpan(detailTdNodes[1].InnerText);
+                TotalMonthlyCurrent = Converter.ToTimeSpan(detailTdNodes[1].InnerText);
                 // 不就労
-                TotalMonthlyRemains = Convert.ToTimeSpan(detailTdNodes[7].InnerText);
+                TotalMonthlyRemains = Converter.ToTimeSpan(detailTdNodes[7].InnerText);
             }
 
             // 日々の履歴
@@ -57,7 +57,7 @@ namespace AttendanceProClient.Log
 
                 // 勤務時間
                 var workingHour = tdNodes[8].InnerText;
-                log.WorkingHour = Convert.ToTimeSpan(workingHour);
+                log.WorkingHour = Converter.ToTimeSpan(workingHour);
 
                 // 昨日までで、入力すべき日に入力しているかどうか
                 if (isPastDay && log.IsWeekday && string.IsNullOrEmpty(workingHour))
@@ -67,7 +67,7 @@ namespace AttendanceProClient.Log
                 }
 
                 // 標準差
-                log.Overtime = Convert.ToTimeSpan(tdNodes[10].InnerText);
+                log.Overtime = Converter.ToTimeSpan(tdNodes[10].InnerText);
 
                 // 勤務時間の累計
                 if (isPastDay && log.IsWeekday)

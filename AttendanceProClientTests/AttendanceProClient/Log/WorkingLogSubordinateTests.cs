@@ -1,15 +1,14 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using AttendanceProClient.Log;
 using HtmlAgilityPack;
-using AttendanceProClient.Log;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AttendanceProClientTests
 {
     [TestClass]
-    public class UnitTest1
+    public class WorkingLogSubordinateTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void WorkingLogSubordinateTest()
         {
             var doc = new HtmlDocument();
 
